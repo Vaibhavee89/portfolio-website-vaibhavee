@@ -1,0 +1,102 @@
+
+import { useState, useEffect } from 'react';
+import ProjectCard, { Project } from '../ui-components/ProjectCard';
+
+const projects: Project[] = [
+  {
+    id: "1",
+    title: "Minimalist E-Commerce Platform",
+    description: "A clean, modern e-commerce website with intuitive navigation and seamless checkout experience.",
+    image: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    tags: ["E-Commerce", "Web Design", "React"],
+  },
+  {
+    id: "2",
+    title: "Financial Dashboard",
+    description: "An interactive dashboard for financial analytics with real-time data visualization.",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    tags: ["Dashboard", "Data Visualization", "React"],
+  },
+  {
+    id: "3",
+    title: "Travel Blog Platform",
+    description: "A responsive blog platform focused on travel experiences with rich media support.",
+    image: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    tags: ["Blog", "Web Development", "CMS"],
+  },
+  {
+    id: "4",
+    title: "Smart Home App",
+    description: "A mobile app for controlling smart home devices with a focus on simplicity and usability.",
+    image: "https://images.unsplash.com/photo-1558002038-2f4bb8741991?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    tags: ["Mobile App", "IoT", "React Native"],
+  },
+  {
+    id: "5",
+    title: "Fitness Tracking Application",
+    description: "A comprehensive fitness app for tracking workouts, nutrition, and health metrics.",
+    image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    tags: ["Mobile App", "Health", "UI/UX Design"],
+  },
+  {
+    id: "6",
+    title: "Photography Portfolio",
+    description: "A minimal portfolio website showcasing a photographer's work with immersive viewing experience.",
+    image: "https://images.unsplash.com/photo-1520390138845-fd2d229dd553?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2092&q=80",
+    tags: ["Portfolio", "Photography", "Gallery"],
+  },
+];
+
+export const Projects = () => {
+  const [isVisible, setIsVisible] = useState(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    const section = document.getElementById('projects');
+    if (section) observer.observe(section);
+
+    return () => {
+      if (section) observer.unobserve(section);
+    };
+  }, []);
+
+  return (
+    <section id="projects" className="section bg-secondary">
+      <div className="max-w-7xl mx-auto">
+        <div className="mb-12 flex flex-col items-start">
+          <span className="px-4 py-2 rounded-full bg-accent text-accent-foreground mb-4">
+            My Work
+          </span>
+          <h2 className="section-heading">Featured Projects</h2>
+          <p className="section-subheading">
+            A selection of my recent work across various domains and industries.
+            Each project represents a unique challenge and solution.
+          </p>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {projects.map((project, index) => (
+            <div 
+              key={project.id} 
+              className={isVisible ? `animate-fade-in animate-delay-${index * 100}` : 'opacity-0'}
+              style={{ animationDelay: `${index * 100}ms` }}
+            >
+              <ProjectCard project={project} />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Projects;
