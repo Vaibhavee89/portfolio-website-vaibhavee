@@ -14,7 +14,7 @@ export const Hero = () => {
         </h1>
         
         <p className="text-xl text-muted-foreground max-w-2xl mb-8 animate-fade-in animate-delay-200">
-          A passionate designer and developer specializing in creating beautiful, functional, and user-friendly websites and applications.
+          "Innovation is the ability to see change as an opportunity, not a threat." - Steve Jobs 
         </p>
         
         <div className="flex flex-wrap justify-center gap-4 animate-fade-in animate-delay-300">
