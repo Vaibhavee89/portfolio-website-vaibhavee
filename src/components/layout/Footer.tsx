@@ -1,5 +1,5 @@
 
-import { GitHub, Linkedin, Mail, Twitter } from 'lucide-react';
+import { Github, Linkedin, Mail, Twitter } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export const Footer = () => {
@@ -33,7 +33,7 @@ export const Footer = () => {
             <h3 className="text-lg font-bold">Connect</h3>
             <div className="flex space-x-4">
               <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="p-2 bg-background rounded-full hover:text-primary transition-colors" aria-label="GitHub">
-                <GitHub size={20} />
+                <Github size={20} />
               </a>
               <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="p-2 bg-background rounded-full hover:text-primary transition-colors" aria-label="LinkedIn">
                 <Linkedin size={20} />
