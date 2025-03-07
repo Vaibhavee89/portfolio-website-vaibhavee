@@ -21,9 +21,9 @@ interface ProjectDetails extends Project {
 const projectsData: ProjectDetails[] = [
   {
     id: "1",
-    title: "Minimalist E-Commerce Platform",
-    description: "A clean, modern e-commerce website with intuitive navigation and seamless checkout experience.",
-    fullDescription: "This project involved designing and developing a complete e-commerce platform focusing on minimalist design principles while ensuring a robust shopping experience. The platform includes product listings, search functionality, user accounts, shopping cart, checkout process, and order management.\n\nThe design approach focused on removing unnecessary elements and emphasizing product imagery with clean typography. The user interface was optimized for both desktop and mobile devices, ensuring a consistent experience across all screen sizes.",
+    title: "POrtfolio Website",
+    description: "This project showcases my work, skills, and experiences in a beautifully crafted and responsive design.",
+    fullDescription: "This portfolio website serves as a personal space to highlight my achievements, projects, and professional journey. Built with modern technologies, it ensures a smooth and visually appealing user experience."
     image: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
     images: [
       "https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
@@ -32,9 +32,9 @@ const projectsData: ProjectDetails[] = [
     ],
     tags: ["E-Commerce", "Web Design", "React"],
     client: "FashionMinimal",
-    role: "Lead Designer & Developer",
-    duration: "3 months",
-    year: "2023",
+    role: "Personal Project",
+    duration: "",
+    year: "",
     liveLink: "https://example.com",
     githubLink: "https://github.com"
   },
