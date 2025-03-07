@@ -31,11 +31,11 @@ export const Hero = () => {
           <div className="relative w-full max-w-md mx-auto">
             <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl blur-md"></div>
             <div className="relative aspect-square rounded-2xl overflow-hidden border border-border">
-              <img 
-                src="public\female_programmer.avif" 
-                alt="Vaibhavee Singh" 
-                className="w-full h-full object-cover"
-              />
+<img 
+  src="public/female_programmer.avif" 
+  alt="Vaibhavee Singh" 
+  className="w-full h-full object-cover"
+/>
             </div>
           </div>
         </div>
