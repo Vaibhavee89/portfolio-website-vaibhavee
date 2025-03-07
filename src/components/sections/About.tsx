@@ -8,12 +8,15 @@ interface Skill {
 }
 
 const skills: Skill[] = [
-  { name: 'UI/UX Design', level: 90 },
-  { name: 'Web Development', level: 85 },
-  { name: 'React', level: 80 },
-  { name: 'JavaScript', level: 85 },
-  { name: 'TypeScript', level: 75 },
-  { name: 'Node.js', level: 70 },
+  { name: 'Languages', level: 90 },
+  { name: 'ML/DL Frameworks', level: 85 },
+  { name: 'Data Processing', level: 80 },
+  { name: 'NLP', level: 85 },
+  { name: 'Visualization', level: 75 },
+  { name: 'Cloud', level: 70 },
+  {name: 'Web Development', level: 50},
+  {name: 'Tools', level: 50},
+  {name: 'Technical Writing', level: 50},
 ];
 
 export const About = () => {
