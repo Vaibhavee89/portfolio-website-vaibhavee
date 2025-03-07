@@ -9,10 +9,6 @@ import { Project } from '../components/ui-components/ProjectCard';
 // Extended project details
 interface ProjectDetails extends Project {
   fullDescription: string;
-  client?: string;
-  role?: string;
-  duration?: string;
-  year?: string;
   liveLink?: string;
   githubLink?: string;
   images: string[];
@@ -30,13 +26,9 @@ const projectsData: ProjectDetails[] = [
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80",
       "https://images.unsplash.com/photo-1556742031-c6961e8560b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
     ],
-    tags: ["E-Commerce", "Web Design", "React"],
-    client: "FashionMinimal",
-    role: "Personal Project",
-    duration: "",
-    year: "",
-    liveLink: "https://example.com",
-    githubLink: "https://github.com"
+    tags: ["Portfolio", "Skills", "React"],
+    liveLink: "https://portfolio-website-vaibhavee.vercel.app/",
+    githubLink: "https://github.com/Vaibhavee89/portfolio-website-vaibhavee"
   },
   {
     id: "2",
@@ -50,10 +42,6 @@ const projectsData: ProjectDetails[] = [
       "https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
     ],
     tags: ["Dashboard", "Data Visualization", "React"],
-    client: "FinTrack Inc.",
-    role: "Frontend Developer",
-    duration: "4 months",
-    year: "2022",
     liveLink: "https://example.com",
     githubLink: "https://github.com"
   },
@@ -69,10 +57,6 @@ const projectsData: ProjectDetails[] = [
       "https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
     ],
     tags: ["Blog", "Web Development", "CMS"],
-    client: "Wanderlust Media",
-    role: "Full-stack Developer",
-    duration: "6 months",
-    year: "2022",
     liveLink: "https://example.com",
     githubLink: "https://github.com"
   },
@@ -88,10 +72,6 @@ const projectsData: ProjectDetails[] = [
       "https://images.unsplash.com/photo-1581508473471-c9221934233a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
     ],
     tags: ["Mobile App", "IoT", "React Native"],
-    client: "SmartLiving Tech",
-    role: "UI/UX Designer",
-    duration: "5 months",
-    year: "2023",
     liveLink: "https://example.com",
     githubLink: "https://github.com"
   },
@@ -107,10 +87,6 @@ const projectsData: ProjectDetails[] = [
       "https://images.unsplash.com/photo-1517836357463-d25dfeac3438?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
     ],
     tags: ["Mobile App", "Health", "UI/UX Design"],
-    client: "FitLife",
-    role: "Lead Designer",
-    duration: "7 months",
-    year: "2022",
     liveLink: "https://example.com",
     githubLink: "https://github.com"
   },
@@ -126,10 +102,7 @@ const projectsData: ProjectDetails[] = [
       "https://images.unsplash.com/photo-1554080353-a576cf803bda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80"
     ],
     tags: ["Portfolio", "Photography", "Gallery"],
-    client: "Elena Visuals",
-    role: "Designer & Developer",
-    duration: "2 months",
-    year: "2023",
+
     liveLink: "https://example.com",
     githubLink: "https://github.com"
   },
@@ -274,35 +247,7 @@ const ProjectDetail = () => {
             <div className={`lg:col-span-1 ${isVisible ? 'animate-fade-in animate-delay-300' : 'opacity-0'}`}>
               <div className="bg-card border border-border rounded-xl p-6 sticky top-32">
                 <h2 className="text-xl font-bold mb-6">Project Details</h2>
-                
-                <div className="space-y-4">
-                  {project.client && (
-                    <div>
-                      <h3 className="text-sm text-muted-foreground mb-1">Client</h3>
-                      <p className="font-medium">{project.client}</p>
-                    </div>
-                  )}
-                  
-                  {project.role && (
-                    <div>
-                      <h3 className="text-sm text-muted-foreground mb-1">My Role</h3>
-                      <p className="font-medium">{project.role}</p>
-                    </div>
-                  )}
-                  
-                  {project.year && (
-                    <div>
-                      <h3 className="text-sm text-muted-foreground mb-1">Year</h3>
-                      <p className="font-medium">{project.year}</p>
-                    </div>
-                  )}
-                  
-                  {project.duration && (
-                    <div>
-                      <h3 className="text-sm text-muted-foreground mb-1">Duration</h3>
-                      <p className="font-medium">{project.duration}</p>
-                    </div>
-                  )}
+              
                   
                   <div className="pt-4 space-y-3">
                     {project.liveLink && (
@@ -327,7 +272,6 @@ const ProjectDetail = () => {
                       </a>
                     )}
                   </div>
-                </div>
               </div>
             </div>
           </div>

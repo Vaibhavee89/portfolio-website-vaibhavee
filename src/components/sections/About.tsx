@@ -50,8 +50,7 @@ export const About = () => {
           </span>
           <h2 className="section-heading">Who I Am</h2>
           <p className="section-subheading">
-            I combine technical skills with creative design thinking to build exceptional products that
-            people love to use.
+            I am BTech 3rd year student passionate about research and specializing in 
           </p>
         </div>
 

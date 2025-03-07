@@ -1,5 +1,5 @@
 
-import { Github, Linkedin, Mail, Twitter } from 'lucide-react';
+import { Github, Linkedin, Mail, Twitter, Youtube } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export const Footer = () => {
@@ -14,7 +14,7 @@ export const Footer = () => {
               Portfolio.
             </Link>
             <p className="text-muted-foreground max-w-xs">
-              A minimalist portfolio showcasing my work and skills in design and development.
+            Innovate. Iterate. Inspire.
             </p>
           </div>
           
@@ -32,16 +32,16 @@ export const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-lg font-bold">Connect</h3>
             <div className="flex space-x-4">
-              <a href="https://github.com" target="_blank" rel="noopener noreferrer" className="p-2 bg-background rounded-full hover:text-primary transition-colors" aria-label="GitHub">
+              <a href="https://github.com/Vaibhavee89" target="_blank" rel="noopener noreferrer" className="p-2 bg-background rounded-full hover:text-primary transition-colors" aria-label="GitHub">
                 <Github size={20} />
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="p-2 bg-background rounded-full hover:text-primary transition-colors" aria-label="LinkedIn">
+              <a href="https://www.linkedin.com/in/vaibhavee-singh-1b7996252/" target="_blank" rel="noopener noreferrer" className="p-2 bg-background rounded-full hover:text-primary transition-colors" aria-label="LinkedIn">
                 <Linkedin size={20} />
               </a>
-              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="p-2 bg-background rounded-full hover:text-primary transition-colors" aria-label="Twitter">
+              <a href="https://x.com/VaibhaveeSingh3" target="_blank" rel="noopener noreferrer" className="p-2 bg-background rounded-full hover:text-primary transition-colors" aria-label="Twitter">
                 <Twitter size={20} />
               </a>
-              <a href="mailto:hello@example.com" className="p-2 bg-background rounded-full hover:text-primary transition-colors" aria-label="Email">
+              <a href="mailto:vaibhaveesingh89@gmail.com" className="p-2 bg-background rounded-full hover:text-primary transition-colors" aria-label="Email">
                 <Mail size={20} />
               </a>
             </div>
@@ -49,7 +49,7 @@ export const Footer = () => {
         </div>
         
         <div className="border-t border-border mt-8 pt-8 text-center text-muted-foreground">
-          <p>© {currentYear} Portfolio. All rights reserved.</p>
+          <p>© {2025} Portfolio. All rights reserved.</p>
         </div>
       </div>
     </footer>

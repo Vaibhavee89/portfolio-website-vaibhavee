@@ -6,7 +6,7 @@ export const Hero = () => {
     <section className="min-h-screen flex flex-col justify-center items-center relative px-6 py-20">
       <div className="w-full max-w-7xl mx-auto flex flex-col items-center text-center">
         <span className="inline-block px-4 py-2 rounded-full bg-secondary text-secondary-foreground mb-6 animate-fade-in">
-          Hello, I'm John Doe
+          Hello, I'm Vaibhavee Singh
         </span>
         
         <h1 className="text-4xl md:text-7xl font-bold mb-6 tracking-tight leading-tight animate-fade-in animate-delay-100">

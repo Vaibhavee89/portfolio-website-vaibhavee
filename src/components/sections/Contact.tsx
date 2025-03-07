@@ -75,7 +75,7 @@ export const Contact = () => {
               </div>
               <div>
                 <h3 className="text-lg font-bold mb-1">Location</h3>
-                <p className="text-muted-foreground">New York City, USA</p>
+                <p className="text-muted-foreground">Greater Noida, Uttar Pradesh</p>
               </div>
             </div>
             
@@ -89,7 +89,7 @@ export const Contact = () => {
                   href="mailto:hello@example.com" 
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
-                  hello@example.com
+                  vaibhaveesingh89@gmail.com
                 </a>
               </div>
             </div>
@@ -104,7 +104,7 @@ export const Contact = () => {
                   href="tel:+1234567890" 
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
-                  +1 (234) 567-890
+                  +91 9934110241
                 </a>
               </div>
             </div>
@@ -134,7 +134,7 @@ export const Contact = () => {
                   id="name"
                   name="name"
                   className="w-full p-3 bg-background border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
-                  placeholder="John Doe"
+                  placeholder=""
                   required
                   value={formData.name}
                   onChange={handleChange}
@@ -150,7 +150,7 @@ export const Contact = () => {
                   id="email"
                   name="email"
                   className="w-full p-3 bg-background border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
-                  placeholder="john@example.com"
+                  placeholder="xxx@example.com"
                   required
                   value={formData.email}
                   onChange={handleChange}

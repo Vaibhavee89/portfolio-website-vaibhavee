@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
@@ -16,52 +15,52 @@ interface BlogPost {
 const blogPosts: BlogPost[] = [
   {
     id: '1',
-    title: 'The Principles of Minimalist Design',
+    title: 'Tech Giants vs. Open Source: The Arms Race of GenAI',
     excerpt: 'Explore the core principles that make minimalist design so effective and timeless.',
-    date: 'June 15, 2023',
-    image: 'https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2067&q=80',
+    date: 'Mar 5, 2025',
+    image:"",
+    category: 'Technology',
+  },
+   {
+    id: '2',
+     title: 'Building Scalable React Applications',
+     excerpt: 'Learn the best practices for creating React applications that scale well as they grow.',
+     date: 'May 22, 2023',
+     image: 'https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+     category: 'Technology',
+   },
+  {
+    id: '3',
+    title: 'The Future of UI Animation',
+    excerpt: 'How motion design is shaping the future of user interfaces and experiences.',
+    date: 'April 10, 2023',
+    image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
     category: 'Design',
   },
-  // {
-  //   id: '2',
-  //   title: 'Building Scalable React Applications',
-  //   excerpt: 'Learn the best practices for creating React applications that scale well as they grow.',
-  //   date: 'May 22, 2023',
-  //   image: 'https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-  //   category: 'Development',
-  // },
-  // {
-  //   id: '3',
-  //   title: 'The Future of UI Animation',
-  //   excerpt: 'How motion design is shaping the future of user interfaces and experiences.',
-  //   date: 'April 10, 2023',
-  //   image: 'https://images.unsplash.com/photo-1550745165-9bc0b252726f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-  //   category: 'Animation',
-  // },
-  // {
-  //   id: '4',
-  //   title: 'Typography in Modern Web Design',
-  //   excerpt: 'Why typography matters more than ever in modern web design and how to use it effectively.',
-  //   date: 'March 28, 2023',
-  //   image: 'https://images.unsplash.com/photo-1651140849623-a1d7ac2f1f1c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-  //   category: 'Typography',
-  // },
-  // {
-  //   id: '5',
-  //   title: 'Optimizing Web Performance',
-  //   excerpt: 'Strategies for improving web performance and why it matters for user experience.',
-  //   date: 'February 15, 2023',
-  //   image: 'https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
-  //   category: 'Performance',
-  // },
-  // {
-  //   id: '6',
-  //   title: 'The Psychology of Color in Web Design',
-  //   excerpt: 'How color choices impact user perception and behavior in digital experiences.',
-  //   date: 'January 30, 2023',
-  //   image: 'https://images.unsplash.com/photo-1579547945413-497e1b99dac0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2039&q=80',
-  //   category: 'Design',
-  // },
+  {
+    id: '4',
+    title: 'Typography in Modern Web Design',
+    excerpt: 'Why typography matters more than ever in modern web design and how to use it effectively.',
+    date: 'March 28, 2023',
+    image: 'https://images.unsplash.com/photo-1651140849623-a1d7ac2f1f1c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+    category: 'Design',
+  },
+  {
+    id: '5',
+    title: 'Optimizing Web Performance',
+    excerpt: 'Strategies for improving web performance and why it matters for user experience.',
+    date: 'February 15, 2023',
+    image: 'https://images.unsplash.com/photo-1534972195531-d756b9bfa9f2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80',
+    category: 'Development',
+  },
+  {
+    id: '6',
+    title: 'The Psychology of Color in Web Design',
+    excerpt: 'How color choices impact user perception and behavior in digital experiences.',
+    date: 'January 30, 2023',
+    image: 'https://images.unsplash.com/photo-1579547945413-497e1b99dac0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2039&q=80',
+    category: 'Design',
+  },
 ];
 
 const categories = ['All', ...Array.from(new Set(blogPosts.map((post) => post.category)))];
