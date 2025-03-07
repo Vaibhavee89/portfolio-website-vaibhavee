@@ -32,7 +32,7 @@ export const Hero = () => {
             <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl blur-md"></div>
             <div className="relative aspect-square rounded-2xl overflow-hidden border border-border">
 <img 
-  src="public/female_programmer.avif" 
+  src="public/female_programmer.png" 
   alt="Vaibhavee Singh" 
   className="w-full h-full object-cover"
 />
