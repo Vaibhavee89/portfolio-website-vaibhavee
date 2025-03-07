@@ -4,26 +4,41 @@ import { ArrowDown } from 'lucide-react';
 export const Hero = () => {
   return (
     <section className="min-h-screen flex flex-col justify-center items-center relative px-6 py-20">
-      <div className="w-full max-w-7xl mx-auto flex flex-col items-center text-center">
-        <span className="inline-block px-4 py-2 rounded-full bg-secondary text-secondary-foreground mb-6 animate-fade-in">
-          Hello, I'm Vaibhavee Singh
-        </span>
+      <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center text-center md:text-left gap-8">
+        <div className="flex-1 flex flex-col items-center md:items-start">
+          <span className="inline-block px-4 py-2 rounded-full bg-secondary text-secondary-foreground mb-6 animate-fade-in">
+            Hello, I'm Vaibhavee Singh
+          </span>
+          
+          <h1 className="text-4xl md:text-7xl font-bold mb-6 tracking-tight leading-tight animate-fade-in animate-delay-100">
+            INNOVATE-ITERATE-INSPIRE
+          </h1>
+          
+          <p className="text-xl text-muted-foreground max-w-2xl mb-8 animate-fade-in animate-delay-200">
+            "Innovation is the ability to see change as an opportunity, not a threat." - Steve Jobs 
+          </p>
+          
+          <div className="flex flex-wrap justify-center md:justify-start gap-4 animate-fade-in animate-delay-300">
+            <a href="#projects" className="button-primary">
+              View Projects
+            </a>
+            <a href="#contact" className="button-secondary">
+              Get in Touch
+            </a>
+          </div>
+        </div>
         
-        <h1 className="text-4xl md:text-7xl font-bold mb-6 tracking-tight leading-tight animate-fade-in animate-delay-100">
-          INNOVATE-ITERATE-INSPIRE
-        </h1>
-        
-        <p className="text-xl text-muted-foreground max-w-2xl mb-8 animate-fade-in animate-delay-200">
-          "Innovation is the ability to see change as an opportunity, not a threat." - Steve Jobs 
-        </p>
-        
-        <div className="flex flex-wrap justify-center gap-4 animate-fade-in animate-delay-300">
-          <a href="#projects" className="button-primary">
-            View Projects
-          </a>
-          <a href="#contact" className="button-secondary">
-            Get in Touch
-          </a>
+        <div className="flex-1 mt-8 md:mt-0 animate-fade-in animate-delay-200">
+          <div className="relative w-full max-w-md mx-auto">
+            <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl blur-md"></div>
+            <div className="relative aspect-square rounded-2xl overflow-hidden border border-border">
+              <img 
+                src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158" 
+                alt="Vaibhavee Singh" 
+                className="w-full h-full object-cover"
+              />
+            </div>
+          </div>
         </div>
       </div>
       
