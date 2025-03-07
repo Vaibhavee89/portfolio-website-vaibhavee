@@ -21,9 +21,9 @@ interface ProjectDetails extends Project {
 const projectsData: ProjectDetails[] = [
   {
     id: "1",
-    title: "POrtfolio Website",
+    title: "Portfolio Website",
     description: "This project showcases my work, skills, and experiences in a beautifully crafted and responsive design.",
-    fullDescription: "This portfolio website serves as a personal space to highlight my achievements, projects, and professional journey. Built with modern technologies, it ensures a smooth and visually appealing user experience."
+    fullDescription: "This portfolio website serves as a personal space to highlight my achievements, projects, and professional journey. Built with modern technologies, it ensures a smooth and visually appealing user experience.",
     image: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
     images: [
       "https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
