@@ -10,10 +10,7 @@ export const Hero = () => {
         </span>
         
         <h1 className="text-4xl md:text-7xl font-bold mb-6 tracking-tight leading-tight animate-fade-in animate-delay-100">
-          Creating <span className="inline-block relative">
-            digital
-            <span className="absolute -bottom-2 left-0 right-0 h-1 bg-primary rounded-full transform origin-left animate-scale-in"></span>
-          </span> experiences with a passion for design.
+          INNOVATE-ITERATE-INSPIRE
         </h1>
         
         <p className="text-xl text-muted-foreground max-w-2xl mb-8 animate-fade-in animate-delay-200">
