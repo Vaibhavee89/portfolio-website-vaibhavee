@@ -44,7 +44,7 @@ export const Header = () => {
           className="text-2xl font-bold font-mono tracking-tight"
           onClick={closeMenu}
         >
-          Portfolio.
+          Vaibhavee ʚɞ
         </Link>
 
         {/* Desktop Navigation */}

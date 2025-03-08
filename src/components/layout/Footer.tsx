@@ -9,16 +9,16 @@ export const Footer = () => {
     <footer className="bg-secondary py-12 border-t border-border">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="space-y-4">
+          {/* <div className="space-y-4">
             <Link to="/" className="text-2xl font-bold font-mono tracking-tight">
               Portfolio.
             </Link>
             <p className="text-muted-foreground max-w-xs">
             Innovate. Iterate. Inspire.
             </p>
-          </div>
+          </div> */}
           
-          <div className="space-y-4">
+          {/* <div className="space-y-4">
             <h3 className="text-lg font-bold">Navigation</h3>
             <nav className="flex flex-col space-y-2">
               <Link to="/" className="hover:text-primary transition-colors">Home</Link>
@@ -28,9 +28,9 @@ export const Footer = () => {
               <a href="/#contact" className="hover:text-primary transition-colors">Contact</a>
             </nav>
           </div>
-          
+           */}
           <div className="space-y-4">
-            <h3 className="text-lg font-bold">Connect</h3>
+            <h3 className="text-lg font-bold">Connect with me on other platforms:</h3>
             <div className="flex space-x-4">
               <a href="https://github.com/Vaibhavee89" target="_blank" rel="noopener noreferrer" className="p-2 bg-background rounded-full hover:text-primary transition-colors" aria-label="GitHub">
                 <Github size={20} />
