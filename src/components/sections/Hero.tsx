@@ -1,19 +1,58 @@
+
 import { ArrowDown } from 'lucide-react';
+import { useToast } from "@/hooks/use-toast";
+import { useEffect } from 'react';
 
 export const Hero = () => {
+  const { toast } = useToast();
+
   const handleDownloadResume = () => {
-    // Create a link element
-    const link = document.createElement('a');
-    // Set the href to the path of your resume PDF
-    link.href = '/resume.pdf'; // This assumes you'll place the PDF in the public folder
-    // Set the download attribute to suggest a filename
-    link.download = 'resume.pdf';
-    // Append to the document
-    document.body.appendChild(link);
-    // Trigger the download
-    link.click();
-    // Clean up
-    document.body.removeChild(link);
+    try {
+      // Create a link element
+      const link = document.createElement('a');
+      // Set the href to the path of your resume PDF
+      link.href = '/resume.pdf'; // This assumes you'll place the PDF in the public folder
+      // Set the download attribute to suggest a filename
+      link.download = 'Vaibhavee_Singh_Resume.pdf';
+      // Append to the document
+      document.body.appendChild(link);
+      // Trigger the download
+      link.click();
+      // Clean up
+      document.body.removeChild(link);
+      
+      toast({
+        title: "Success!",
+        description: "Resume download started",
+        duration: 3000,
+      });
+    } catch (error) {
+      console.error("Download error:", error);
+      toast({
+        title: "Download failed",
+        description: "Please try again or contact me directly",
+        variant: "destructive",
+        duration: 5000,
+      });
+    }
+  };
+
+  const handleScrollToSection = (sectionId: string) => (event: React.MouseEvent) => {
+    event.preventDefault();
+    const section = document.getElementById(sectionId);
+    if (section) {
+      // Check if smooth scrolling is supported
+      if ('scrollBehavior' in document.documentElement.style) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        // Fallback for browsers that don't support smooth scrolling
+        const offsetTop = section.getBoundingClientRect().top + window.pageYOffset;
+        window.scrollTo({
+          top: offsetTop,
+          behavior: 'smooth'
+        });
+      }
+    }
   };
 
   return (
@@ -36,18 +75,15 @@ export const Hero = () => {
             <button 
               onClick={handleDownloadResume}
               className="button-primary"
+              aria-label="Download Resume"
             >
               Download Resume
             </button>
             <a 
               href="#contact" 
               className="button-secondary"
-              onClick={(e) => {
-                e.preventDefault();
-                document.getElementById('contact')?.scrollIntoView({ 
-                  behavior: 'smooth' 
-                });
-              }}
+              onClick={handleScrollToSection('contact')}
+              aria-label="Get in Touch"
             >
               Get in Touch
             </a>
@@ -72,12 +108,7 @@ export const Hero = () => {
         <a 
           href="#about" 
           aria-label="Scroll down"
-          onClick={(e) => {
-            e.preventDefault();
-            document.getElementById('about')?.scrollIntoView({ 
-              behavior: 'smooth' 
-            });
-          }}
+          onClick={handleScrollToSection('about')}
         >
           <ArrowDown size={24} />
         </a>
