@@ -1,6 +1,22 @@
+
 import { ArrowDown } from 'lucide-react';
 
 export const Hero = () => {
+  const handleDownloadResume = () => {
+    // Create a link element
+    const link = document.createElement('a');
+    // Set the href to the path of your resume PDF
+    link.href = '/resume.pdf'; // This assumes you'll place the PDF in the public folder
+    // Set the download attribute to suggest a filename
+    link.download = 'Vaibhavee_Singh_Resume.pdf';
+    // Append to the document
+    document.body.appendChild(link);
+    // Trigger the download
+    link.click();
+    // Clean up
+    document.body.removeChild(link);
+  };
+
   return (
     <section className="min-h-screen flex flex-col justify-center items-center relative px-6 py-20">
       <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center text-center md:text-left gap-8">
@@ -18,10 +34,22 @@ export const Hero = () => {
           </p>
           
           <div className="flex flex-wrap justify-center md:justify-start gap-4 animate-fade-in animate-delay-300">
-            <a href="#projects" className="button-primary">
+            <button 
+              onClick={handleDownloadResume}
+              className="button-primary"
+            >
               Download Resume
-            </a>
-            <a href="#contact" className="button-secondary">
+            </button>
+            <a 
+              href="#contact" 
+              className="button-secondary"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('contact')?.scrollIntoView({ 
+                  behavior: 'smooth' 
+                });
+              }}
+            >
               Get in Touch
             </a>
           </div>
@@ -31,18 +59,27 @@ export const Hero = () => {
           <div className="relative w-full max-w-md mx-auto">
             <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl blur-md"></div>
             <div className="relative aspect-square rounded-2xl overflow-hidden border border-border">
-<img 
-  src="public/femaleprogrammer.png" 
-  alt="Vaibhavee Singh" 
-  className="w-full h-full object-cover"
-/>
+              <img 
+                src="/femaleprogrammer.png" 
+                alt="Vaibhavee Singh" 
+                className="w-full h-full object-cover"
+              />
             </div>
           </div>
         </div>
       </div>
       
       <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <a href="#about" aria-label="Scroll down">
+        <a 
+          href="#about" 
+          aria-label="Scroll down"
+          onClick={(e) => {
+            e.preventDefault();
+            document.getElementById('about')?.scrollIntoView({ 
+              behavior: 'smooth' 
+            });
+          }}
+        >
           <ArrowDown size={24} />
         </a>
       </div>
@@ -55,4 +92,3 @@ export const Hero = () => {
 };
 
 export default Hero;
-
