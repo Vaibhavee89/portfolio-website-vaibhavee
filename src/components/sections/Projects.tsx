@@ -5,46 +5,45 @@ import ProjectCard, { Project } from '../ui-components/ProjectCard';
 const projects: Project[] = [
   {
     id: "1",
-    title: "Minimalist E-Commerce Platform",
-    description: "A clean, modern e-commerce website with intuitive navigation and seamless checkout experience.",
+    title: "Portfolio-Website",
+    description: "This portfolio website serves as a personal space to highlight my achievements, projects, and professional journey.",
     image: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    tags: ["E-Commerce", "Web Design", "React"],
-  },
+    tags: ["Portfolio", "skills"]  },
   {
     id: "2",
-    title: "Financial Dashboard",
-    description: "An interactive dashboard for financial analytics with real-time data visualization.",
+    title: "QuizWhiz",
+    description: "A fast and interactive quiz app with a wide range of categories and questions.",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    tags: ["Dashboard", "Data Visualization", "React"],
+    tags: ["Quiz", "TriviaChallenge"],
   },
-  {
-    id: "3",
-    title: "Travel Blog Platform",
-    description: "A responsive blog platform focused on travel experiences with rich media support.",
-    image: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    tags: ["Blog", "Web Development", "CMS"],
-  },
-  {
-    id: "4",
-    title: "Smart Home App",
-    description: "A mobile app for controlling smart home devices with a focus on simplicity and usability.",
-    image: "https://images.unsplash.com/photo-1558002038-2f4bb8741991?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    tags: ["Mobile App", "IoT", "React Native"],
-  },
-  {
-    id: "5",
-    title: "Fitness Tracking Application",
-    description: "A comprehensive fitness app for tracking workouts, nutrition, and health metrics.",
-    image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    tags: ["Mobile App", "Health", "UI/UX Design"],
-  },
-  {
-    id: "6",
-    title: "Photography Portfolio",
-    description: "A minimal portfolio website showcasing a photographer's work with immersive viewing experience.",
-    image: "https://images.unsplash.com/photo-1520390138845-fd2d229dd553?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2092&q=80",
-    tags: ["Portfolio", "Photography", "Gallery"],
-  },
+  // {
+  //   id: "3",
+  //   title: "Travel Blog Platform",
+  //   description: "A responsive blog platform focused on travel experiences with rich media support.",
+  //   image: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+  //   tags: ["Blog", "Web Development", "CMS"],
+  // },
+  // {
+  //   id: "4",
+  //   title: "Smart Home App",
+  //   description: "A mobile app for controlling smart home devices with a focus on simplicity and usability.",
+  //   image: "https://images.unsplash.com/photo-1558002038-2f4bb8741991?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+  //   tags: ["Mobile App", "IoT", "React Native"],
+  // },
+  // {
+  //   id: "5",
+  //   title: "Fitness Tracking Application",
+  //   description: "A comprehensive fitness app for tracking workouts, nutrition, and health metrics.",
+  //   image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+  //   tags: ["Mobile App", "Health", "UI/UX Design"],
+  // },
+  // {
+  //   id: "6",
+  //   title: "Photography Portfolio",
+  //   description: "A minimal portfolio website showcasing a photographer's work with immersive viewing experience.",
+  //   image: "https://images.unsplash.com/photo-1520390138845-fd2d229dd553?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2092&q=80",
+  //   tags: ["Portfolio", "Photography", "Gallery"],
+  // },
 ];
 
 export const Projects = () => {
@@ -78,7 +77,7 @@ export const Projects = () => {
           </span>
           <h2 className="section-heading">Featured Projects</h2>
           <p className="section-subheading">
-            A selection of my recent work across various domains and industries.
+            A selection of my recent work across various domains.
             Each project represents a unique challenge and solution.
           </p>
         </div>

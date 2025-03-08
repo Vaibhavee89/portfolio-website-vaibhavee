@@ -1,4 +1,3 @@
-
 import { ArrowDown } from 'lucide-react';
 
 export const Hero = () => {
@@ -8,7 +7,7 @@ export const Hero = () => {
     // Set the href to the path of your resume PDF
     link.href = '/resume.pdf'; // This assumes you'll place the PDF in the public folder
     // Set the download attribute to suggest a filename
-    link.download = 'Vaibhavee_Singh_Resume.pdf';
+    link.download = 'resume.pdf';
     // Append to the document
     document.body.appendChild(link);
     // Trigger the download

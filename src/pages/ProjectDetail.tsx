@@ -26,13 +26,13 @@ const projectsData: ProjectDetails[] = [
       "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80",
       "https://images.unsplash.com/photo-1556742031-c6961e8560b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
     ],
-    tags: ["Portfolio", "Skills", "React"],
+    tags: ["Portfolio", "Skills"],
     liveLink: "https://portfolio-website-vaibhavee.vercel.app/",
     githubLink: "https://github.com/Vaibhavee89/portfolio-website-vaibhavee"
   },
   {
     id: "2",
-    title: "Financial Dashboard",
+    title: "Quiz-Whiz",
     description: "An interactive dashboard for financial analytics with real-time data visualization.",
     fullDescription: "This financial dashboard project provides users with comprehensive data visualization tools to track investments, analyze market trends, and manage personal finances. The dashboard was built with React and uses advanced charting libraries to display complex financial data in an intuitive way.\n\nKey features include portfolio performance tracking, expense categorization, budget planning tools, and predictive analytics. Real-time data integration was implemented through secure API connections to various financial data providers.",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
@@ -41,9 +41,9 @@ const projectsData: ProjectDetails[] = [
       "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
       "https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
     ],
-    tags: ["Dashboard", "Data Visualization", "React"],
-    liveLink: "https://example.com",
-    githubLink: "https://github.com"
+    tags: ["Quiz", "Trivia-Challenge"],
+    liveLink: "quiz-whiz-red.vercel.app",
+    githubLink: "https://github.com/Vaibhavee89/QuizWhiz"
   },
   {
     id: "3",
