@@ -1,22 +1,40 @@
 
 import { useState, useEffect } from 'react';
-import { Code, Palette, Globe, BookOpen, Trophy, Briefcase } from 'lucide-react';
+import { 
+  Code, 
+  Palette, 
+  Globe, 
+  BookOpen, 
+  Trophy, 
+  Briefcase, 
+  FileCode, 
+  Brain, 
+  Database, 
+  MessageSquare, 
+  BarChart, 
+  Cloud, 
+  Smartphone, 
+  Wrench, 
+  FileText 
+} from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 
 interface Skill {
   name: string;
   level: number;
+  Icon: LucideIcon;
 }
 
 const skills: Skill[] = [
-  { name: 'Languages', level: 90 },
-  { name: 'ML/DL Frameworks', level: 85 },
-  { name: 'Data Processing', level: 80 },
-  { name: 'NLP', level: 85 },
-  { name: 'Visualization', level: 75 },
-  { name: 'Cloud', level: 70 },
-  { name: 'Web Development', level: 50 },
-  { name: 'Tools', level: 50 },
-  { name: 'Technical Writing', level: 50 },
+  { name: 'Languages', level: 90, Icon: FileCode },
+  { name: 'ML/DL Frameworks', level: 85, Icon: Brain },
+  { name: 'Data Processing', level: 80, Icon: Database },
+  { name: 'NLP', level: 85, Icon: MessageSquare },
+  { name: 'Visualization', level: 75, Icon: BarChart },
+  { name: 'Cloud', level: 70, Icon: Cloud },
+  { name: 'Web Development', level: 50, Icon: Globe },
+  { name: 'Tools', level: 50, Icon: Wrench },
+  { name: 'Technical Writing', level: 50, Icon: FileText },
 ];
 
 export const About = () => {
@@ -104,7 +122,10 @@ export const About = () => {
             {skills.map((skill, index) => (
               <div key={index} className="space-y-2">
                 <div className="flex justify-between items-center">
-                  <span className="font-medium">{skill.name}</span>
+                  <div className="flex items-center">
+                    <skill.Icon className="text-primary mr-2" size={20} />
+                    <span className="font-medium">{skill.name}</span>
+                  </div>
                   <span className="text-sm text-muted-foreground">{skill.level}%</span>
                 </div>
                 <div className="w-full bg-secondary rounded-full h-2">
