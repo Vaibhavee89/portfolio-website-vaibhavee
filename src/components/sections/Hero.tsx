@@ -19,7 +19,7 @@ export const Hero = () => {
           
           <div className="flex flex-wrap justify-center md:justify-start gap-4 animate-fade-in animate-delay-300">
             <a href="#projects" className="button-primary">
-              View Projects
+              Download Resume
             </a>
             <a href="#contact" className="button-secondary">
               Get in Touch
