@@ -4,7 +4,7 @@ Welcome to my portfolio website! This project showcases my work, skills, and exp
 
 ## 🚀 Live Demo
 
-🔗 **[Visit My Portfolio]()**
+🔗 **[Visit My Portfolio](https://portfolio-website-vaibhavee.vercel.app)**
 
 ## 📌 About the Project
 
@@ -54,11 +54,11 @@ If you'd like to contribute, feel free to fork this repository and submit a pull
 
 For any inquiries, collaborations, or feedback, you can reach out to me via:
 
-📧 **Email:** [your.email@example.com](vaibhaveesingh89@gmail.com)
+📧 [Email](vaibhaveesingh89@gmail.com)
 
-🔗 **LinkedIn:** [Your Profile](https://www.linkedin.com/in/vaibhavee-singh-1b7996252/)
+🔗 [LinkedIn](https://www.linkedin.com/in/vaibhavee-singh-1b7996252/)
 
-🐦 **Twitter:** [@yourhandle](https://twitter.com/yourhandle)
+🐦 [Twitter](https://twitter.com/yourhandle)
 
 ---
 
