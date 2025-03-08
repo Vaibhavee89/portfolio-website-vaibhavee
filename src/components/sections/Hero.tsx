@@ -1,7 +1,7 @@
 
 import { ArrowDown } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 export const Hero = () => {
   const { toast } = useToast();
@@ -14,6 +14,9 @@ export const Hero = () => {
       link.href = '/resume.pdf'; // This assumes you'll place the PDF in the public folder
       // Set the download attribute to suggest a filename
       link.download = 'Vaibhavee_Singh_Resume.pdf';
+      // For Safari compatibility
+      link.target = '_blank';
+      link.rel = 'noopener noreferrer';
       // Append to the document
       document.body.appendChild(link);
       // Trigger the download
@@ -39,21 +42,56 @@ export const Hero = () => {
 
   const handleScrollToSection = (sectionId: string) => (event: React.MouseEvent) => {
     event.preventDefault();
-    const section = document.getElementById(sectionId);
-    if (section) {
-      // Check if smooth scrolling is supported
-      if ('scrollBehavior' in document.documentElement.style) {
-        section.scrollIntoView({ behavior: 'smooth' });
+    
+    // Enhanced scroll functionality with fallbacks
+    try {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        // Check if smooth scrolling is supported
+        if ('scrollBehavior' in document.documentElement.style) {
+          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        } else {
+          // Fallback for browsers that don't support smooth scrolling
+          const offsetTop = section.getBoundingClientRect().top + window.pageYOffset;
+          window.scrollTo({
+            top: offsetTop,
+            behavior: 'smooth'
+          });
+        }
       } else {
-        // Fallback for browsers that don't support smooth scrolling
-        const offsetTop = section.getBoundingClientRect().top + window.pageYOffset;
-        window.scrollTo({
-          top: offsetTop,
-          behavior: 'smooth'
-        });
+        console.warn(`Section with id "${sectionId}" not found`);
       }
+    } catch (error) {
+      console.error("Scrolling error:", error);
+      // Ultimate fallback, just change location hash
+      window.location.hash = sectionId;
     }
   };
+  
+  // Ensure anchor links work on initial page load
+  useEffect(() => {
+    const handleHashChange = () => {
+      if (window.location.hash) {
+        const id = window.location.hash.substring(1);
+        const element = document.getElementById(id);
+        if (element) {
+          setTimeout(() => {
+            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+        }
+      }
+    };
+    
+    // Run once on component mount
+    handleHashChange();
+    
+    // Add event listener for hash changes
+    window.addEventListener('hashchange', handleHashChange);
+    
+    return () => {
+      window.removeEventListener('hashchange', handleHashChange);
+    };
+  }, []);
 
   return (
     <section className="min-h-screen flex flex-col justify-center items-center relative px-6 py-20">
@@ -76,6 +114,14 @@ export const Hero = () => {
               onClick={handleDownloadResume}
               className="button-primary"
               aria-label="Download Resume"
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  handleDownloadResume();
+                }
+              }}
             >
               Download Resume
             </button>
@@ -84,6 +130,14 @@ export const Hero = () => {
               className="button-secondary"
               onClick={handleScrollToSection('contact')}
               aria-label="Get in Touch"
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  handleScrollToSection('contact')(e as unknown as React.MouseEvent);
+                }
+              }}
             >
               Get in Touch
             </a>
@@ -109,6 +163,14 @@ export const Hero = () => {
           href="#about" 
           aria-label="Scroll down"
           onClick={handleScrollToSection('about')}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              handleScrollToSection('about')(e as unknown as React.MouseEvent);
+            }
+          }}
         >
           <ArrowDown size={24} />
         </a>
