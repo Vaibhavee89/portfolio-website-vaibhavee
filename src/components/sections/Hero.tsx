@@ -2,6 +2,7 @@
 import { ArrowDown } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 import { useEffect, useRef } from 'react';
+import { Button } from "@/components/ui/button";
 
 export const Hero = () => {
   const { toast } = useToast();
@@ -40,7 +41,7 @@ export const Hero = () => {
     }
   };
 
-  const handleScrollToSection = (sectionId: string) => (event: React.MouseEvent) => {
+  const handleScrollToSection = (sectionId: string) => (event: React.MouseEvent | React.TouchEvent) => {
     event.preventDefault();
     
     // Enhanced scroll functionality with fallbacks
@@ -110,37 +111,23 @@ export const Hero = () => {
           </p>
           
           <div className="flex flex-wrap justify-center md:justify-start gap-4 animate-fade-in animate-delay-300">
-            <button 
+            <Button 
               onClick={handleDownloadResume}
-              className="button-primary"
+              variant="default"
+              className="bg-primary text-primary-foreground px-6 py-2 rounded-md"
               aria-label="Download Resume"
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  handleDownloadResume();
-                }
-              }}
             >
               Download Resume
-            </button>
-            <a 
-              href="#contact" 
-              className="button-secondary"
+            </Button>
+            
+            <Button 
+              variant="outline"
+              className="bg-background text-foreground border-border px-6 py-2 rounded-md"
               onClick={handleScrollToSection('contact')}
               aria-label="Get in Touch"
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') {
-                  e.preventDefault();
-                  handleScrollToSection('contact')(e as unknown as React.MouseEvent);
-                }
-              }}
             >
               Get in Touch
-            </a>
+            </Button>
           </div>
         </div>
         
@@ -159,21 +146,14 @@ export const Hero = () => {
       </div>
       
       <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <a 
-          href="#about" 
-          aria-label="Scroll down"
+        <Button 
+          variant="ghost"
           onClick={handleScrollToSection('about')}
-          role="button"
-          tabIndex={0}
-          onKeyDown={(e) => {
-            if (e.key === 'Enter' || e.key === ' ') {
-              e.preventDefault();
-              handleScrollToSection('about')(e as unknown as React.MouseEvent);
-            }
-          }}
+          aria-label="Scroll down"
+          className="p-2"
         >
           <ArrowDown size={24} />
-        </a>
+        </Button>
       </div>
       
       {/* Background elements */}
