@@ -1,8 +1,10 @@
-
 import { useState, useEffect } from 'react';
 import { Mail, MapPin, Phone } from 'lucide-react';
+import emailjs from 'emailjs-com';
+import { useToast } from '@/hooks/use-toast';
 
 export const Contact = () => {
+  const { toast } = useToast();
   const [isVisible, setIsVisible] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -12,6 +14,10 @@ export const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const SERVICE_ID = "default_service";
+  const TEMPLATE_ID = "template_contact";
+  const USER_ID = "user_yourUserId";
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -37,21 +43,50 @@ export const Contact = () => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      const templateParams = {
+        from_name: formData.name,
+        from_email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+      };
+
+      await emailjs.send(
+        SERVICE_ID,
+        TEMPLATE_ID,
+        templateParams,
+        USER_ID
+      );
+
       setIsSubmitting(false);
       setIsSubmitted(true);
       setFormData({ name: '', email: '', subject: '', message: '' });
       
-      // Reset success message after 5 seconds
+      toast({
+        title: "Success!",
+        description: "Your message has been sent successfully.",
+        duration: 5000,
+      });
+      
       setTimeout(() => {
         setIsSubmitted(false);
       }, 5000);
-    }, 1500);
+      
+    } catch (error) {
+      console.error("Email sending failed:", error);
+      setIsSubmitting(false);
+      
+      toast({
+        title: "Error",
+        description: "Failed to send your message. Please try again.",
+        variant: "destructive",
+        duration: 5000,
+      });
+    }
   };
 
   return (
@@ -86,7 +121,7 @@ export const Contact = () => {
               <div>
                 <h3 className="text-lg font-bold mb-1">Email</h3>
                 <a 
-                  href="mailto:hello@example.com" 
+                  href="mailto:vaibhaveesingh89@gmail.com" 
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   vaibhaveesingh89@gmail.com
@@ -101,26 +136,13 @@ export const Contact = () => {
               <div>
                 <h3 className="text-lg font-bold mb-1">Phone</h3>
                 <a 
-                  href="tel:+1234567890" 
+                  href="tel:+919934110241" 
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
                   +91 9934110241
                 </a>
               </div>
             </div>
-            
-            {/* <div className="aspect-square max-w-xs mx-auto lg:mx-0 rounded-xl overflow-hidden mt-8">
-              <iframe 
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d193595.15830869428!2d-74.11976397304903!3d40.69766374874431!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c24fa5d33f083b%3A0xc80b8f06e177fe62!2sNew%20York%2C%20NY%2C%20USA!5e0!3m2!1sen!2sus!4v1656442509630!5m2!1sen!2sus" 
-                width="100%" 
-                height="100%" 
-                style={{ border: 0 }} 
-                allowFullScreen 
-                loading="lazy" 
-                referrerPolicy="no-referrer-when-downgrade"
-                title="Map location"
-              ></iframe>
-            </div> */}
           </div>
           
           <div className={`${isVisible ? 'animate-fade-in animate-delay-300' : 'opacity-0'}`}>
