@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { 
   Code, 
@@ -15,13 +14,24 @@ import {
   Cloud, 
   Smartphone, 
   Wrench, 
-  FileText 
+  FileText,
+  Award,
+  GraduationCap,
+  BadgeCheck,
+  Medal
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
 interface Skill {
   name: string;
   level: number;
+  Icon: LucideIcon;
+}
+
+interface Certification {
+  name: string;
+  issuer: string;
+  date: string;
   Icon: LucideIcon;
 }
 
@@ -35,6 +45,33 @@ const skills: Skill[] = [
   { name: 'Web Development', level: 50, Icon: Globe },
   { name: 'Tools', level: 50, Icon: Wrench },
   { name: 'Technical Writing', level: 50, Icon: FileText },
+];
+
+const certifications: Certification[] = [
+  { 
+    name: "AWS Cloud Practitioner", 
+    issuer: "Amazon Web Services", 
+    date: "2023", 
+    Icon: Cloud 
+  },
+  { 
+    name: "TensorFlow Developer Certificate", 
+    issuer: "Google", 
+    date: "2023", 
+    Icon: Brain 
+  },
+  { 
+    name: "Machine Learning Specialization", 
+    issuer: "Coursera", 
+    date: "2022", 
+    Icon: Award 
+  },
+  { 
+    name: "Deep Learning Specialization", 
+    issuer: "DeepLearning.AI", 
+    date: "2022", 
+    Icon: GraduationCap 
+  },
 ];
 
 export const About = () => {
@@ -109,6 +146,28 @@ export const About = () => {
                 <p className="text-sm text-muted-foreground">Delhi Public School, Dhanbad, 2020</p>
               </div>
             </div>
+          </div>
+        </div>
+
+        {/* Certifications */}
+        <div className={`mb-16 ${isVisible ? 'animate-fade-in animate-delay-150' : 'opacity-0'}`}>
+          <div className="flex items-center mb-6">
+            <BadgeCheck className="text-primary mr-3" size={28} />
+            <h3 className="text-2xl font-bold">Certifications</h3>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {certifications.map((cert, index) => (
+              <div key={index} className="p-5 bg-card rounded-xl border border-border flex items-start space-x-4">
+                <div className="bg-secondary rounded-lg p-3 flex-shrink-0">
+                  <cert.Icon className="text-primary" size={24} />
+                </div>
+                <div>
+                  <h4 className="text-lg font-semibold">{cert.name}</h4>
+                  <p className="text-muted-foreground">{cert.issuer}</p>
+                  <p className="text-sm text-muted-foreground">{cert.date}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
 
