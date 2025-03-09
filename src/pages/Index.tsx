@@ -6,6 +6,7 @@ import Hero from '../components/sections/Hero';
 import About from '../components/sections/About';
 import Projects from '../components/sections/Projects';
 import Contact from '../components/sections/Contact';
+import EventCarousel from '../components/sections/EventCarousel';
 
 const Index = () => {
   useEffect(() => {
@@ -38,6 +39,7 @@ const Index = () => {
         <Hero />
         <About />
         <Projects />
+        <EventCarousel />
         <Contact />
       </main>
       
