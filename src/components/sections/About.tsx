@@ -53,7 +53,7 @@ interface Certification {
   issuer: string;
   date: string;
   Icon: LucideIcon;
-  credentialId?: string;
+  //credentialId?: string;
   credentialUrl?: string;
   description?: string;
 }
@@ -89,38 +89,65 @@ const certifications: Certification[] = [
   { 
     name: "AWS Cloud Practitioner", 
     issuer: "Amazon Web Services", 
-    date: "2023", 
+    date: "May, 2024", 
     Icon: Cloud,
-    credentialId: "AWS-CP-123456",
-    credentialUrl: "https://aws.amazon.com/verification",
+    //credentialId: "AWS-CP-123456",
+    credentialUrl: "https://www.credly.com/badges/8ebcbe71-30e8-4961-9c8b-4ad852f0aed5/public_url",
     description: "Fundamental knowledge of AWS Cloud, services, and terminology. Covers security, technology, billing, pricing, and core services."
   },
   { 
-    name: "TensorFlow Developer Certificate", 
-    issuer: "Google", 
-    date: "2023", 
+    name: "Supervised Machine Learning: Classification", 
+    issuer: "IBM", 
+    date: "Nov 2024", 
     Icon: Brain,
-    credentialId: "TF-DEV-789012",
-    credentialUrl: "https://www.tensorflow.org/certificate",
-    description: "Proficiency in using TensorFlow to build and train models for computer vision, NLP, and time series forecasting."
+    //credentialId: "",
+    credentialUrl: "https://coursera.org/share/cd753b05dce213265c899ae6cdb81d75",
+    description: "This course introduces the concept of Ensemble Learning, Machine Learning(ML) Algorithms, Supervised Learning, Classification Algorithms, Decision Tree"
   },
   { 
-    name: "Machine Learning Specialization", 
-    issuer: "Coursera", 
-    date: "2022", 
+    name: "Improving Deep Neural Networks: Hyperparameter Tuning, Regularization, and Optimization", 
+    issuer: "Deeplearning.AI", 
+    date: "Nov 2024", 
+    Icon: Brain,
+    //credentialId: "",
+    credentialUrl: "https://coursera.org/share/ec108e28939b593ac32dd1721302c122",
+    description: "This course offers skills in TensorFlow, Deep Learning, Hyperparameter turing, Mathematical Optimization"
+  },
+  { 
+    name: "Simulation and modeling of natural processes", 
+    issuer: "University of Geneva ", 
+    date: "Nov 2024", 
     Icon: Award,
-    credentialId: "ML-SPEC-345678",
-    credentialUrl: "https://www.coursera.org/verify",
-    description: "Comprehensive understanding of machine learning algorithms, data preprocessing, feature engineering, and model evaluation."
+    //credentialId: "ML-SPEC-345678",
+    credentialUrl: "https://coursera.org/share/af94e2e3392a83c452a9090e19ab3374",
+    description: "Computer Programming, Python Programming, Mathematics, Probability ans Statisctics"
   },
   { 
-    name: "Deep Learning Specialization", 
-    issuer: "DeepLearning.AI", 
-    date: "2022", 
+    name: "The Bits and Bytes of Computer Networking", 
+    issuer: "Google", 
+    date: "April 2024", 
     Icon: GraduationCap,
-    credentialId: "DL-SPEC-901234",
-    credentialUrl: "https://www.deeplearning.ai/verify",
-    description: "In-depth knowledge of neural networks, optimization algorithms, convolutional networks, sequence models, and practical aspects of deep learning."
+    //credentialId: "DL-SPEC-901234",
+    credentialUrl: "https://coursera.org/share/64b9a6e0733428bc7eb1160be6ac745d",
+    description: "In-depth knowledge of computer networks such as Domain Name System, IP addressing, and routing."
+  },
+  { 
+    name: "Introduction to Comuters and Operating Systems and Security", 
+    issuer: "Microsoft", 
+    date: "April 2024", 
+    Icon: GraduationCap,
+    //credentialId: "DL-SPEC-901234",
+    credentialUrl: "https://coursera.org/share/adfe89cc12c35b9c0c6469869b9f72fb",
+    description: "In-depth knowledge of Operating Systems, Computer Architecture and Cloud Computing"
+  },
+  { 
+    name: "Foundations of User Experience (UX) Design", 
+    issuer: "Google", 
+    date: "July 2023", 
+    Icon: GraduationCap,
+    //credentialId: "DL-SPEC-901234",
+    credentialUrl: "https://coursera.org/share/6ea80fd2cfb6166fe1d581f173ce6735",
+    description: "Introduction to User Experience (UX), Prototype, Wireframe, User Expericence Design (UXD), UX Research"
   },
 ];
 
@@ -350,8 +377,8 @@ export const About = () => {
                 <CardContent className="pt-6">
                   <div className="space-y-2">
                     <div className="flex justify-between">
-                      <span className="font-medium">Credential ID:</span>
-                      <span>{selectedCertificate.credentialId}</span>
+                      {/* <span className="font-medium">Credential ID:</span>
+                      <span>{selectedCertificate.credentialId}</span> */}
                     </div>
                     {selectedCertificate.description && (
                       <div className="mt-4">
