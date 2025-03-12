@@ -65,6 +65,7 @@ export const Contact = () => {
       setIsSubmitting(false);
       setIsSubmitted(true);
       setFormData({ name: '', email: '', subject: '', message: '' });
+      //setFormData({ email: '', message: '' });
       
       toast({
         title: "Success!",
