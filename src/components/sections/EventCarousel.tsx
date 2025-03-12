@@ -18,7 +18,7 @@ const eventImages = [
     caption: "AI/ML Conference"
   },
   {
-    src: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&q=80",
+    src: "D:\portfolio website\portfolio-website-vaibhavee\public\Student_volunteer_conference.jpg",
     alt: "Hackathon 2023",
     caption: "Cloud Computing Hackathon"
   },
