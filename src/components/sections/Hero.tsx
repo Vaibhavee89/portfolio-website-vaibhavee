@@ -9,34 +9,66 @@ export const Hero = () => {
 
   const handleDownloadResume = () => {
     try {
-      // Create a link element
-      const link = document.createElement('a');
-      // Set the href to the path of your resume PDF
-      link.href = '/resume.pdf'; // This assumes you'll place the PDF in the public folder
-      // Set the download attribute to suggest a filename
-      link.download = 'Vaibhavee_Singh_Resume.pdf';
-      // For Safari compatibility
-      link.target = '_blank';
-      link.rel = 'noopener noreferrer';
-      // Append to the document
-      document.body.appendChild(link);
-      // Trigger the download
-      link.click();
-      // Clean up
-      document.body.removeChild(link);
+      // For most modern browsers
+      fetch('/resume.pdf')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.blob();
+        })
+        .then(blob => {
+          // Create blob link to download
+          const url = window.URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.setAttribute('download', 'Vaibhavee_Singh_Resume.pdf');
+          
+          // Append to html link element page
+          document.body.appendChild(link);
+          
+          // Start download
+          link.click();
+          
+          // Clean up and remove the link
+          link.parentNode?.removeChild(link);
+          window.URL.revokeObjectURL(url);
+          
+          toast({
+            title: "Success!",
+            description: "Resume download started",
+            duration: 3000,
+          });
+        })
+        .catch(error => {
+          console.error("Download error:", error);
+          
+          // Fallback for browsers that don't support fetch or blob
+          const link = document.createElement('a');
+          link.href = '/resume.pdf';
+          link.download = 'Vaibhavee_Singh_Resume.pdf';
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          
+          toast({
+            title: "Success!",
+            description: "Resume download started",
+            duration: 3000,
+          });
+        });
+    } catch (error) {
+      console.error("Download error:", error);
+      
+      // Ultimate fallback
+      window.open('/resume.pdf', '_blank', 'noopener,noreferrer');
       
       toast({
         title: "Success!",
-        description: "Resume download started",
+        description: "Resume download started in new tab",
         duration: 3000,
-      });
-    } catch (error) {
-      console.error("Download error:", error);
-      toast({
-        title: "Download failed",
-        description: "Please try again or contact me directly",
-        variant: "destructive",
-        duration: 5000,
       });
     }
   };
@@ -44,28 +76,63 @@ export const Hero = () => {
   const handleScrollToSection = (sectionId: string) => (event: React.MouseEvent | React.TouchEvent) => {
     event.preventDefault();
     
-    // Enhanced scroll functionality with fallbacks
+    const section = document.getElementById(sectionId);
+    if (!section) {
+      console.warn(`Section with id "${sectionId}" not found`);
+      return;
+    }
+    
+    // Try multiple scroll methods for maximum browser compatibility
     try {
-      const section = document.getElementById(sectionId);
-      if (section) {
-        // Check if smooth scrolling is supported
-        if ('scrollBehavior' in document.documentElement.style) {
-          section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        } else {
-          // Fallback for browsers that don't support smooth scrolling
-          const offsetTop = section.getBoundingClientRect().top + window.pageYOffset;
-          window.scrollTo({
-            top: offsetTop,
-            behavior: 'smooth'
-          });
-        }
-      } else {
-        console.warn(`Section with id "${sectionId}" not found`);
+      // Method 1: Modern smooth scrolling
+      if ('scrollBehavior' in document.documentElement.style) {
+        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } 
+      // Method 2: jQuery-like animation fallback
+      else {
+        const targetPosition = section.getBoundingClientRect().top + window.pageYOffset;
+        const startPosition = window.pageYOffset;
+        const distance = targetPosition - startPosition;
+        const duration = 1000;
+        let start: number | null = null;
+        
+        const step = (timestamp: number) => {
+          if (!start) start = timestamp;
+          const progress = timestamp - start;
+          const percentage = Math.min(progress / duration, 1);
+          
+          // Easing function for smoother animation
+          const easeInOutQuad = (t: number) => {
+            return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+          };
+          
+          window.scrollTo(0, startPosition + distance * easeInOutQuad(percentage));
+          
+          if (progress < duration) {
+            window.requestAnimationFrame(step);
+          }
+        };
+        
+        window.requestAnimationFrame(step);
       }
     } catch (error) {
-      console.error("Scrolling error:", error);
-      // Ultimate fallback, just change location hash
-      window.location.hash = sectionId;
+      console.error("Scroll error:", error);
+      
+      // Fallback 1: Basic scroll
+      try {
+        window.scrollTo({
+          top: section.offsetTop,
+          behavior: 'smooth'
+        });
+      } catch (fallbackError) {
+        console.error("Fallback scroll error:", fallbackError);
+        
+        // Fallback 2: Most basic scroll
+        window.scrollTo(0, section.offsetTop);
+        
+        // Fallback 3: Location hash as last resort
+        window.location.hash = sectionId;
+      }
     }
   };
   
