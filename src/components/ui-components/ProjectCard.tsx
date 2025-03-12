@@ -1,5 +1,4 @@
-
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight } from 'lucide-react';
 
@@ -9,14 +8,13 @@ export interface Project {
   description: string;
   image: string;
   tags: string[];
-  link?: string;
 }
 
 interface ProjectCardProps {
   project: Project;
 }
 
-export const ProjectCard = ({ project }: ProjectCardProps) => {
+const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const [isHovered, setIsHovered] = useState(false);
   
   return (
@@ -29,9 +27,13 @@ export const ProjectCard = ({ project }: ProjectCardProps) => {
         <img 
           src={project.image} 
           alt={project.title} 
-          className="w-full h-full object-cover transition-transform duration-700 ease-out"
+          className="w-full h-full object-contain transition-transform duration-700 ease-out"
           style={{
             transform: isHovered ? 'scale(1.05)' : 'scale(1)'
+          }}
+          onError={(e) => {
+            console.error(`Failed to load image: ${project.image}`);
+            e.currentTarget.src = "https://placehold.co/600x400?text=Image+Not+Found";
           }}
         />
         <div className={`absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 ${isHovered ? 'opacity-100' : ''}`}>
