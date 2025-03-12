@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useCallback } from 'react';
 import {
   Carousel,
@@ -14,9 +13,9 @@ import useEmblaCarousel from 'embla-carousel-react';
 // Sample events data - replace with your real events
 const eventImages = [
   {
-    src: "https://images.unsplash.com/photo-1649972904349-6e44c42644a7?auto=format&fit=crop&q=80",
-    alt: "Tech Conference 2023",
-    caption: "AI/ML Conference"
+    src: "/GitTogether.jpg",
+    alt: "Git Together at Microsoft office Greater Noida- Nov 2024",
+    caption: "Git Together at Microsoft office Greater Noida- Nov 2024"
   },
   {
     src: "/Student_volunteer_conference.jpg",
@@ -24,9 +23,24 @@ const eventImages = [
     caption: "Student Volunteer at ICICC-2025"
   },
   {
+    src: "/ResearchHackathon.jpg",
+    alt: "Participated in Research Hackathon organized at Bennett University during first year of college",
+    caption: "Participated in Research Hackathon organized at Bennett University during first year of college"
+  },
+  {
+    src: "/Team-Luminous.jpg",
+    alt: "With my team at Luminous Techno-X Hackathon",
+    caption: "With my team at Luminous Techno-X Hackathon"
+  },
+  {
     src: "/LuminousHackathon.jpg",
     alt: "Luminous Techno-X Hackathon",
     caption: "Luminous Techno-X Hackathon"
+  },
+  {
+    src: "/ProjectShowcase2ndYear.jpg",
+    alt: "Project Showcase during 2nd year of college",
+    caption: "Project Showcase during 2nd year of college"
   },
   {
     src: "/AWS_StudentCommunityDay.jpg",
@@ -34,9 +48,19 @@ const eventImages = [
     caption: "AWS Student Community Day"
   },
   {
+    src: "/AnshMehra.jpg",
+    alt: "Got an opportunity to meet Ansh Mehra at Google DevFest New Delhi- 2023",
+    caption: "Got an opportunity to meet Ansh Mehra at Google DevFest New Delhi- 2023"
+  },
+  {
     src: "/Paper_Presentation_Certificate.jpg",
     alt: "Paper Presentation Certificate",
     caption: "Paper Presentation Certificate"
+  },
+  {
+    src: "/GoogleDevFest-2023.jpg",
+    alt: "Google DevFest New Delhi- 2023",
+    caption: "Google DevFest New Delhi- 2023"
   }
 ];
 
@@ -110,7 +134,7 @@ const EventCarousel = () => {
                         <img 
                           src={event.src} 
                           alt={event.alt}
-                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                          className="w-full h-full object-contain transition-transform duration-500 group-hover:scale-110"
                           onError={(e) => {
                             console.error(`Failed to load image: ${event.src}`);
                             e.currentTarget.src = "https://placehold.co/600x400?text=Image+Not+Found";
