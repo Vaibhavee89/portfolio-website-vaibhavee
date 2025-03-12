@@ -2,7 +2,8 @@
 
 Welcome to my portfolio website! This project showcases my work, skills, and experiences in a beautifully crafted and responsive design.
 
-![bit ly_41G79KF](https://github.com/user-attachments/assets/924dccb0-8874-4ff4-975f-e96a1dcb4cf5)
+![image](https://github.com/user-attachments/assets/21d76e80-e334-40fb-a6f0-4eb83d4592a9)
+
 
 
 ## 🚀 Live Demo
