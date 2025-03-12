@@ -24,19 +24,19 @@ const eventImages = [
 
   },
   {
-    src: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80",
-    alt: "Research Symposium",
-    caption: "Computer Vision Workshop"
+    src: "/LuminousHackathon.jpg",
+    alt: "Luminous Techno-X Hackathon",
+    caption: "Luminous Techno-X Hackathon"
   },
   {
-    src: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&q=80",
-    alt: "Coding Bootcamp",
-    caption: "Deep Learning Bootcamp"
+    src: "/AWS_StudentCommunityDay.jpg",
+    alt: "AWS Student Community Day",
+    caption: "AWS Student Community Day"
   },
   {
-    src: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&q=80",
-    alt: "Tech Talk",
-    caption: "Research Presentation"
+    src: "/Paper_Presentation_Certificate.jpg",
+    alt: "Paper Presentation Certificate",
+    caption: "Paper Presentation Certificate"
   }
 ];
 
