@@ -18,9 +18,9 @@ const eventImages = [
     caption: "AI/ML Conference"
   },
   {
-    src: "D:\portfolio website\portfolio-website-vaibhavee\public\Student_volunteer_conference.jpg",
-    alt: "Hackathon 2023",
-    caption: "Cloud Computing Hackathon"
+    src: "https://drive.google.com/file/d/1qA3P1M9SKjCxPpRalwFQIyoJdgUV_cKY/view?usp=sharing",
+    alt: "Student Volunteer at ICICC- 2025",
+    caption: "Student Volunteer at ICICC- 2025"
   },
   {
     src: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80",
