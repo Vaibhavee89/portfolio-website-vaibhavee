@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import {
   Carousel,
   CarouselContent,
@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 import { Camera } from 'lucide-react';
+import useEmblaCarousel from 'embla-carousel-react';
 
 // Sample events data - replace with your real events
 const eventImages = [
@@ -21,7 +22,6 @@ const eventImages = [
     src: "/Student_volunteer_conference.jpg",
     alt: "Student volunteer at ICICC-2025",
     caption: "Student Volunteer at ICICC-2025"
-
   },
   {
     src: "/LuminousHackathon.jpg",
@@ -42,6 +42,23 @@ const eventImages = [
 
 const EventCarousel = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [api, setApi] = useState<ReturnType<typeof useEmblaCarousel>[1]>();
+  
+  // Auto-scroll functionality
+  const autoScroll = useCallback(() => {
+    if (api) {
+      api.scrollNext();
+    }
+  }, [api]);
+  
+  // Set up auto-scroll interval
+  useEffect(() => {
+    if (!api || !isVisible) return;
+    
+    const intervalId = setInterval(autoScroll, 3000); // Auto-scroll every 3 seconds
+    
+    return () => clearInterval(intervalId);
+  }, [api, autoScroll, isVisible]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -82,6 +99,7 @@ const EventCarousel = () => {
               align: "start",
               loop: true,
             }}
+            setApi={setApi}
           >
             <CarouselContent className="-ml-2 md:-ml-4">
               {eventImages.map((event, index) => (
