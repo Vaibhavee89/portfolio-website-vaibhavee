@@ -1,3 +1,4 @@
+
 import { useState, useEffect } from 'react';
 import { 
   Code, 
@@ -27,9 +28,20 @@ import {
   Cpu,
   Bookmark,
   ChevronRight,
-  Component
+  Component,
+  KeyRound,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { useToast } from '@/hooks/use-toast';
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+} from "@/components/ui/dialog";
+import { Card, CardContent } from '@/components/ui/card';
 
 interface Skill {
   name: string;
@@ -41,6 +53,9 @@ interface Certification {
   issuer: string;
   date: string;
   Icon: LucideIcon;
+  credentialId?: string;
+  credentialUrl?: string;
+  description?: string;
 }
 
 const skills: Skill[] = [
@@ -75,30 +90,45 @@ const certifications: Certification[] = [
     name: "AWS Cloud Practitioner", 
     issuer: "Amazon Web Services", 
     date: "2023", 
-    Icon: Cloud 
+    Icon: Cloud,
+    credentialId: "AWS-CP-123456",
+    credentialUrl: "https://aws.amazon.com/verification",
+    description: "Fundamental knowledge of AWS Cloud, services, and terminology. Covers security, technology, billing, pricing, and core services."
   },
   { 
     name: "TensorFlow Developer Certificate", 
     issuer: "Google", 
     date: "2023", 
-    Icon: Brain 
+    Icon: Brain,
+    credentialId: "TF-DEV-789012",
+    credentialUrl: "https://www.tensorflow.org/certificate",
+    description: "Proficiency in using TensorFlow to build and train models for computer vision, NLP, and time series forecasting."
   },
   { 
     name: "Machine Learning Specialization", 
     issuer: "Coursera", 
     date: "2022", 
-    Icon: Award 
+    Icon: Award,
+    credentialId: "ML-SPEC-345678",
+    credentialUrl: "https://www.coursera.org/verify",
+    description: "Comprehensive understanding of machine learning algorithms, data preprocessing, feature engineering, and model evaluation."
   },
   { 
     name: "Deep Learning Specialization", 
     issuer: "DeepLearning.AI", 
     date: "2022", 
-    Icon: GraduationCap 
+    Icon: GraduationCap,
+    credentialId: "DL-SPEC-901234",
+    credentialUrl: "https://www.deeplearning.ai/verify",
+    description: "In-depth knowledge of neural networks, optimization algorithms, convolutional networks, sequence models, and practical aspects of deep learning."
   },
 ];
 
 export const About = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [selectedCertificate, setSelectedCertificate] = useState<Certification | null>(null);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const { toast } = useToast();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -118,6 +148,19 @@ export const About = () => {
       if (section) observer.unobserve(section);
     };
   }, []);
+
+  const handleShowCredentials = (cert: Certification) => {
+    if (cert.credentialUrl) {
+      setSelectedCertificate(cert);
+      setDialogOpen(true);
+    } else {
+      toast({
+        title: "Credential Information",
+        description: "Detailed credential information not available at this time.",
+        duration: 3000,
+      });
+    }
+  };
 
   return (
     <section id="about" className="section">
@@ -177,15 +220,26 @@ export const About = () => {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {certifications.map((cert, index) => (
-              <div key={index} className="p-5 bg-card rounded-xl border border-border flex items-start space-x-4">
-                <div className="bg-secondary rounded-lg p-3 flex-shrink-0">
-                  <cert.Icon className="text-primary" size={24} />
+              <div key={index} className="p-5 bg-card rounded-xl border border-border flex flex-col items-start space-y-4">
+                <div className="flex items-start space-x-4 w-full">
+                  <div className="bg-secondary rounded-lg p-3 flex-shrink-0">
+                    <cert.Icon className="text-primary" size={24} />
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-semibold">{cert.name}</h4>
+                    <p className="text-muted-foreground">{cert.issuer}</p>
+                    <p className="text-sm text-muted-foreground">{cert.date}</p>
+                  </div>
                 </div>
-                <div>
-                  <h4 className="text-lg font-semibold">{cert.name}</h4>
-                  <p className="text-muted-foreground">{cert.issuer}</p>
-                  <p className="text-sm text-muted-foreground">{cert.date}</p>
-                </div>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="mt-2 w-full flex items-center justify-center gap-2"
+                  onClick={() => handleShowCredentials(cert)}
+                >
+                  <KeyRound size={16} />
+                  Show Credentials
+                </Button>
               </div>
             ))}
           </div>
@@ -281,6 +335,49 @@ export const About = () => {
           </div>
         </div>
       </div>
+
+      <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+        {selectedCertificate && (
+          <DialogContent className="sm:max-w-md">
+            <DialogHeader>
+              <DialogTitle>{selectedCertificate.name}</DialogTitle>
+              <DialogDescription>
+                Issued by {selectedCertificate.issuer} in {selectedCertificate.date}
+              </DialogDescription>
+            </DialogHeader>
+            <div className="space-y-4 py-4">
+              <Card>
+                <CardContent className="pt-6">
+                  <div className="space-y-2">
+                    <div className="flex justify-between">
+                      <span className="font-medium">Credential ID:</span>
+                      <span>{selectedCertificate.credentialId}</span>
+                    </div>
+                    {selectedCertificate.description && (
+                      <div className="mt-4">
+                        <span className="font-medium block mb-1">Description:</span>
+                        <p className="text-sm text-muted-foreground">{selectedCertificate.description}</p>
+                      </div>
+                    )}
+                  </div>
+                </CardContent>
+              </Card>
+              <div className="flex justify-end">
+                <Button 
+                  variant="default" 
+                  onClick={() => {
+                    if (selectedCertificate.credentialUrl) {
+                      window.open(selectedCertificate.credentialUrl, '_blank');
+                    }
+                  }}
+                >
+                  Verify Credential
+                </Button>
+              </div>
+            </div>
+          </DialogContent>
+        )}
+      </Dialog>
     </section>
   );
 };
