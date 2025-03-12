@@ -18,7 +18,7 @@ const eventImages = [
     caption: "AI/ML Conference"
   },
   {
-    src: "public\Student_volunteer_conference.jpg",
+    src: "/Student_volunteer_conference.jpg",
     alt: "Hackathon 2023",
     caption: "Cloud Computing Hackathon"
   },
@@ -92,6 +92,10 @@ const EventCarousel = () => {
                           src={event.src} 
                           alt={event.alt}
                           className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                          onError={(e) => {
+                            console.error(`Failed to load image: ${event.src}`);
+                            e.currentTarget.src = "https://placehold.co/600x400?text=Image+Not+Found";
+                          }}
                         />
                       </div>
                       <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
