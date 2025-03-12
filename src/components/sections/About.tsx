@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { 
   Code, 
@@ -44,7 +43,6 @@ interface Certification {
   Icon: LucideIcon;
 }
 
-// Reorganized skills as a flat list of technologies with icons
 const skills: Skill[] = [
   { name: 'Python', Icon: FileCode },
   { name: 'JavaScript', Icon: Zap },
@@ -124,7 +122,6 @@ export const About = () => {
   return (
     <section id="about" className="section">
       <div className="max-w-7xl mx-auto">
-        {/* About Me Header */}
         <div className="mb-12 flex flex-col items-start">
           <span className="px-4 py-2 rounded-full bg-secondary text-secondary-foreground mb-4">
             About Me
@@ -134,7 +131,6 @@ export const About = () => {
           </p>
         </div>
 
-        {/* Educational Journey */}
         <div className={`mb-16 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
           <div className="flex items-center mb-6">
             <BookOpen className="text-primary mr-3" size={28} />
@@ -174,7 +170,6 @@ export const About = () => {
           </div>
         </div>
 
-        {/* Certifications */}
         <div className={`mb-16 ${isVisible ? 'animate-fade-in animate-delay-150' : 'opacity-0'}`}>
           <div className="flex items-center mb-6">
             <BadgeCheck className="text-primary mr-3" size={28} />
@@ -196,7 +191,6 @@ export const About = () => {
           </div>
         </div>
 
-        {/* Skills and Technologies - Redesigned as a grid of icons */}
         <div className={`mb-16 ${isVisible ? 'animate-fade-in animate-delay-200' : 'opacity-0'}`}>
           <div className="flex items-center mb-6">
             <Code className="text-primary mr-3" size={28} />
@@ -216,7 +210,6 @@ export const About = () => {
           </div>
         </div>
 
-        {/* Work History */}
         <div className={`mb-16 ${isVisible ? 'animate-fade-in animate-delay-300' : 'opacity-0'}`}>
           <div className="flex items-center mb-6">
             <Briefcase className="text-primary mr-3" size={28} />
@@ -266,8 +259,7 @@ export const About = () => {
           </div>
         </div>
 
-        {/* Achievements */}
-        <div className={`mb-16 ${isVisible ? 'animate-fade-in animate-delay-400' : 'opacity-0'}`}>
+        <div className={`${isVisible ? 'animate-fade-in animate-delay-400' : 'opacity-0'}`}>
           <div className="flex items-center mb-6">
             <Trophy className="text-primary mr-3" size={28} />
             <h3 className="text-2xl font-bold">Achievements</h3>
@@ -286,44 +278,6 @@ export const About = () => {
               Published a research paper on "Spam accounts detection on Instagram" in IEEE IC3SE-2024 conference proceedings.
               </p>
             </div>
-            {/* <div className="p-6 bg-card rounded-xl border border-border">
-              <h4 className="text-xl font-semibold mb-2">Dean's List</h4>
-              <p className="text-muted-foreground">
-                Recognized for academic excellence by being named to the Dean's List for three consecutive semesters.
-              </p>
-            </div>
-            <div className="p-6 bg-card rounded-xl border border-border">
-              <h4 className="text-xl font-semibold mb-2">Hackathon Winner</h4>
-              <p className="text-muted-foreground">
-                Won first place in the university's annual hackathon for developing an accessible technology solution
-                for visually impaired users.
-              </p>
-            </div> */}
-          </div>
-        </div>
-
-        {/* Core Competencies */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
-          <div className={`p-6 bg-card rounded-xl border border-border ${isVisible ? 'animate-fade-in animate-delay-500' : 'opacity-0'}`}>
-            <Palette className="text-primary mb-4" size={32} />
-            <h3 className="text-xl font-bold mb-2">Research</h3>
-            <p className="text-muted-foreground">
-              Conducting thorough research in AI/ML domains with a focus on developing innovative solutions.
-            </p>
-          </div>
-          <div className={`p-6 bg-card rounded-xl border border-border ${isVisible ? 'animate-fade-in animate-delay-600' : 'opacity-0'}`}>
-            <Code className="text-primary mb-4" size={32} />
-            <h3 className="text-xl font-bold mb-2">Development</h3>
-            <p className="text-muted-foreground">
-              Building robust applications using modern technologies and AI/ML frameworks.
-            </p>
-          </div>
-          <div className={`p-6 bg-card rounded-xl border border-border ${isVisible ? 'animate-fade-in animate-delay-700' : 'opacity-0'}`}>
-            <Globe className="text-primary mb-4" size={32} />
-            <h3 className="text-xl font-bold mb-2">Innovation</h3>
-            <p className="text-muted-foreground">
-              Bridging the gap between research and real-world applications to create impactful solutions.
-            </p>
           </div>
         </div>
       </div>
