@@ -2,6 +2,9 @@
 
 Welcome to my portfolio website! This project showcases my work, skills, and experiences in a beautifully crafted and responsive design.
 
+![bit ly_41G79KF](https://github.com/user-attachments/assets/924dccb0-8874-4ff4-975f-e96a1dcb4cf5)
+
+
 ## 🚀 Live Demo
 
 🔗 **[Visit My Portfolio](https://portfolio-website-vaibhavee.vercel.app)**
