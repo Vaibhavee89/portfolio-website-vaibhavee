@@ -61,7 +61,12 @@ const eventImages = [
     src: "/GoogleDevFest-2023.jpg",
     alt: "Google DevFest New Delhi- 2023",
     caption: "Google DevFest New Delhi- 2023"
-  }
+  },
+  {
+    src: "/Hackcbs.jpg",
+    alt: "HackCBS 7.0",
+    caption: "HackCBS 7.0"
+  },
 ];
 
 const EventCarousel = () => {

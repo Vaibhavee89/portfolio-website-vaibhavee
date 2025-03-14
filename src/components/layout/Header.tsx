@@ -1,8 +1,8 @@
-
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import ThemeToggle from '../ui-components/ThemeToggle';
+//import { My-custom-icon } from '/My-custom-icon.ico';
 
 interface NavItem {
   label: string;

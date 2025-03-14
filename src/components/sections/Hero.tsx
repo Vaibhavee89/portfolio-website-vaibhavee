@@ -1,7 +1,6 @@
-
 import { ArrowDown } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 
 export const Hero = () => {
