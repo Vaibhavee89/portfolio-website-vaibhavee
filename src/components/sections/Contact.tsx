@@ -15,9 +15,9 @@ export const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const SERVICE_ID = "default_service";
-  const TEMPLATE_ID = "template_contact";
-  const USER_ID = "user_yourUserId";
+  const SERVICE_ID = "your_service_id"; // Replace with your EmailJS service ID
+  const TEMPLATE_ID = "your_template_id"; // Replace with your EmailJS template ID
+  const USER_ID = "your_user_id"; // Replace with your EmailJS user ID
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -65,7 +65,6 @@ export const Contact = () => {
       setIsSubmitting(false);
       setIsSubmitted(true);
       setFormData({ name: '', email: '', subject: '', message: '' });
-      //setFormData({ email: '', message: '' });
       
       toast({
         title: "Success!",
