@@ -48,9 +48,9 @@ export const Footer = () => {
           </div>
         </div>
         
-        <div className="border-t border-border mt-8 pt-8 text-center text-muted-foreground">
+        {/* <div className="border-t border-border mt-8 pt-8 text-center text-muted-foreground">
           <p>© {2025} Portfolio. All rights reserved.</p>
-        </div>
+        </div> */}
       </div>
     </footer>
   );
