@@ -15,9 +15,9 @@ export const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const SERVICE_ID = "your_service_id"; // Replace with your EmailJS service ID
-  const TEMPLATE_ID = "your_template_id"; // Replace with your EmailJS template ID
-  const USER_ID = "your_user_id"; // Replace with your EmailJS user ID
+  const SERVICE_ID = "service_wqr1eqz"; // Replace with your EmailJS service ID
+  const TEMPLATE_ID = "template_dsixo6b"; // Replace with your EmailJS template ID
+  const USER_ID = "Hg7wXBdt1MlC-kuOOAEMi"; // Replace with your EmailJS user ID
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -145,6 +145,8 @@ export const Contact = () => {
             </div>
           </div>
           
+          {/* Commenting out the form */}
+          {/*
           <div className={`${isVisible ? 'animate-fade-in animate-delay-300' : 'opacity-0'}`}>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
@@ -226,6 +228,7 @@ export const Contact = () => {
               )}
             </form>
           </div>
+          */}
         </div>
       </div>
     </section>
