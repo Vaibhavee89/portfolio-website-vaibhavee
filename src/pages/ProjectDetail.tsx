@@ -20,11 +20,9 @@ const projectsData: ProjectDetails[] = [
     title: "Portfolio Website",
     description: "This project showcases my work, skills, and experiences in a beautifully crafted and responsive design.",
     fullDescription: "This portfolio website serves as a personal space to highlight my achievements, projects, and professional journey. Built with modern technologies, it ensures a smooth and visually appealing user experience.",
-    image: "https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    image: "/PortfolioProject(2).png",
     images: [
-      "https://images.unsplash.com/photo-1541701494587-cb58502866ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2015&q=80",
-      "https://images.unsplash.com/photo-1556742031-c6961e8560b0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+      "/PortfolioProject(2).png",    
     ],
     tags: ["Portfolio", "Skills"],
     liveLink: "https://portfolio-website-vaibhavee.vercel.app/",
@@ -33,13 +31,11 @@ const projectsData: ProjectDetails[] = [
   {
     id: "2",
     title: "Quiz-Whiz",
-    description: "An interactive dashboard for financial analytics with real-time data visualization.",
-    fullDescription: "This financial dashboard project provides users with comprehensive data visualization tools to track investments, analyze market trends, and manage personal finances. The dashboard was built with React and uses advanced charting libraries to display complex financial data in an intuitive way.\n\nKey features include portfolio performance tracking, expense categorization, budget planning tools, and predictive analytics. Real-time data integration was implemented through secure API connections to various financial data providers.",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
+    description: "Welcome to QuizWhiz, a fast and interactive trivia quiz app that pulls questions from Trivia API and provides instant feedback! ",
+    fullDescription: "Welcome to QuizWhiz, a fast and interactive trivia quiz app that pulls questions from Trivia API and provides instant feedback! ",
+    image: "/TriviaQuiz.png",
     images: [
-      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      "https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      "https://images.unsplash.com/photo-1543286386-713bdd548da4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+      "/TriviaQuiz.png"
     ],
     tags: ["Quiz", "Trivia-Challenge"],
     liveLink: "quiz-whiz-red.vercel.app",
@@ -47,29 +43,23 @@ const projectsData: ProjectDetails[] = [
   },
   {
     id: "3",
-    title: "Travel Blog Platform",
-    description: "A responsive blog platform focused on travel experiences with rich media support.",
-    fullDescription: "This travel blog platform was designed to showcase travel stories with a focus on rich media content including high-resolution imagery, videos, and interactive maps. The platform includes a custom CMS that allows writers to easily create and publish content with minimal technical knowledge.\n\nSpecial attention was given to the reading experience, with careful typography choices, comfortable line lengths, and subtle animations that enhance the storytelling without distracting from the content. The responsive design ensures an optimal viewing experience across all devices, particularly important for travel content that is often consumed on mobile devices.",
-    image: "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      "https://images.unsplash.com/photo-1488085061387-422e29b40080?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2031&q=80",
-      "https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+    title: "Short.ly",
+    description: "Short.ly is a simple API that shortens long URLs and redirects users when they access the shortened links. It is built with modern web technologies, ensuring fast performance and a seamless experience.",
+    fullDescription: "Short.ly is a simple API that shortens long URLs and redirects users when they access the shortened links. It is built with modern web technologies, ensuring fast performance and a seamless experience.",
+    image: "/Shortly.png",
+    images: ["/Shortly.png"
     ],
-    tags: ["Blog", "Web Development", "CMS"],
-    liveLink: "https://example.com",
-    githubLink: "https://github.com"
+    tags: ["URLs", "Web Development", "API"],
+    liveLink: "https://short-ly-wine.vercel.app/",
+    githubLink: "https://github.com/Vaibhavee89/Short.ly"
   },
   {
     id: "4",
-    title: "Smart Home App",
-    description: "A mobile app for controlling smart home devices with a focus on simplicity and usability.",
-    fullDescription: "This smart home control application allows users to manage all their connected home devices through a single, intuitive interface. The app was designed with a strong focus on usability, ensuring that complex features remain accessible to users of all technical abilities.\n\nThe app includes features such as device grouping, scenes, schedules, and automation rules. Special attention was given to creating a seamless onboarding process for new devices and intuitive controls for daily use. The interface adapts to user behavior over time, highlighting frequently used features and suggesting automation based on usage patterns.",
-    image: "https://images.unsplash.com/photo-1558002038-2f4bb8741991?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1558002038-2f4bb8741991?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      "https://images.unsplash.com/photo-1585771490676-a4e97f979822?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      "https://images.unsplash.com/photo-1581508473471-c9221934233a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
+    title: "Sudoku-Solver",
+    description: "Sudoku Solver is a web application that allows users to input a Sudoku puzzle and get the solution instantly. The app uses a backtracking algorithm to solve the puzzle efficiently.",
+    fullDescription: "Sudoku Solver is a web application that allows users to input a Sudoku puzzle and get the solution instantly. The app uses a backtracking algorithm to solve the puzzle efficiently.",
+    image: "/SudokuSolver.png",
+    images: ["/SudokuSolver.png"
     ],
     tags: ["Mobile App", "IoT", "React Native"],
     liveLink: "https://example.com",
@@ -92,20 +82,30 @@ const projectsData: ProjectDetails[] = [
   },
   {
     id: "6",
-    title: "Photography Portfolio",
-    description: "A minimal portfolio website showcasing a photographer's work with immersive viewing experience.",
-    fullDescription: "This photography portfolio was designed to showcase the client's work with minimal distractions, placing the focus entirely on the imagery. The design features a clean, minimalist interface with thoughtful transitions between images and galleries.\n\nSpecial attention was given to image loading optimization to ensure fast performance even with high-resolution photography. The gallery viewing experience includes subtle interactions that enhance the presentation without distracting from the content. The responsive design maintains the integrity of the images across all device sizes while ensuring optimal viewing experiences.",
-    image: "https://images.unsplash.com/photo-1520390138845-fd2d229dd553?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2092&q=80",
-    images: [
-      "https://images.unsplash.com/photo-1520390138845-fd2d229dd553?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2092&q=80",
-      "https://images.unsplash.com/photo-1542038784456-1ea8e935640e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-      "https://images.unsplash.com/photo-1554080353-a576cf803bda?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2074&q=80"
+    title: "Sudoku-Solver",
+    description: "Sudoku Solver is a web application that allows users to input a Sudoku puzzle and get the solution instantly. The app uses a backtracking algorithm to solve the puzzle efficiently.",
+    fullDescription: "Sudoku Solver is a web application that allows users to input a Sudoku puzzle and get the solution instantly. The app uses a backtracking algorithm to solve the puzzle efficiently.",
+    image: "/SudokuSolver.png",
+    images: ["/SudokuSolver.png"
     ],
-    tags: ["Portfolio", "Photography", "Gallery"],
+    tags: ["C++", "Backtracking Algorithm", "Conceptual Problem Solving"],
 
-    liveLink: "https://example.com",
-    githubLink: "https://github.com"
+    //liveLink: "https://example.com",
+    githubLink: "https://github.com/Vaibhavee89/Sudoku-Solver"
   },
+  {
+    id: "7",
+    title: "Ziplyn",
+    description: "Experimental project to create a file compression and extraction utility in Rust.",
+    fullDescription: "Ziplyn is an experimental project to create a file compression and extraction utility in Rust. The application is designed to be fast, efficient, and user-friendly, with a focus on simplicity and performance. Ziplyn supports a wide range of file formats and compression algorithms, allowing users to compress and extract files with ease.",
+    image: "/Ziplyn.png",
+    images: ["/Ziplyn.png"
+    ],
+    tags: ["Rust", "File Comprerssion", "File Extraction"],
+
+    //liveLink: "https://example.com",
+    githubLink: "https://github.com/Vaibhavee89/Ziplyn"
+  }
 ];
 
 const ProjectDetail = () => {

@@ -52,7 +52,7 @@ const projects: Project[] = [
     tags: ["C++", "Backtracking Algorithm", "Conceptual Problem Solving"],
   },
   {
-    id: "6",
+    id: "7",
     title: "Ziplyn",
     description: "Experimental project to create a file compression and extraction utility in Rust.",
     image: "Ziplyn.png",
