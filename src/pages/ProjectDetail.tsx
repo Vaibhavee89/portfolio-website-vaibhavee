@@ -38,7 +38,7 @@ const projectsData: ProjectDetails[] = [
       "/TriviaQuiz.png"
     ],
     tags: ["Quiz", "Trivia-Challenge"],
-    liveLink: "quiz-whiz-red.vercel.app",
+    liveLink: "https://quiz-whiz-red.vercel.app/",
     githubLink: "https://github.com/Vaibhavee89/QuizWhiz"
   },
   {
