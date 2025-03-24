@@ -28,6 +28,11 @@ const eventImages = [
     caption: "Participated in Research Hackathon organized at Bennett University during first year of college"
   },
   {
+    src: "/HP_PowerLab.jpg",
+    alt: "HP PowerLab Hackathon Certificate",
+    caption: "HP PowerLab Hackathon Certificate"
+  },
+  {
     src: "/Team-Luminous.jpg",
     alt: "With my team at Luminous Techno-X Hackathon",
     caption: "With my team at Luminous Techno-X Hackathon"
