@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { 
   Code, 
@@ -297,7 +296,20 @@ export const About = () => {
             <h3 className="text-2xl font-bold">Work History</h3>
           </div>
           <div className="space-y-6 pl-4 border-l-2 border-secondary">
+          <div className="relative">
+              <div className="absolute -left-[25px] w-12 h-12 rounded-full bg-secondary flex items-center justify-center">
+                <span className="font-bold">2025</span>
+              </div>
+              <div className="pl-10">
+                <h4 className="text-xl font-semibold">Engineering Intern</h4>
+                <p className="text-muted-foreground">DiGiLABS</p>
+                <p className="text-sm text-muted-foreground">Since Mar 2025</p>
+                <p className="mt-2 text-muted-foreground">
+                </p>
+              </div>
+            </div>
             <div className="relative">
+            
               <div className="absolute -left-[25px] w-12 h-12 rounded-full bg-secondary flex items-center justify-center">
                 <span className="font-bold">2024</span>
               </div>
@@ -337,6 +349,7 @@ export const About = () => {
                 </p>
               </div>
             </div>
+          
           </div>
         </div>
 
