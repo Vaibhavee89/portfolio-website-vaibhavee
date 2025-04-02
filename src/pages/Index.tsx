@@ -6,6 +6,7 @@ import Footer from '../components/layout/Footer';
 import Hero from '../components/sections/Hero';
 import About from '../components/sections/About';
 import Projects from '../components/sections/Projects';
+import Blogs from '../components/sections/Blogs';
 import Contact from '../components/sections/Contact';
 import EventCarousel from '../components/sections/EventCarousel';
 
@@ -43,6 +44,7 @@ const Index = () => {
         <Hero />
         <About />
         <Projects />
+        <Blogs />
         <EventCarousel />
         <Contact />
       </main>
