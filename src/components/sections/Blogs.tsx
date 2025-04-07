@@ -11,7 +11,6 @@ interface BlogPost {
   excerpt: string;
   date: string;
   readTime: string;
-  category: string;
 }
 
 const sampleBlogs: BlogPost[] = [
@@ -20,24 +19,21 @@ const sampleBlogs: BlogPost[] = [
     title: "Getting Started with React and TypeScript",
     excerpt: "A comprehensive guide for beginners on how to set up and use React with TypeScript for robust web applications.",
     date: "May 15, 2023",
-    readTime: "5 min",
-    category: "Development"
+    readTime: "5 min"
   },
   {
     id: "blog-2",
     title: "The Future of AI in Web Development",
     excerpt: "Exploring how artificial intelligence is transforming the landscape of modern web development and design.",
     date: "June 22, 2023",
-    readTime: "8 min",
-    category: "Technology"
+    readTime: "8 min"
   },
   {
     id: "blog-3",
     title: "Optimizing Performance in React Applications",
     excerpt: "Learn advanced techniques to improve the performance of your React applications for a better user experience.",
     date: "July 10, 2023",
-    readTime: "7 min",
-    category: "Development"
+    readTime: "7 min"
   }
 ];
 
@@ -85,9 +81,6 @@ const Blogs = () => {
             >
               <CardHeader className="pb-3">
                 <div className="flex justify-between items-center mb-1">
-                  <span className="text-xs font-medium bg-secondary px-2 py-1 rounded-full">
-                    {blog.category}
-                  </span>
                   <span className="text-xs text-muted-foreground">
                     {blog.date} · {blog.readTime} read
                   </span>
@@ -101,7 +94,7 @@ const Blogs = () => {
               </CardContent>
               <CardFooter>
                 <Button variant="ghost" className="p-0 h-auto text-primary hover:text-primary hover:bg-transparent" asChild>
-                  <Link to={`/blog`} className="flex items-center gap-1">
+                  <Link to={`/blog/${blog.id}`} className="flex items-center gap-1">
                     Read More <ArrowRight className="h-4 w-4" />
                   </Link>
                 </Button>

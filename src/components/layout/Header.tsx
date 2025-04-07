@@ -1,8 +1,8 @@
+
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import ThemeToggle from '../ui-components/ThemeToggle';
-//import { My-custom-icon } from '/My-custom-icon.ico';
 
 interface NavItem {
   label: string;
@@ -13,7 +13,7 @@ const navItems: NavItem[] = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/#about' },
   { label: 'Projects', href: '/#projects' },
-  { label: 'Blogs', href: '/#Blogs' },
+  { label: 'Blogs', href: '/blog' },
   { label: 'Contact', href: '/#contact' },
 ];
 
@@ -50,13 +50,23 @@ export const Header = () => {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-1">
           {navItems.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className="nav-link"
-            >
-              {item.label}
-            </a>
+            item.href.startsWith('/#') ? (
+              <a
+                key={item.label}
+                href={item.href}
+                className="nav-link"
+              >
+                {item.label}
+              </a>
+            ) : (
+              <Link
+                key={item.label}
+                to={item.href}
+                className="nav-link"
+              >
+                {item.label}
+              </Link>
+            )
           ))}
           <div className="ml-4">
             <ThemeToggle />
@@ -81,14 +91,25 @@ export const Header = () => {
         <div className="fixed inset-0 bg-background z-40 pt-20">
           <nav className="flex flex-col items-center justify-center h-full">
             {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="nav-link text-xl py-4"
-                onClick={closeMenu}
-              >
-                {item.label}
-              </a>
+              item.href.startsWith('/#') ? (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className="nav-link text-xl py-4"
+                  onClick={closeMenu}
+                >
+                  {item.label}
+                </a>
+              ) : (
+                <Link
+                  key={item.label}
+                  to={item.href}
+                  className="nav-link text-xl py-4"
+                  onClick={closeMenu}
+                >
+                  {item.label}
+                </Link>
+              )
             ))}
           </nav>
         </div>
