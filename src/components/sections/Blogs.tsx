@@ -16,11 +16,11 @@ interface BlogPost {
 const sampleBlogs: BlogPost[] = [
   {
     id: "blog-1",
-    title: "Getting Started with React and TypeScript",
-    excerpt: "A comprehensive guide for beginners on how to set up and use React with TypeScript for robust web applications.",
-    date: "May 15, 2023",
-    readTime: "5 min",
-    devToUrl: "https://dev.to/vaibhavee/getting-started-with-react-and-typescript"
+    title: "Tech Giants vs. Open Source: The Arms Race of GenAI",
+    excerpt: "An epic clash unfolds between tech giants and open-source rebels, each vying to shape the future of generative AI through innovation, access, and control.",
+    date: "March 15, 2025",
+    readTime: "3 min",
+    devToUrl: "https://dev.to/vaibhavee_singh89/tech-giants-vs-open-source-the-arms-race-of-genai-381p"
   },
   {
     id: "blog-2",
@@ -108,7 +108,7 @@ const Blogs = () => {
         
         <div className="mt-12 flex justify-center">
           <Button variant="outline" size="lg" asChild>
-            <a href="https://dev.to/vaibhavee" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+            <a href="https://dev.to/vaibhavee_singh89" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
               <BookOpen size={18} />
               View All Posts on dev.to
             </a>
