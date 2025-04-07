@@ -37,12 +37,14 @@ export const Header = () => {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'bg-background/80 backdrop-blur-md shadow-sm' : 'bg-transparent'
+      isScrolled ? 'bg-background/90 backdrop-blur-md shadow-sm py-2' : 'bg-transparent py-4'
     }`}>
-      <div className="container mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="container mx-auto px-6 flex items-center justify-between">
         <Link 
           to="/" 
-          className="text-2xl font-bold font-mono tracking-tight"
+          className={`font-bold font-mono tracking-tight transition-all duration-300 ${
+            isScrolled ? 'text-xl' : 'text-2xl'
+          }`}
           onClick={closeMenu}
         >
           Vaibhavee ʚɞ
@@ -57,7 +59,9 @@ export const Header = () => {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="nav-link"
+                className={`nav-link transition-all duration-300 ${
+                  isScrolled ? 'text-sm py-1 px-3' : 'py-2 px-4'
+                }`}
               >
                 {item.label}
               </a>
@@ -65,7 +69,9 @@ export const Header = () => {
               <a
                 key={item.label}
                 href={item.href}
-                className="nav-link"
+                className={`nav-link transition-all duration-300 ${
+                  isScrolled ? 'text-sm py-1 px-3' : 'py-2 px-4'
+                }`}
               >
                 {item.label}
               </a>
@@ -73,7 +79,9 @@ export const Header = () => {
               <Link
                 key={item.label}
                 to={item.href}
-                className="nav-link"
+                className={`nav-link transition-all duration-300 ${
+                  isScrolled ? 'text-sm py-1 px-3' : 'py-2 px-4'
+                }`}
               >
                 {item.label}
               </Link>
