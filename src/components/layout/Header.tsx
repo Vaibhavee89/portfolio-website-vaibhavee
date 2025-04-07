@@ -14,7 +14,7 @@ const navItems: NavItem[] = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/#about' },
   { label: 'Projects', href: '/#projects' },
-  { label: 'Blogs', href: 'https://dev.to/vaibhavee', external: true },
+  { label: 'Blogs', href: 'https://dev.to/vaibhavee_singh89', external: true },
   { label: 'Contact', href: '/#contact' },
 ];
 
