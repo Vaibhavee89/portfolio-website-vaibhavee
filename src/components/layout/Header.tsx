@@ -7,13 +7,14 @@ import ThemeToggle from '../ui-components/ThemeToggle';
 interface NavItem {
   label: string;
   href: string;
+  external?: boolean;
 }
 
 const navItems: NavItem[] = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/#about' },
   { label: 'Projects', href: '/#projects' },
-  { label: 'Blogs', href: '/blog' },
+  { label: 'Blogs', href: 'https://dev.to/vaibhavee', external: true },
   { label: 'Contact', href: '/#contact' },
 ];
 
@@ -50,7 +51,17 @@ export const Header = () => {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center space-x-1">
           {navItems.map((item) => (
-            item.href.startsWith('/#') ? (
+            item.external ? (
+              <a
+                key={item.label}
+                href={item.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nav-link"
+              >
+                {item.label}
+              </a>
+            ) : item.href.startsWith('/#') ? (
               <a
                 key={item.label}
                 href={item.href}
@@ -91,7 +102,18 @@ export const Header = () => {
         <div className="fixed inset-0 bg-background z-40 pt-20">
           <nav className="flex flex-col items-center justify-center h-full">
             {navItems.map((item) => (
-              item.href.startsWith('/#') ? (
+              item.external ? (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="nav-link text-xl py-4"
+                  onClick={closeMenu}
+                >
+                  {item.label}
+                </a>
+              ) : item.href.startsWith('/#') ? (
                 <a
                   key={item.label}
                   href={item.href}

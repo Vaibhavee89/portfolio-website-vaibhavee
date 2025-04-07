@@ -1,7 +1,6 @@
 
 import { useState, useEffect } from 'react';
 import { ArrowRight, BookOpen } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -11,6 +10,7 @@ interface BlogPost {
   excerpt: string;
   date: string;
   readTime: string;
+  devToUrl: string;
 }
 
 const sampleBlogs: BlogPost[] = [
@@ -19,21 +19,24 @@ const sampleBlogs: BlogPost[] = [
     title: "Getting Started with React and TypeScript",
     excerpt: "A comprehensive guide for beginners on how to set up and use React with TypeScript for robust web applications.",
     date: "May 15, 2023",
-    readTime: "5 min"
+    readTime: "5 min",
+    devToUrl: "https://dev.to/vaibhavee/getting-started-with-react-and-typescript"
   },
   {
     id: "blog-2",
     title: "The Future of AI in Web Development",
     excerpt: "Exploring how artificial intelligence is transforming the landscape of modern web development and design.",
     date: "June 22, 2023",
-    readTime: "8 min"
+    readTime: "8 min",
+    devToUrl: "https://dev.to/vaibhavee/the-future-of-ai-in-web-development"
   },
   {
     id: "blog-3",
     title: "Optimizing Performance in React Applications",
     excerpt: "Learn advanced techniques to improve the performance of your React applications for a better user experience.",
     date: "July 10, 2023",
-    readTime: "7 min"
+    readTime: "7 min",
+    devToUrl: "https://dev.to/vaibhavee/optimizing-performance-in-react-applications"
   }
 ];
 
@@ -94,9 +97,9 @@ const Blogs = () => {
               </CardContent>
               <CardFooter>
                 <Button variant="ghost" className="p-0 h-auto text-primary hover:text-primary hover:bg-transparent" asChild>
-                  <Link to={`/blog/${blog.id}`} className="flex items-center gap-1">
-                    Read More <ArrowRight className="h-4 w-4" />
-                  </Link>
+                  <a href={blog.devToUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1">
+                    Read on dev.to <ArrowRight className="h-4 w-4" />
+                  </a>
                 </Button>
               </CardFooter>
             </Card>
@@ -105,10 +108,10 @@ const Blogs = () => {
         
         <div className="mt-12 flex justify-center">
           <Button variant="outline" size="lg" asChild>
-            <Link to="/blog" className="flex items-center gap-2">
+            <a href="https://dev.to/vaibhavee" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
               <BookOpen size={18} />
-              View All Posts
-            </Link>
+              View All Posts on dev.to
+            </a>
           </Button>
         </div>
       </div>
