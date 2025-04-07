@@ -18,25 +18,25 @@ const sampleBlogs: BlogPost[] = [
     id: "blog-1",
     title: "Tech Giants vs. Open Source: The Arms Race of GenAI",
     excerpt: "An epic clash unfolds between tech giants and open-source rebels, each vying to shape the future of generative AI through innovation, access, and control.",
-    date: "March 15, 2025",
+    date: "March 5, 2025",
     readTime: "3 min",
     devToUrl: "https://dev.to/vaibhavee_singh89/tech-giants-vs-open-source-the-arms-race-of-genai-381p"
   },
   {
     id: "blog-2",
-    title: "The Future of AI in Web Development",
-    excerpt: "Exploring how artificial intelligence is transforming the landscape of modern web development and design.",
-    date: "June 22, 2023",
-    readTime: "8 min",
-    devToUrl: "https://dev.to/vaibhavee/the-future-of-ai-in-web-development"
+    title: "Live Coding and Hot Code Swapping- Updating a running program without restarting it",
+    excerpt: "Discover how Live Coding and Hot Code Swapping can supercharge your development workflow by letting you update code on the fly—no restarts needed!",
+    date: "March 15, 2025",
+    readTime: "13 min",
+    devToUrl: "https://dev.to/vaibhavee_singh89/live-coding-hot-code-swapping-updating-a-running-program-without-restarting-it-35f9"
   },
   {
     id: "blog-3",
-    title: "Optimizing Performance in React Applications",
-    excerpt: "Learn advanced techniques to improve the performance of your React applications for a better user experience.",
-    date: "July 10, 2023",
-    readTime: "7 min",
-    devToUrl: "https://dev.to/vaibhavee/optimizing-performance-in-react-applications"
+    title: "Meta Programming - Writing code that generates or modifies other code dynamically",
+    excerpt: "Unlock the power of metaprogramming to automate tasks like logging by letting your code dynamically write and modify itself.",
+    date: "March 20, 2025",
+    readTime: "8 min",
+    devToUrl: "https://dev.to/vaibhavee_singh89/meta-programming-writing-code-that-generates-or-modifies-other-code-dynamically-11ck"
   }
 ];
 
