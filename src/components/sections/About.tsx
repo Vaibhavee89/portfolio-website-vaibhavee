@@ -303,7 +303,7 @@ export const About = () => {
               <div className="pl-10">
                 <h4 className="text-xl font-semibold">Engineering Intern</h4>
                 <p className="text-muted-foreground">DiGiLABS</p>
-                <p className="text-sm text-muted-foreground">Since Mar 2025</p>
+                <p className="text-sm text-muted-foreground">Mar 2025- April 2025</p>
                 <p className="mt-2 text-muted-foreground">
                 </p>
               </div>
