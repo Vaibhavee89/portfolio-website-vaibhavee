@@ -36,7 +36,7 @@ export const Header = () => {
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+    <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
       isScrolled ? 'bg-background/90 backdrop-blur-md shadow-sm py-2' : 'bg-transparent py-4'
     }`}>
       <div className="container mx-auto px-6 flex items-center justify-between">
@@ -87,16 +87,16 @@ export const Header = () => {
               </Link>
             )
           ))}
-          <div className="ml-4">
+          <div className="ml-6">
             <ThemeToggle />
           </div>
         </nav>
 
         {/* Mobile Navigation Toggle */}
-        <div className="flex items-center md:hidden">
+        <div className="flex items-center gap-3 md:hidden">
           <ThemeToggle />
           <button
-            className="ml-4 p-2 text-foreground"
+            className="p-2 text-foreground"
             onClick={toggleMenu}
             aria-label="Toggle menu"
           >
@@ -107,7 +107,7 @@ export const Header = () => {
 
       {/* Mobile Navigation Menu */}
       {isMenuOpen && (
-        <div className="fixed inset-0 bg-background z-40 pt-20">
+        <div className="fixed inset-0 bg-background z-30 pt-20">
           <nav className="flex flex-col items-center justify-center h-full">
             {navItems.map((item) => (
               item.external ? (
