@@ -23,13 +23,13 @@ const projects: Project[] = [
     image: "/Shortly.png",
     tags: ["URL", "Shortner", "Analytics"],
   },
-  // {
-  //   id: "4",
-  //   title: "AetherMed",
-  //   description: "A mobile app for controlling smart home devices with a focus on simplicity and usability.",
-  //   image: "https://images.unsplash.com/photo-1558002038-2f4bb8741991?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-  //   tags: ["Mobile App", "IoT", "React Native"],
-  // },
+  {
+    id: "4",
+    title: "Crypto Wallet Mobile App",
+    description: "Designed a mobile app for managing cryptocurrency transactions, including wallet management and transaction history.",
+    image: "/Crypto.avif",
+    tags: ["Mobile App", "Crypto Wallet", "UI/UX Design"],
+  },
   // {
   //   id: "5",
   //   title: "BreezeNow",
