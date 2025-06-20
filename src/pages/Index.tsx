@@ -1,5 +1,5 @@
 
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import emailjs from 'emailjs-com';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
@@ -9,8 +9,12 @@ import Projects from '../components/sections/Projects';
 import Blogs from '../components/sections/Blogs';
 import Contact from '../components/sections/Contact';
 import EventCarousel from '../components/sections/EventCarousel';
+import CLIInterface from '../components/ui-components/CLIInterface';
+import InterfaceToggle from '../components/ui-components/InterfaceToggle';
 
 const Index = () => {
+  const [isCLI, setIsCLI] = useState(false);
+
   useEffect(() => {
     // Initialize EmailJS
     emailjs.init("user_yourUserId"); // Replace with your actual USER_ID from EmailJS
@@ -35,9 +39,19 @@ const Index = () => {
     
     return () => window.removeEventListener('scroll', animateOnScroll);
   }, []);
+
+  if (isCLI) {
+    return (
+      <>
+        <InterfaceToggle isCLI={isCLI} onToggle={setIsCLI} />
+        <CLIInterface />
+      </>
+    );
+  }
   
   return (
     <div className="min-h-screen flex flex-col">
+      <InterfaceToggle isCLI={isCLI} onToggle={setIsCLI} />
       <Header />
       
       <main className="flex-grow">
