@@ -53,6 +53,8 @@ export const Contact = () => {
         from_email: formData.email,
         subject: formData.subject,
         message: formData.message,
+        to_name: 'Vaibhavee Singh', // Your name
+        reply_to: formData.email,
       };
 
       await emailjs.send(
@@ -68,7 +70,7 @@ export const Contact = () => {
       
       toast({
         title: "Success!",
-        description: "Your message has been sent successfully.",
+        description: "Your message has been sent successfully. I'll get back to you soon!",
         duration: 5000,
       });
       
@@ -82,7 +84,7 @@ export const Contact = () => {
       
       toast({
         title: "Error",
-        description: "Failed to send your message. Please try again.",
+        description: "Failed to send your message. Please try again or contact me directly via email.",
         variant: "destructive",
         duration: 5000,
       });
@@ -145,45 +147,45 @@ export const Contact = () => {
             </div>
           </div>
           
-          {/* Commenting out the form */}
-          {/*
           <div className={`${isVisible ? 'animate-fade-in animate-delay-300' : 'opacity-0'}`}>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block mb-2 font-medium">
-                  Your Name
+                  Your Name *
                 </label>
                 <input
                   type="text"
                   id="name"
                   name="name"
                   className="w-full p-3 bg-background border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
-                  placeholder=""
+                  placeholder="John Doe"
                   required
                   value={formData.name}
                   onChange={handleChange}
+                  disabled={isSubmitting}
                 />
               </div>
               
               <div>
                 <label htmlFor="email" className="block mb-2 font-medium">
-                  Your Email
+                  Your Email *
                 </label>
                 <input
                   type="email"
                   id="email"
                   name="email"
                   className="w-full p-3 bg-background border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
-                  placeholder="xxx@example.com"
+                  placeholder="john@example.com"
                   required
                   value={formData.email}
                   onChange={handleChange}
+                  disabled={isSubmitting}
                 />
               </div>
               
               <div>
                 <label htmlFor="subject" className="block mb-2 font-medium">
-                  Subject
+                  Subject *
                 </label>
                 <input
                   type="text"
@@ -194,12 +196,13 @@ export const Contact = () => {
                   required
                   value={formData.subject}
                   onChange={handleChange}
+                  disabled={isSubmitting}
                 />
               </div>
               
               <div>
                 <label htmlFor="message" className="block mb-2 font-medium">
-                  Message
+                  Message *
                 </label>
                 <textarea
                   id="message"
@@ -210,25 +213,32 @@ export const Contact = () => {
                   required
                   value={formData.message}
                   onChange={handleChange}
+                  disabled={isSubmitting}
                 ></textarea>
               </div>
               
               <button
                 type="submit"
-                className="button-primary w-full"
+                className="button-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? 'Sending...' : 'Send Message'}
+                {isSubmitting ? (
+                  <div className="flex items-center justify-center">
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary-foreground mr-2"></div>
+                    Sending...
+                  </div>
+                ) : (
+                  'Send Message'
+                )}
               </button>
               
               {isSubmitted && (
                 <div className="p-4 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-100 rounded-md">
-                  Thank you! Your message has been sent successfully.
+                  Thank you! Your message has been sent successfully. I'll get back to you soon!
                 </div>
               )}
             </form>
           </div>
-          */}
         </div>
       </div>
     </section>
