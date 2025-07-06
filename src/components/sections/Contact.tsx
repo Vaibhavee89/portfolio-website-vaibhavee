@@ -110,9 +110,23 @@ export const Contact = () => {
               <div className="p-3 bg-secondary rounded-full mr-4">
                 <MapPin className="text-primary" size={24} />
               </div>
-              <div>
-                <h3 className="text-lg font-bold mb-1">Location</h3>
-                <p className="text-muted-foreground">Greater Noida, Uttar Pradesh</p>
+              <div className="flex-1">
+                <h3 className="text-lg font-bold mb-3">Location</h3>
+                <div className="w-full h-64 rounded-lg overflow-hidden border border-border">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3503.8974445087!2d77.53461731508!3d28.58074998243!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5456ef36d9f%3A0x3b7191b1286136c8!2sTechZone%202%2C%20Greater%20Noida%2C%20Uttar%20Pradesh%20201310!5e0!3m2!1sen!2sin!4v1642678901234!5m2!1sen!2sin"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Location Map - TechZone 2, Greater Noida"
+                  ></iframe>
+                </div>
+                <p className="text-muted-foreground mt-2 text-sm">
+                  Plot Nos 8, 11, TechZone 2, Greater Noida, Uttar Pradesh 201310
+                </p>
               </div>
             </div>
             
