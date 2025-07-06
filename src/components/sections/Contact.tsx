@@ -126,7 +126,7 @@ export const Contact = () => {
                   href="mailto:vaibhaveesingh89@gmail.com" 
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
-                  vaibhaveesingh89@gmail.com
+                  singhvaibhavee1@gmail.com
                 </a>
               </div>
             </div>
