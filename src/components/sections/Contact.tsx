@@ -114,18 +114,18 @@ export const Contact = () => {
                 <h3 className="text-lg font-bold mb-3">Location</h3>
                 <div className="w-full h-64 rounded-lg overflow-hidden border border-border">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3503.8974445087!2d77.53461731508!3d28.58074998243!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390ce5456ef36d9f%3A0x3b7191b1286136c8!2sTechZone%202%2C%20Greater%20Noida%2C%20Uttar%20Pradesh%20201310!5e0!3m2!1sen!2sin!4v1642678901234!5m2!1sen!2sin"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.234567890123!2d86.436277!3d23.809383!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f6bc9c8b123456%3A0x1234567890abcdef!2sDhanbad%2C%20Jharkhand%20826001%2C%20India!5e0!3m2!1sen!2sin!4v1642678901234!5m2!1sen!2sin"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    title="Location Map - TechZone 2, Greater Noida"
+                    title="Location Map - Dhanbad, Jharkhand"
                   ></iframe>
                 </div>
                 <p className="text-muted-foreground mt-2 text-sm">
-                  Plot Nos 8, 11, TechZone 2, Greater Noida, Uttar Pradesh 201310
+                  Dhanbad, Jharkhand 826001, India
                 </p>
               </div>
             </div>
