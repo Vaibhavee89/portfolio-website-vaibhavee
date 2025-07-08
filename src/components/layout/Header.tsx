@@ -36,7 +36,7 @@ export const Header = () => {
 
   return (
     <header className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
-      isScrolled ? 'bg-background/90 backdrop-blur-md shadow-sm py-2' : 'bg-transparent py-4'
+      isScrolled ? 'bg-background/70 backdrop-blur-md shadow-sm py-2 border-b border-border/30' : 'bg-transparent py-4'
     }`}>
       <div className="container mx-auto px-6 flex items-center justify-between">
         <Link 
@@ -58,8 +58,8 @@ export const Header = () => {
                 href={item.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`nav-link transition-all duration-300 ${
-                  isScrolled ? 'text-sm py-1 px-3' : 'py-2 px-4'
+                className={`nav-link transition-all duration-300 text-base ${
+                  isScrolled ? 'py-1 px-3' : 'py-2 px-4'
                 }`}
               >
                 {item.label}
@@ -68,8 +68,8 @@ export const Header = () => {
               <a
                 key={item.label}
                 href={item.href}
-                className={`nav-link transition-all duration-300 ${
-                  isScrolled ? 'text-sm py-1 px-3' : 'py-2 px-4'
+                className={`nav-link transition-all duration-300 text-base ${
+                  isScrolled ? 'py-1 px-3' : 'py-2 px-4'
                 }`}
               >
                 {item.label}
@@ -78,8 +78,8 @@ export const Header = () => {
               <Link
                 key={item.label}
                 to={item.href}
-                className={`nav-link transition-all duration-300 ${
-                  isScrolled ? 'text-sm py-1 px-3' : 'py-2 px-4'
+                className={`nav-link transition-all duration-300 text-base ${
+                  isScrolled ? 'py-1 px-3' : 'py-2 px-4'
                 }`}
               >
                 {item.label}
@@ -102,7 +102,7 @@ export const Header = () => {
 
       {/* Mobile Navigation Menu */}
       {isMenuOpen && (
-        <div className="fixed inset-0 bg-background z-30 pt-20">
+        <div className="fixed inset-0 bg-background/90 backdrop-blur-md z-30 pt-20">
           <nav className="flex flex-col items-center justify-center h-full">
             {navItems.map((item) => (
               item.external ? (

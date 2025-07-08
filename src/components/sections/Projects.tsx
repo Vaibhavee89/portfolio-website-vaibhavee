@@ -72,11 +72,11 @@ export const Projects = () => {
     <section id="projects" className="section bg-card/80 backdrop-blur-sm border-y border-border/50 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8 sm:mb-12 flex flex-col items-start">
-          <span className="px-3 py-2 sm:px-4 rounded-full bg-accent/90 text-accent-foreground mb-3 sm:mb-4 text-sm sm:text-base border border-border/50">
+          <span className="px-4 py-3 sm:px-5 rounded-full bg-accent/90 text-accent-foreground mb-3 sm:mb-4 text-base sm:text-lg border border-border/50 font-medium">
             My Work
           </span>
-          <h2 className="section-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Featured Projects</h2>
-          <p className="section-subheading text-base sm:text-lg md:text-xl">
+          <h2 className="section-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl">Featured Projects</h2>
+          <p className="section-subheading text-xl sm:text-2xl md:text-2xl">
             A selection of my recent work across various domains.
             Each project represents a unique challenge and solution.
           </p>

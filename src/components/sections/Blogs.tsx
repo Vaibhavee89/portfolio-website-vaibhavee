@@ -66,11 +66,11 @@ const Blogs = () => {
     <section id="blogs" className="section bg-secondary/60 backdrop-blur-sm px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8 sm:mb-12 flex flex-col items-start">
-          <span className="px-3 py-2 sm:px-4 rounded-full bg-accent/90 text-accent-foreground mb-3 sm:mb-4 text-sm sm:text-base border border-border/50">
+          <span className="px-4 py-3 sm:px-5 rounded-full bg-accent/90 text-accent-foreground mb-3 sm:mb-4 text-base sm:text-lg border border-border/50 font-medium">
             My Thoughts
           </span>
-          <h2 className="section-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Latest Blog Posts</h2>
-          <p className="section-subheading text-base sm:text-lg md:text-xl">
+          <h2 className="section-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl">Latest Blog Posts</h2>
+          <p className="section-subheading text-xl sm:text-2xl md:text-2xl">
             Insights, tutorials, and reflections from my journey in technology and development.
           </p>
         </div>
@@ -84,20 +84,20 @@ const Blogs = () => {
             >
               <CardHeader className="pb-3">
                 <div className="flex justify-between items-center mb-1">
-                  <span className="text-xs sm:text-sm text-muted-foreground">
+                  <span className="text-sm sm:text-base text-muted-foreground">
                     {blog.date} · {blog.readTime} read
                   </span>
                 </div>
-                <CardTitle className="text-lg sm:text-xl">{blog.title}</CardTitle>
+                <CardTitle className="text-xl sm:text-2xl">{blog.title}</CardTitle>
               </CardHeader>
               <CardContent>
-                <CardDescription className="text-sm line-clamp-3">
+                <CardDescription className="text-base sm:text-lg line-clamp-3">
                   {blog.excerpt}
                 </CardDescription>
               </CardContent>
               <CardFooter>
                 <Button variant="ghost" className="p-0 h-auto text-primary hover:text-primary hover:bg-transparent" asChild>
-                  <a href={blog.devToUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-sm">
+                  <a href={blog.devToUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-base">
                     Read on dev.to <ArrowRight className="h-4 w-4" />
                   </a>
                 </Button>
@@ -107,7 +107,7 @@ const Blogs = () => {
         </div>
         
         <div className="mt-8 sm:mt-12 flex justify-center">
-          <Button variant="outline" size="lg" asChild className="bg-card/90 border-2 border-border hover:bg-card">
+          <Button variant="outline" size="lg" asChild className="bg-card/90 border-2 border-border hover:bg-card text-base">
             <a href="https://dev.to/vaibhavee_singh89" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
               <BookOpen size={18} />
               View All Posts on dev.to
