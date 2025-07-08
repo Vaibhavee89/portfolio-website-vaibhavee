@@ -63,10 +63,10 @@ const Blogs = () => {
   }, []);
 
   return (
-    <section id="blogs" className="section px-4 sm:px-6 lg:px-8">
+    <section id="blogs" className="section bg-secondary/60 backdrop-blur-sm px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <div className="mb-8 sm:mb-12 flex flex-col items-start">
-          <span className="px-3 py-2 sm:px-4 rounded-full bg-accent text-accent-foreground mb-3 sm:mb-4 text-sm sm:text-base">
+          <span className="px-3 py-2 sm:px-4 rounded-full bg-accent/90 text-accent-foreground mb-3 sm:mb-4 text-sm sm:text-base border border-border/50">
             My Thoughts
           </span>
           <h2 className="section-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Latest Blog Posts</h2>
@@ -79,7 +79,7 @@ const Blogs = () => {
           {sampleBlogs.map((blog, index) => (
             <Card 
               key={blog.id} 
-              className={`card-hover overflow-hidden border ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}
+              className={`card-hover overflow-hidden ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}
               style={{ animationDelay: `${index * 100}ms` }}
             >
               <CardHeader className="pb-3">
@@ -107,7 +107,7 @@ const Blogs = () => {
         </div>
         
         <div className="mt-8 sm:mt-12 flex justify-center">
-          <Button variant="outline" size="lg" asChild>
+          <Button variant="outline" size="lg" asChild className="bg-card/90 border-2 border-border hover:bg-card">
             <a href="https://dev.to/vaibhavee_singh89" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
               <BookOpen size={18} />
               View All Posts on dev.to
