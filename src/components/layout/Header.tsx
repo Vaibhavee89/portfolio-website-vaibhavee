@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import ThemeToggle from '../ui-components/ThemeToggle';
 
 interface NavItem {
   label: string;
@@ -87,14 +86,10 @@ export const Header = () => {
               </Link>
             )
           ))}
-          <div className="ml-6">
-            <ThemeToggle />
-          </div>
         </nav>
 
         {/* Mobile Navigation Toggle */}
         <div className="flex items-center gap-3 md:hidden">
-          <ThemeToggle />
           <button
             className="p-2 text-foreground"
             onClick={toggleMenu}
