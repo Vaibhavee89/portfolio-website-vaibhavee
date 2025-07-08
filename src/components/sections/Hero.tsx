@@ -172,9 +172,7 @@ export const Hero = () => {
             INNOVATE-ITERATE-INSPIRE
           </h1>
           
-          <p className="text-xl text-muted-foreground max-w-2xl mb-8 animate-fade-in animate-delay-200">
-            "Innovation is the ability to see change as an opportunity, not a threat." - Steve Jobs 
-          </p>
+        
           
           <div className="flex flex-wrap justify-center md:justify-start gap-4 animate-fade-in animate-delay-300">
             <Button 
