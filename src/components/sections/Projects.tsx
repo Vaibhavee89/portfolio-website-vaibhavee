@@ -30,20 +30,6 @@ const projects: Project[] = [
     image: "/Crypto.avif",
     tags: ["Mobile App", "Crypto Wallet", "UI/UX Design"],
   },
-  // {
-  //   id: "5",
-  //   title: "BreezeNow",
-  //   description: "A comprehensive fitness app for tracking workouts, nutrition, and health metrics.",
-  //   image: "https://images.unsplash.com/photo-1461896836934-ffe607ba8211?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80",
-  //   tags: ["Mobile App", "Health", "UI/UX Design"],
-  // },
-  // {
-  //   id: "6",
-  //   title: "NumGenie",
-  //   description: "A minimal portfolio website showcasing a photographer's work with immersive viewing experience.",
-  //   image: "https://images.unsplash.com/photo-1520390138845-fd2d229dd553?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2092&q=80",
-  //   tags: ["Portfolio", "Photography", "Gallery"],
-  // },
   {
     id: "6",
     title: "Sudoku-Solver",
@@ -83,20 +69,20 @@ export const Projects = () => {
   }, []);
 
   return (
-    <section id="projects" className="section bg-secondary">
+    <section id="projects" className="section bg-secondary px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-12 flex flex-col items-start">
-          <span className="px-4 py-2 rounded-full bg-accent text-accent-foreground mb-4">
+        <div className="mb-8 sm:mb-12 flex flex-col items-start">
+          <span className="px-3 py-2 sm:px-4 rounded-full bg-accent text-accent-foreground mb-3 sm:mb-4 text-sm sm:text-base">
             My Work
           </span>
-          <h2 className="section-heading">Featured Projects</h2>
-          <p className="section-subheading">
+          <h2 className="section-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Featured Projects</h2>
+          <p className="section-subheading text-base sm:text-lg md:text-xl">
             A selection of my recent work across various domains.
             Each project represents a unique challenge and solution.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
           {projects.map((project, index) => (
             <div 
               key={project.id} 

@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useCallback } from 'react';
 import {
   Carousel,
@@ -114,14 +115,14 @@ const EventCarousel = () => {
   }, []);
 
   return (
-    <section id="events" className="section bg-secondary/20">
+    <section id="events" className="section bg-secondary/20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-12 flex flex-col items-start">
-          <span className="px-4 py-2 rounded-full bg-secondary text-secondary-foreground mb-4">
+        <div className="mb-8 sm:mb-12 flex flex-col items-start">
+          <span className="px-3 py-2 sm:px-4 rounded-full bg-secondary text-secondary-foreground mb-3 sm:mb-4 text-sm sm:text-base">
             Events
           </span>
-          <h2 className="section-heading">Event Highlights</h2>
-          <p className="section-subheading">
+          <h2 className="section-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Event Highlights</h2>
+          <p className="section-subheading text-base sm:text-lg md:text-xl">
             A glimpse of the workshops, conferences, and events I've participated in throughout my journey.
           </p>
         </div>
@@ -137,7 +138,7 @@ const EventCarousel = () => {
           >
             <CarouselContent className="-ml-2 md:-ml-4">
               {eventImages.map((event, index) => (
-                <CarouselItem key={index} className="pl-2 md:pl-4 md:basis-1/2 lg:basis-1/3">
+                <CarouselItem key={index} className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
                   <Card className="overflow-hidden">
                     <CardContent className="p-0 relative group">
                       <div className="aspect-video overflow-hidden">
@@ -151,15 +152,15 @@ const EventCarousel = () => {
                           }}
                         />
                       </div>
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-4">
-                        <h3 className="text-white font-semibold text-lg">{event.caption}</h3>
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-3 sm:p-4">
+                        <h3 className="text-white font-semibold text-sm sm:text-base lg:text-lg">{event.caption}</h3>
                       </div>
                     </CardContent>
                   </Card>
                 </CarouselItem>
               ))}
             </CarouselContent>
-            <div className="flex justify-center mt-6 gap-2">
+            <div className="flex justify-center mt-4 sm:mt-6 gap-2">
               <CarouselPrevious className="static translate-y-0 mx-2" />
               <CarouselNext className="static translate-y-0 mx-2" />
             </div>

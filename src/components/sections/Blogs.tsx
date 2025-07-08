@@ -63,19 +63,19 @@ const Blogs = () => {
   }, []);
 
   return (
-    <section id="blogs" className="section">
+    <section id="blogs" className="section px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-12 flex flex-col items-start">
-          <span className="px-4 py-2 rounded-full bg-accent text-accent-foreground mb-4">
+        <div className="mb-8 sm:mb-12 flex flex-col items-start">
+          <span className="px-3 py-2 sm:px-4 rounded-full bg-accent text-accent-foreground mb-3 sm:mb-4 text-sm sm:text-base">
             My Thoughts
           </span>
-          <h2 className="section-heading">Latest Blog Posts</h2>
-          <p className="section-subheading">
+          <h2 className="section-heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl">Latest Blog Posts</h2>
+          <p className="section-subheading text-base sm:text-lg md:text-xl">
             Insights, tutorials, and reflections from my journey in technology and development.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
           {sampleBlogs.map((blog, index) => (
             <Card 
               key={blog.id} 
@@ -84,11 +84,11 @@ const Blogs = () => {
             >
               <CardHeader className="pb-3">
                 <div className="flex justify-between items-center mb-1">
-                  <span className="text-xs text-muted-foreground">
+                  <span className="text-xs sm:text-sm text-muted-foreground">
                     {blog.date} · {blog.readTime} read
                   </span>
                 </div>
-                <CardTitle className="text-xl">{blog.title}</CardTitle>
+                <CardTitle className="text-lg sm:text-xl">{blog.title}</CardTitle>
               </CardHeader>
               <CardContent>
                 <CardDescription className="text-sm line-clamp-3">
@@ -97,7 +97,7 @@ const Blogs = () => {
               </CardContent>
               <CardFooter>
                 <Button variant="ghost" className="p-0 h-auto text-primary hover:text-primary hover:bg-transparent" asChild>
-                  <a href={blog.devToUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1">
+                  <a href={blog.devToUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-sm">
                     Read on dev.to <ArrowRight className="h-4 w-4" />
                   </a>
                 </Button>
@@ -106,7 +106,7 @@ const Blogs = () => {
           ))}
         </div>
         
-        <div className="mt-12 flex justify-center">
+        <div className="mt-8 sm:mt-12 flex justify-center">
           <Button variant="outline" size="lg" asChild>
             <a href="https://dev.to/vaibhavee_singh89" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
               <BookOpen size={18} />

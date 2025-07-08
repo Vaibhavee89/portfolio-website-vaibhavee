@@ -1,3 +1,4 @@
+
 import { ArrowDown } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 import { useEffect } from 'react';
@@ -161,26 +162,24 @@ export const Hero = () => {
   }, []);
 
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center relative px-6 py-20">
-      <div className="w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center text-center md:text-left gap-8">
-        <div className="flex-1 flex flex-col items-center md:items-start">
-          <span className="inline-block px-4 py-2 rounded-full bg-secondary text-secondary-foreground mb-6 animate-fade-in">
+    <section className="min-h-screen flex flex-col justify-center items-center relative px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+      <div className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center text-center lg:text-left gap-8 lg:gap-12">
+        <div className="flex-1 flex flex-col items-center lg:items-start order-2 lg:order-1">
+          <span className="inline-block px-3 py-2 sm:px-4 rounded-full bg-secondary text-secondary-foreground mb-4 sm:mb-6 animate-fade-in text-sm sm:text-base">
             Hello, I'm Vaibhavee Singh
           </span>
           
-          <h1 className="text-4xl md:text-7xl font-bold mb-6 tracking-tight leading-tight animate-fade-in animate-delay-100 animate-bouncy">
-            <span className="libertinus-mono-regular typing-animation">
+          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 tracking-tight leading-tight animate-fade-in animate-delay-100 animate-bouncy">
+            <span className="libertinus-mono-regular typing-animation block">
               INNOVATE-ITERATE-INSPIRE
             </span>
           </h1>
           
-        
-          
-          <div className="flex flex-wrap justify-center md:justify-start gap-4 animate-fade-in animate-delay-300">
+          <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 sm:gap-4 animate-fade-in animate-delay-300 w-full sm:w-auto">
             <Button 
               onClick={handleDownloadResume}
               variant="default"
-              className="bg-primary text-primary-foreground px-10 py-8 rounded-md"
+              className="bg-primary text-primary-foreground px-6 sm:px-10 py-6 sm:py-8 rounded-md text-sm sm:text-base w-full sm:w-auto"
               aria-label="Download Resume"
             >
               Download Resume
@@ -188,7 +187,7 @@ export const Hero = () => {
             
             <Button 
               variant="outline"
-              className="bg-background text-foreground border-border px-10 py-8 rounded-md"
+              className="bg-background text-foreground border-border px-6 sm:px-10 py-6 sm:py-8 rounded-md text-sm sm:text-base w-full sm:w-auto"
               onClick={handleScrollToSection('contact')}
               aria-label="Get in Touch"
             >
@@ -197,8 +196,8 @@ export const Hero = () => {
           </div>
         </div>
         
-        <div className="flex-1 mt-8 md:mt-0 animate-fade-in animate-delay-200">
-          <div className="relative w-full max-w-md mx-auto">
+        <div className="flex-1 mt-8 lg:mt-0 animate-fade-in animate-delay-200 order-1 lg:order-2">
+          <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto">
             <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl blur-md"></div>
             <div className="relative aspect-square rounded-2xl overflow-hidden border border-border">
               <img 
@@ -211,20 +210,20 @@ export const Hero = () => {
         </div>
       </div>
       
-      <div className="absolute bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <div className="absolute bottom-8 sm:bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce">
         <Button 
           variant="ghost"
           onClick={handleScrollToSection('about')}
           aria-label="Scroll down"
           className="p-2"
         >
-          <ArrowDown size={24} />
+          <ArrowDown size={20} className="sm:w-6 sm:h-6" />
         </Button>
       </div>
       
       {/* Background elements */}
-      <div className="absolute top-1/4 left-1/4 w-64 h-64 rounded-full bg-primary/5 blur-3xl animate-float"></div>
-      <div className="absolute bottom-1/3 right-1/4 w-96 h-96 rounded-full bg-primary/5 blur-3xl animate-float animate-delay-300"></div>
+      <div className="absolute top-1/4 left-1/4 w-32 h-32 sm:w-64 sm:h-64 rounded-full bg-primary/5 blur-3xl animate-float"></div>
+      <div className="absolute bottom-1/3 right-1/4 w-48 h-48 sm:w-96 sm:h-96 rounded-full bg-primary/5 blur-3xl animate-float animate-delay-300"></div>
     </section>
   );
 };
