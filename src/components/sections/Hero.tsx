@@ -169,7 +169,9 @@ export const Hero = () => {
           </span>
           
           <h1 className="text-4xl md:text-7xl font-bold mb-6 tracking-tight leading-tight animate-fade-in animate-delay-100 animate-bouncy">
-            INNOVATE-ITERATE-INSPIRE
+            <span className="libertinus-mono-regular typing-animation">
+              INNOVATE-ITERATE-INSPIRE
+            </span>
           </h1>
           
         
