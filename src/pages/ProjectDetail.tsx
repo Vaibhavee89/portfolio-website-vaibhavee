@@ -133,7 +133,7 @@ const ProjectDetail = () => {
 
   if (!project) {
     return (
-      <div className="min-h-screen flex flex-col">
+      <div className="min-h-screen flex flex-col bg-transparent">
         <Header />
         <main className="flex-grow pt-24 flex items-center justify-center">
           <div className="text-center">
@@ -160,7 +160,7 @@ const ProjectDetail = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-transparent">
       <Header />
       
       <main className="flex-grow pt-24">

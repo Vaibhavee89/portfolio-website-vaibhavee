@@ -15,9 +15,9 @@ export const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const SERVICE_ID = "service_wqr1eqz"; // Replace with your EmailJS service ID
-  const TEMPLATE_ID = "template_dsixo6b"; // Replace with your EmailJS template ID
-  const USER_ID = "Hg7wXBdt1MlC-kuOOAEMi"; // Replace with your EmailJS user ID
+  const SERVICE_ID = "service_sa0701f"; // Replace with your EmailJS service ID
+  const TEMPLATE_ID = "template_1btlxkf"; // Replace with your EmailJS template ID
+  const USER_ID = "uHDchT0A49BDcc_SQ"; // Replace with your EmailJS user ID
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -53,6 +53,8 @@ export const Contact = () => {
         from_email: formData.email,
         subject: formData.subject,
         message: formData.message,
+        to_name: 'Vaibhavee Singh', // Your name
+        reply_to: formData.email,
       };
 
       await emailjs.send(
@@ -68,7 +70,7 @@ export const Contact = () => {
       
       toast({
         title: "Success!",
-        description: "Your message has been sent successfully.",
+        description: "Your message has been sent successfully. I'll get back to you soon!",
         duration: 5000,
       });
       
@@ -82,7 +84,7 @@ export const Contact = () => {
       
       toast({
         title: "Error",
-        description: "Failed to send your message. Please try again.",
+        description: "Failed to send your message. Please try again or contact me directly via email.",
         variant: "destructive",
         duration: 5000,
       });
@@ -108,9 +110,23 @@ export const Contact = () => {
               <div className="p-3 bg-secondary rounded-full mr-4">
                 <MapPin className="text-primary" size={24} />
               </div>
-              <div>
-                <h3 className="text-lg font-bold mb-1">Location</h3>
-                <p className="text-muted-foreground">Greater Noida, Uttar Pradesh</p>
+              <div className="flex-1">
+                <h3 className="text-lg font-bold mb-3">Location</h3>
+                <div className="w-full h-64 rounded-lg overflow-hidden border border-border">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.234567890123!2d86.436277!3d23.809383!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f6bc9c8b123456%3A0x1234567890abcdef!2sDhanbad%2C%20Jharkhand%20826001%2C%20India!5e0!3m2!1sen!2sin!4v1642678901234!5m2!1sen!2sin"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Location Map - Dhanbad, Jharkhand"
+                  ></iframe>
+                </div>
+                <p className="text-muted-foreground mt-2 text-sm">
+                  Dhanbad, Jharkhand 826001, India
+                </p>
               </div>
             </div>
             
@@ -124,7 +140,7 @@ export const Contact = () => {
                   href="mailto:vaibhaveesingh89@gmail.com" 
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
-                  vaibhaveesingh89@gmail.com
+                  singhvaibhavee1@gmail.com
                 </a>
               </div>
             </div>
@@ -145,45 +161,45 @@ export const Contact = () => {
             </div>
           </div>
           
-          {/* Commenting out the form */}
-          {/*
           <div className={`${isVisible ? 'animate-fade-in animate-delay-300' : 'opacity-0'}`}>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block mb-2 font-medium">
-                  Your Name
+                  Your Name *
                 </label>
                 <input
                   type="text"
                   id="name"
                   name="name"
                   className="w-full p-3 bg-background border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
-                  placeholder=""
+                  placeholder="John Doe"
                   required
                   value={formData.name}
                   onChange={handleChange}
+                  disabled={isSubmitting}
                 />
               </div>
               
               <div>
                 <label htmlFor="email" className="block mb-2 font-medium">
-                  Your Email
+                  Your Email *
                 </label>
                 <input
                   type="email"
                   id="email"
                   name="email"
                   className="w-full p-3 bg-background border border-border rounded-md focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary transition-all"
-                  placeholder="xxx@example.com"
+                  placeholder="john@example.com"
                   required
                   value={formData.email}
                   onChange={handleChange}
+                  disabled={isSubmitting}
                 />
               </div>
               
               <div>
                 <label htmlFor="subject" className="block mb-2 font-medium">
-                  Subject
+                  Subject *
                 </label>
                 <input
                   type="text"
@@ -194,12 +210,13 @@ export const Contact = () => {
                   required
                   value={formData.subject}
                   onChange={handleChange}
+                  disabled={isSubmitting}
                 />
               </div>
               
               <div>
                 <label htmlFor="message" className="block mb-2 font-medium">
-                  Message
+                  Message *
                 </label>
                 <textarea
                   id="message"
@@ -210,25 +227,32 @@ export const Contact = () => {
                   required
                   value={formData.message}
                   onChange={handleChange}
+                  disabled={isSubmitting}
                 ></textarea>
               </div>
               
               <button
                 type="submit"
-                className="button-primary w-full"
+                className="button-primary w-full disabled:opacity-50 disabled:cursor-not-allowed"
                 disabled={isSubmitting}
               >
-                {isSubmitting ? 'Sending...' : 'Send Message'}
+                {isSubmitting ? (
+                  <div className="flex items-center justify-center">
+                    <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-primary-foreground mr-2"></div>
+                    Sending...
+                  </div>
+                ) : (
+                  'Send Message'
+                )}
               </button>
               
               {isSubmitted && (
                 <div className="p-4 bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-100 rounded-md">
-                  Thank you! Your message has been sent successfully.
+                  Thank you! Your message has been sent successfully. I'll get back to you soon!
                 </div>
               )}
             </form>
           </div>
-          */}
         </div>
       </div>
     </section>

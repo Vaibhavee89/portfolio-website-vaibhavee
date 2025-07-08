@@ -1,4 +1,3 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap');
 
 @tailwind base;
@@ -37,36 +36,6 @@
 
     --radius: 0.5rem;
   }
-
-  .dark {
-    --background: 0 0% 10%;
-    --foreground: 0 0% 97%;
-
-    --card: 0 0% 10%;
-    --card-foreground: 0 0% 97%;
-
-    --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 97%;
-
-    --primary: 0 0% 100%;
-    --primary-foreground: 0 0% 10%;
-
-    --secondary: 0 0% 15%;
-    --secondary-foreground: 0 0% 97%;
-
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 65%;
-
-    --accent: 0 0% 20%;
-    --accent-foreground: 0 0% 97%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 97%;
-
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 0 0% 97%;
-  }
 }
 
 @layer base {
@@ -76,10 +45,18 @@
   
   html {
     @apply scroll-smooth;
+    /* Apply gradient background to html */
+    background: #304352;
+    background: -webkit-linear-gradient(to right, #d7d2cc, #304352);
+    background: linear-gradient(to right, #d7d2cc, #304352);
+    min-height: 100vh;
   }
   
   body {
-    @apply bg-background text-foreground transition-colors duration-300;
+    @apply text-foreground transition-colors duration-300;
+    /* Make body transparent to show gradient */
+    background: transparent;
+    min-height: 100vh;
   }
   
   h1, h2, h3, h4, h5, h6 {
@@ -109,7 +86,7 @@
   }
   
   .card-hover {
-    @apply transition-all duration-300 ease-out hover:translate-y-[-5px] hover:shadow-[0_20px_80px_-10px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_20px_80px_-10px_rgba(255,255,255,0.05)];
+    @apply transition-all duration-300 ease-out hover:translate-y-[-5px] hover:shadow-[0_20px_80px_-10px_rgba(0,0,0,0.1)];
   }
   
   .button-primary {
@@ -121,7 +98,7 @@
   }
   
   .glass-card {
-    @apply bg-white/10 dark:bg-black/10 backdrop-blur-md border border-white/20 dark:border-black/20 rounded-xl shadow-sm;
+    @apply bg-white/10 backdrop-blur-md border border-white/20 rounded-xl shadow-sm;
   }
 }
 
