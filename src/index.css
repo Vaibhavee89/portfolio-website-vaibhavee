@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Libertinus+Mono:wght@400&display=swap');
 
@@ -161,11 +162,14 @@
 }
 
 @keyframes typing {
-  from {
+  0% {
     width: 0;
   }
-  to {
+  50% {
     width: 100%;
+  }
+  100% {
+    width: 0;
   }
 }
 
@@ -183,8 +187,7 @@
   border-right: 3px solid;
   white-space: nowrap;
   animation: 
-    typing 3.5s steps(40, end),
+    typing 6s steps(40, end) infinite,
     blink-caret 0.75s step-end infinite;
-  animation-delay: 0.5s;
   animation-fill-mode: both;
 }
