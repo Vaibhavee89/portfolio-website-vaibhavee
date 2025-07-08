@@ -55,13 +55,13 @@ const projectsData: ProjectDetails[] = [
   },
   {
     id: "4",
-    title: "Sudoku-Solver",
-    description: "Sudoku Solver is a web application that allows users to input a Sudoku puzzle and get the solution instantly. The app uses a backtracking algorithm to solve the puzzle efficiently.",
-    fullDescription: "Sudoku Solver is a web application that allows users to input a Sudoku puzzle and get the solution instantly. The app uses a backtracking algorithm to solve the puzzle efficiently.",
-    image: "/SudokuSolver.png",
-    images: ["/SudokuSolver.png"
+    title: "Crypto Wallet Mobile App",
+    description: "Designed a mobile app for managing cryptocurrency transactions, including wallet management and transaction history.",
+    fullDescription: "This project is a mobile application designed to manage cryptocurrency transactions, including wallet management and transaction history. The app provides a user-friendly interface for users to view their wallet balance, transaction history, and perform transactions securely.",
+    image: "/Crypto.avif",
+    images: ["/Crypto.avif", "/Crypto.avif", "/Crypto.avif"
     ],
-    tags: ["Mobile App", "IoT", "React Native"],
+    tags: ["Mobile App",  "Crypto Wallet", "UI/UX Design"],
     liveLink: "https://example.com",
     githubLink: "https://github.com"
   },
