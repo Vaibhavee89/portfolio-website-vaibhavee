@@ -168,7 +168,7 @@ export const Hero = () => {
             Hello, I'm Vaibhavee Singh
           </span>
           
-          <h1 className="text-4xl md:text-7xl font-bold mb-6 tracking-tight leading-tight animate-fade-in animate-delay-100">
+          <h1 className="text-4xl md:text-7xl font-bold mb-6 tracking-tight leading-tight animate-fade-in animate-delay-100 animate-bouncy">
             INNOVATE-ITERATE-INSPIRE
           </h1>
           
@@ -180,7 +180,7 @@ export const Hero = () => {
             <Button 
               onClick={handleDownloadResume}
               variant="default"
-              className="bg-primary text-primary-foreground px-6 py-2 rounded-md"
+              className="bg-primary text-primary-foreground px-10 py-8 rounded-md"
               aria-label="Download Resume"
             >
               Download Resume
@@ -188,7 +188,7 @@ export const Hero = () => {
             
             <Button 
               variant="outline"
-              className="bg-background text-foreground border-border px-6 py-2 rounded-md"
+              className="bg-background text-foreground border-border px-10 py-8 rounded-md"
               onClick={handleScrollToSection('contact')}
               aria-label="Get in Touch"
             >

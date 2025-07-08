@@ -140,3 +140,15 @@
     transform: translateY(0);
   }
 }
+
+/* Add this to your global CSS or a relevant CSS module */
+@keyframes bouncy {
+  0%, 100% { transform: translateY(0); }
+  20% { transform: translateY(-20px); }
+  40% { transform: translateY(0); }
+  60% { transform: translateY(-10px); }
+  80% { transform: translateY(0); }
+}
+.animate-bouncy {
+  animation: bouncy 2s infinite;
+}
