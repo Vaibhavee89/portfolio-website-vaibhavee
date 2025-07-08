@@ -21,6 +21,7 @@ export default {
 			fontFamily: {
 				sans: ['Inter', 'sans-serif'],
 				mono: ['Space Mono', 'monospace'],
+				'libertinus-mono': ['Libertinus Mono', 'monospace'],
 			},
 			colors: {
 				border: 'hsl(var(--border))',
