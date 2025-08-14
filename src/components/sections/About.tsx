@@ -305,6 +305,7 @@ export const About = () => {
                 <p className="text-muted-foreground">CDAC</p>
                 <p className="text-sm text-muted-foreground">02nd June 2025- 11th August 2025</p>
                 <p className="mt-2 text-muted-foreground">
+                  Worked on a network simulation project designed to demonstrate and mitigate multiple cyberattacks, including ping flood and unauthorized access, using firewall rules, ACLs, and network security best practices. Also contributed to the Development of Network Auditing Tool using Python Flask, NMAP, Postman, GCP
                 </p>
               </div>
             </div>
