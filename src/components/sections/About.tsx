@@ -301,9 +301,9 @@ export const About = () => {
                 <span className="font-bold">2025</span>
               </div>
               <div className="pl-10">
-                <h4 className="text-xl font-semibold">Engineering Intern</h4>
-                <p className="text-muted-foreground">DiGiLABS</p>
-                <p className="text-sm text-muted-foreground">Mar 2025- April 2025</p>
+                <h4 className="text-xl font-semibold">Intern</h4>
+                <p className="text-muted-foreground">CDAC</p>
+                <p className="text-sm text-muted-foreground">02nd June 2025- 11th August 2025</p>
                 <p className="mt-2 text-muted-foreground">
                 </p>
               </div>
