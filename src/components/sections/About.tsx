@@ -1,38 +1,33 @@
 import { useState, useEffect } from 'react';
-import { 
-  Code, 
-  Palette, 
-  Globe, 
-  BookOpen, 
-  Trophy, 
-  Briefcase, 
-  FileCode, 
-  Brain, 
-  Database, 
-  MessageSquare, 
-  BarChart, 
-  Cloud, 
-  Smartphone, 
-  Wrench, 
-  FileText,
+import {
+  Code,
+  BookOpen,
+  Trophy,
+  Briefcase,
+  FileCode,
+  Brain,
+  Database,
+  MessageSquare,
+  BarChart,
+  Cloud,
+  Smartphone,
   Award,
   GraduationCap,
   BadgeCheck,
-  Medal,
   Server,
   Github,
   GitBranch,
   Zap,
   BookMarked,
-  Cpu,
-  Bookmark,
-  ChevronRight,
   Component,
   KeyRound,
+  Share2,
+  MessageCircle,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useToast } from '@/hooks/use-toast';
+import { handleScrollToSection } from '@/lib/utils';
 import {
   Dialog,
   DialogContent,
@@ -85,64 +80,64 @@ const skills: Skill[] = [
 ];
 
 const certifications: Certification[] = [
-  { 
-    name: "AWS Cloud Practitioner", 
-    issuer: "Amazon Web Services", 
-    date: "May, 2024", 
+  {
+    name: "AWS Cloud Practitioner",
+    issuer: "Amazon Web Services",
+    date: "May 2024",
     Icon: Cloud,
     //credentialId: "AWS-CP-123456",
     credentialUrl: "https://www.credly.com/badges/8ebcbe71-30e8-4961-9c8b-4ad852f0aed5/public_url",
     description: "Fundamental knowledge of AWS Cloud, services, and terminology. Covers security, technology, billing, pricing, and core services."
   },
-  { 
-    name: "Supervised Machine Learning: Classification", 
-    issuer: "IBM", 
-    date: "Nov 2024", 
+  {
+    name: "Supervised Machine Learning: Classification",
+    issuer: "IBM",
+    date: "Nov 2024",
     Icon: Brain,
     //credentialId: "",
     credentialUrl: "https://coursera.org/share/cd753b05dce213265c899ae6cdb81d75",
     description: "This course introduces the concept of Ensemble Learning, Machine Learning(ML) Algorithms, Supervised Learning, Classification Algorithms, Decision Tree"
   },
-  { 
-    name: "Improving Deep Neural Networks: Hyperparameter Tuning, Regularization, and Optimization", 
-    issuer: "Deeplearning.AI", 
-    date: "Nov 2024", 
+  {
+    name: "Improving Deep Neural Networks: Hyperparameter Tuning, Regularization, and Optimization",
+    issuer: "Deeplearning.AI",
+    date: "Nov 2024",
     Icon: Brain,
     //credentialId: "",
     credentialUrl: "https://coursera.org/share/ec108e28939b593ac32dd1721302c122",
     description: "This course offers skills in TensorFlow, Deep Learning, Hyperparameter turing, Mathematical Optimization"
   },
-  { 
-    name: "Simulation and modeling of natural processes", 
-    issuer: "University of Geneva ", 
-    date: "Nov 2024", 
+  {
+    name: "Simulation and Modeling of Natural Processes",
+    issuer: "University of Geneva",
+    date: "Nov 2024",
     Icon: Award,
     //credentialId: "ML-SPEC-345678",
     credentialUrl: "https://coursera.org/share/af94e2e3392a83c452a9090e19ab3374",
     description: "Computer Programming, Python Programming, Mathematics, Probability ans Statisctics"
   },
-  { 
-    name: "The Bits and Bytes of Computer Networking", 
-    issuer: "Google", 
-    date: "April 2024", 
+  {
+    name: "The Bits and Bytes of Computer Networking",
+    issuer: "Google",
+    date: "Apr 2024",
     Icon: GraduationCap,
     //credentialId: "DL-SPEC-901234",
     credentialUrl: "https://coursera.org/share/64b9a6e0733428bc7eb1160be6ac745d",
     description: "In-depth knowledge of computer networks such as Domain Name System, IP addressing, and routing."
   },
-  { 
-    name: "Introduction to Comuters and Operating Systems and Security", 
-    issuer: "Microsoft", 
-    date: "April 2024", 
+  {
+    name: "Introduction to Computers, Operating Systems & Security",
+    issuer: "Microsoft",
+    date: "Apr 2024",
     Icon: GraduationCap,
     //credentialId: "DL-SPEC-901234",
     credentialUrl: "https://coursera.org/share/adfe89cc12c35b9c0c6469869b9f72fb",
     description: "In-depth knowledge of Operating Systems, Computer Architecture and Cloud Computing"
   },
-  { 
-    name: "Foundations of User Experience (UX) Design", 
-    issuer: "Google", 
-    date: "July 2023", 
+  {
+    name: "Foundations of User Experience (UX) Design",
+    issuer: "Google",
+    date: "Jul 2023",
     Icon: GraduationCap,
     //credentialId: "DL-SPEC-901234",
     credentialUrl: "https://coursera.org/share/6ea80fd2cfb6166fe1d581f173ce6735",
@@ -240,34 +235,47 @@ export const About = () => {
         </div>
 
         <div className={`mb-16 ${isVisible ? 'animate-fade-in animate-delay-150' : 'opacity-0'}`}>
-          <div className="flex items-center mb-6">
-            <BadgeCheck className="text-primary mr-3" size={28} />
-            <h3 className="text-2xl font-bold">Certifications</h3>
-          </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {certifications.map((cert, index) => (
-              <div key={index} className="p-5 bg-card rounded-xl border border-border flex flex-col items-start space-y-4">
-                <div className="flex items-start space-x-4 w-full">
-                  <div className="bg-secondary rounded-lg p-3 flex-shrink-0">
-                    <cert.Icon className="text-primary" size={24} />
+          <div className="databank-shell relative">
+            <div className="databank-shell__title">
+              <BadgeCheck className="text-primary" size={30} />
+              <h3>Certifications Databank</h3>
+            </div>
+
+            <div className="certification-grid">
+              {certifications.map((cert, index) => (
+                <div key={index} className="cert-card">
+                  <div className="cert-card__header">
+                    <div className="cert-card__icon">
+                      <cert.Icon size={26} className="drop-shadow-[0_0_12px_rgba(80,213,255,0.6)]" />
+                    </div>
+                    <div className="cert-card__meta">
+                      <h4>{cert.name}</h4>
+                      <p>{cert.issuer}</p>
+                      <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground/70">{cert.date}</p>
+                    </div>
                   </div>
-                  <div>
-                    <h4 className="text-lg font-semibold">{cert.name}</h4>
-                    <p className="text-muted-foreground">{cert.issuer}</p>
-                    <p className="text-sm text-muted-foreground">{cert.date}</p>
+
+                  <div className="cert-card__actions">
+                    <button
+                      type="button"
+                      className="glow-button glow-button--primary flex items-center justify-center gap-2"
+                      onClick={() => handleShowCredentials(cert)}
+                    >
+                      <KeyRound size={16} />
+                      Show Credentials
+                    </button>
+                    <button
+                      type="button"
+                      className="glow-button glow-button--secondary flex items-center justify-center gap-2"
+                      onClick={handleScrollToSection('contact')}
+                    >
+                      <MessageCircle size={16} />
+                      Contact Me
+                    </button>
                   </div>
                 </div>
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  className="mt-2 w-full flex items-center justify-center gap-2"
-                  onClick={() => handleShowCredentials(cert)}
-                >
-                  <KeyRound size={16} />
-                  Show Credentials
-                </Button>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </div>
 

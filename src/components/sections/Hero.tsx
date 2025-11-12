@@ -1,8 +1,9 @@
 
-import { ArrowDown } from 'lucide-react';
+import { ArrowDown, ArrowRight, Rocket } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 import { useEffect } from 'react';
 import { Button } from "@/components/ui/button";
+import { handleScrollToSection } from "@/lib/utils";
 
 export const Hero = () => {
   const { toast } = useToast();
@@ -73,69 +74,6 @@ export const Hero = () => {
     }
   };
 
-  const handleScrollToSection = (sectionId: string) => (event: React.MouseEvent | React.TouchEvent) => {
-    event.preventDefault();
-    
-    const section = document.getElementById(sectionId);
-    if (!section) {
-      console.warn(`Section with id "${sectionId}" not found`);
-      return;
-    }
-    
-    // Try multiple scroll methods for maximum browser compatibility
-    try {
-      // Method 1: Modern smooth scrolling
-      if ('scrollBehavior' in document.documentElement.style) {
-        section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      } 
-      // Method 2: jQuery-like animation fallback
-      else {
-        const targetPosition = section.getBoundingClientRect().top + window.pageYOffset;
-        const startPosition = window.pageYOffset;
-        const distance = targetPosition - startPosition;
-        const duration = 1000;
-        let start: number | null = null;
-        
-        const step = (timestamp: number) => {
-          if (!start) start = timestamp;
-          const progress = timestamp - start;
-          const percentage = Math.min(progress / duration, 1);
-          
-          // Easing function for smoother animation
-          const easeInOutQuad = (t: number) => {
-            return t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
-          };
-          
-          window.scrollTo(0, startPosition + distance * easeInOutQuad(percentage));
-          
-          if (progress < duration) {
-            window.requestAnimationFrame(step);
-          }
-        };
-        
-        window.requestAnimationFrame(step);
-      }
-    } catch (error) {
-      console.error("Scroll error:", error);
-      
-      // Fallback 1: Basic scroll
-      try {
-        window.scrollTo({
-          top: section.offsetTop,
-          behavior: 'smooth'
-        });
-      } catch (fallbackError) {
-        console.error("Fallback scroll error:", fallbackError);
-        
-        // Fallback 2: Most basic scroll
-        window.scrollTo(0, section.offsetTop);
-        
-        // Fallback 3: Location hash as last resort
-        window.location.hash = sectionId;
-      }
-    }
-  };
-  
   // Ensure anchor links work on initial page load
   useEffect(() => {
     const handleHashChange = () => {
@@ -162,68 +100,76 @@ export const Hero = () => {
   }, []);
 
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center relative px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
-      <div className="w-full max-w-7xl mx-auto flex flex-col lg:flex-row items-center text-center lg:text-left gap-8 lg:gap-12">
-        <div className="flex-1 flex flex-col items-center lg:items-start order-2 lg:order-1">
-          <span className="inline-block px-3 py-2 sm:px-4 rounded-full bg-secondary text-secondary-foreground mb-4 sm:mb-6 animate-fade-in text-sm sm:text-base">
+    <section className="min-h-screen flex flex-col justify-center items-center relative px-4 sm:px-8 lg:px-12 py-24">
+      <div className="w-full max-w-6xl mx-auto grid lg:grid-cols-[1.15fr_minmax(280px,1fr)] gap-10 items-center">
+        <div className="order-2 lg:order-1 space-y-8 text-center lg:text-left animate-fade-in">
+          <span className="inline-flex items-center gap-2 starlight-pill badge-pulse mx-auto lg:mx-0">
+            <span className="w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_18px_rgba(80,213,255,0.9)]"></span>
             Hello, I'm Vaibhavee Singh
           </span>
-          
-          <h1 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 sm:mb-6 tracking-tight leading-tight animate-fade-in animate-delay-100 animate-bouncy">
-            <span className="libertinus-mono-regular typing-animation block">
-              INNOVATE-ITERATE-INSPIRE
-            </span>
-          </h1>
-          
-          <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 sm:gap-4 animate-fade-in animate-delay-300 w-full sm:w-auto">
-            <Button 
+
+          <div className="space-y-4">
+            <p className="uppercase tracking-[0.6em] text-xs sm:text-sm text-primary/80">Innovate · Iterate · Interstellar</p>
+            <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] text-foreground/95">
+              <span className="libertinus-mono-regular">
+                INNOVATE&nbsp;&ndash;&nbsp;ITERATE&nbsp;&ndash;&nbsp;INTERSTELLAR
+              </span>
+            </h1>
+            <p className="text-base sm:text-lg text-muted-foreground/80 max-w-2xl mx-auto lg:mx-0">
+              Crafting data-driven, immersive experiences across the cloud, AI/ML, and human-centered design. Welcome to mission control for my portfolio.
+            </p>
+          </div>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 sm:gap-6">
+            <button
+              type="button"
               onClick={handleDownloadResume}
-              variant="default"
-              className="bg-primary text-primary-foreground px-6 sm:px-10 py-6 sm:py-8 rounded-md text-sm sm:text-base w-full sm:w-auto"
-              aria-label="Download Resume"
+              className="glow-button glow-button--primary group"
+              aria-label="Launch mission by downloading resume"
             >
-              Download Resume
-            </Button>
-            
-            <Button 
-              variant="outline"
-              className="bg-background text-foreground border-border px-6 sm:px-10 py-6 sm:py-8 rounded-md text-sm sm:text-base w-full sm:w-auto"
+              <Rocket size={18} className="group-hover:scale-110 transition-transform duration-300" />
+              Launch Mission
+            </button>
+
+            <button
+              type="button"
               onClick={handleScrollToSection('contact')}
-              aria-label="Get in Touch"
+              className="glow-button glow-button--secondary group"
+              aria-label="Navigate to contact section"
             >
-              Get in Touch
-            </Button>
+              <span className="uppercase tracking-[0.3em] text-xs">Contact</span>
+              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
+            </button>
           </div>
         </div>
-        
-        <div className="flex-1 mt-8 lg:mt-0 animate-fade-in animate-delay-200 order-1 lg:order-2">
-          <div className="relative w-full max-w-xs sm:max-w-sm md:max-w-md mx-auto">
-            <div className="absolute -inset-1 bg-gradient-to-r from-primary/20 to-secondary/20 rounded-2xl blur-md"></div>
-            <div className="relative aspect-square rounded-2xl overflow-hidden border border-border">
-              <img 
-                src="/femaleprogrammer.png" 
-                alt="Vaibhavee Singh" 
+
+        <div className="order-1 lg:order-2 justify-self-center w-full max-w-xs sm:max-w-sm lg:max-w-md animate-fade-in animate-delay-200">
+          <div className="quantum-portal">
+            <div className="portal-glow" />
+            <div className="portal-core">
+              <img
+                src="/femaleprogrammer.png"
+                alt="Vaibhavee Singh"
                 className="w-full h-full object-cover"
               />
             </div>
           </div>
         </div>
       </div>
-      
-      <div className="absolute bottom-8 sm:bottom-12 left-1/2 transform -translate-x-1/2 animate-bounce">
-        <Button 
+
+      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 animate-bounce">
+        <Button
           variant="ghost"
           onClick={handleScrollToSection('about')}
           aria-label="Scroll down"
-          className="p-2"
+          className="p-2 rounded-full border border-primary/30 bg-black/40 hover:bg-primary/10"
         >
-          <ArrowDown size={20} className="sm:w-6 sm:h-6" />
+          <ArrowDown size={22} className="text-primary" />
         </Button>
       </div>
-      
-      {/* Background elements */}
-      <div className="absolute top-1/4 left-1/4 w-32 h-32 sm:w-64 sm:h-64 rounded-full bg-primary/5 blur-3xl animate-float"></div>
-      <div className="absolute bottom-1/3 right-1/4 w-48 h-48 sm:w-96 sm:h-96 rounded-full bg-primary/5 blur-3xl animate-float animate-delay-300"></div>
+
+      <div className="absolute -top-10 left-[8%] w-28 h-28 sm:w-48 sm:h-48 rounded-full bg-primary/10 blur-3xl animate-float"></div>
+      <div className="absolute bottom-10 right-[12%] w-40 h-40 sm:w-72 sm:h-72 rounded-full bg-accent/15 blur-3xl animate-float animate-delay-300"></div>
     </section>
   );
 };
