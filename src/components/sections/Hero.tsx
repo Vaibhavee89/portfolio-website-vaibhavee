@@ -128,7 +128,7 @@ export const Hero = () => {
               aria-label="Launch mission by downloading resume"
             >
               <Rocket size={18} className="group-hover:scale-110 transition-transform duration-300" />
-              Launch Mission
+              Download Resume
             </button>
 
             <button
