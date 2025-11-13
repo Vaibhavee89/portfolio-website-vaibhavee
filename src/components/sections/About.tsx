@@ -306,14 +306,6 @@ export const About = () => {
                       <KeyRound size={16} />
                       Show Credentials
                     </button>
-                    <button
-                      type="button"
-                      className="glow-button glow-button--secondary flex items-center justify-center gap-2"
-                      onClick={handleScrollToSection('contact')}
-                    >
-                      <MessageCircle size={16} />
-                      Contact Me
-                    </button>
                   </div>
                 </div>
               ))}
