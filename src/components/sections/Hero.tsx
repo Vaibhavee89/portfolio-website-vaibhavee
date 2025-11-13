@@ -109,7 +109,7 @@ export const Hero = () => {
           </span>
 
           <div className="space-y-4">
-            <p className="uppercase tracking-[0.6em] text-xs sm:text-sm text-primary/80">Innovate · Iterate · Interstellar</p>
+            <p className="uppercase tracking-[0.6em] text-xs sm:text-sm text-primary/80">Innovate · Iterate · Inspire</p>
             <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] text-foreground/95">
               <span className="libertinus-mono-regular">
                 INNOVATE&nbsp;&ndash;&nbsp;ITERATE&nbsp;&ndash;&nbsp;INSPIRE
