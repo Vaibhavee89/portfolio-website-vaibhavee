@@ -114,18 +114,18 @@ export const Contact = () => {
                 <h3 className="text-lg font-bold mb-3">Location</h3>
                 <div className="w-full h-64 rounded-lg overflow-hidden border border-border">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3651.234567890123!2d86.436277!3d23.809383!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f6bc9c8b123456%3A0x1234567890abcdef!2sDhanbad%2C%20Jharkhand%20826001%2C%20India!5e0!3m2!1sen!2sin!4v1642678901234!5m2!1sen!2sin"
+                    src="https://www.google.com/maps?q=231,+3rd+Cross,+opp.+BBMP+Office,+near+Central+Mall,+Bellandur,+Bengaluru,+Karnataka+560103&output=embed"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    title="Location Map - Dhanbad, Jharkhand"
+                    title="Location Map - Bellandur, Bengaluru"
                   ></iframe>
                 </div>
                 <p className="text-muted-foreground mt-2 text-sm">
-                  Dhanbad, Jharkhand 826001, India
+                  231, 3rd Cross, opp. BBMP Office, near Central Mall, Bellandur, Bengaluru, Karnataka 560103
                 </p>
               </div>
             </div>
