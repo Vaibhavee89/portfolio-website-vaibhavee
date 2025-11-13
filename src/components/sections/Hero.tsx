@@ -116,7 +116,7 @@ export const Hero = () => {
               </span>
             </h1>
             <p className="text-base sm:text-lg text-muted-foreground/80 max-w-2xl mx-auto lg:mx-0">
-              Crafting data-driven, immersive experiences across the cloud, AI/ML, and human-centered design. Welcome to mission control for my portfolio.
+              Crafting data-driven, immersive experiences across the cloud, AI/ML, and human-centered design. Welcome to my portfolio.
             </p>
           </div>
 
