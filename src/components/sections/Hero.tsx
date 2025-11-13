@@ -112,7 +112,7 @@ export const Hero = () => {
             <p className="uppercase tracking-[0.6em] text-xs sm:text-sm text-primary/80">Innovate · Iterate · Interstellar</p>
             <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] text-foreground/95">
               <span className="libertinus-mono-regular">
-                INNOVATE&nbsp;&ndash;&nbsp;ITERATE&nbsp;&ndash;&nbsp;INTERSTELLAR
+                INNOVATE&nbsp;&ndash;&nbsp;ITERATE&nbsp;&ndash;&nbsp;INSPIRE
               </span>
             </h1>
             <p className="text-base sm:text-lg text-muted-foreground/80 max-w-2xl mx-auto lg:mx-0">
