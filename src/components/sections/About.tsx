@@ -52,6 +52,33 @@ interface Certification {
   description?: string;
 }
 
+interface EducationItem {
+  title: string;
+  period: string;
+  description: string;
+}
+
+const educationHistory: EducationItem[] = [
+  {
+    title: 'B.Tech in Computer Science & Engineering',
+    period: '2022 - 2026',
+    description:
+      "Pursuing a bachelor's with a focus on Artificial Intelligence, Machine Learning, Cloud Computing, and Computer Vision, building strong foundations in data structures, algorithms, and distributed systems.",
+  },
+  {
+    title: 'Cloud Certifications & Research',
+    period: '2024',
+    description:
+      'Completed multiple industry-recognized credentials across AWS and deep learning, applying the knowledge to practical projects and research-led initiatives.',
+  },
+  {
+    title: 'High School Diploma — Science with Computer Science',
+    period: '2020 - 2022',
+    description:
+      'Graduated with honors while leading technology-driven activities, laying a strong analytical and mathematical groundwork for my engineering journey.',
+  },
+];
+
 const skills: Skill[] = [
   { name: 'Python', Icon: FileCode },
   { name: 'JavaScript', Icon: Zap },
@@ -186,50 +213,65 @@ export const About = () => {
   return (
     <section id="about" className="section">
       <div className="max-w-7xl mx-auto">
-        <div className="mb-12 flex flex-col items-start">
-          <span className="px-4 py-2 rounded-full bg-secondary text-secondary-foreground mb-4">
+        <div className={`${isVisible ? 'animate-fade-in' : 'opacity-0'} mb-16`}>
+          <span className="px-4 py-2 rounded-full bg-secondary text-secondary-foreground inline-block">
             About Me
           </span>
-          <p className="section-subheading">
-            I am a BTech 4th year student passionate about research and specializing in Cloud Computing, AI/ML, Deep Learning and Computer Vision. I love transforming ideas into impactful solutions, whether it's developing AI-powered applications, writing research papers, or contributing to meaningful projects. My goal is to bridge the gap between research and real-world applications, constantly pushing the boundaries of technology.
-          </p>
+          <div className="glass-card mt-6 mx-auto w-full max-w-5xl p-6 sm:p-8 md:p-10 flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
+            <div className="flex-shrink-0 w-full max-w-[260px]">
+              <div className="relative aspect-square w-full overflow-hidden rounded-[24px] border border-primary/30 bg-card/80 shadow-[0_18px_42px_rgba(26,160,255,0.18)]">
+                <img
+                  src="/MyImage.png"
+                  alt="Portrait of Vaibhavee"
+                  className="h-full w-full object-cover object-top"
+                />
+              </div>
+            </div>
+            <div className="space-y-4 text-center md:text-left">
+              <h3 className="text-2xl sm:text-3xl font-bold text-foreground">
+                A passionate technologist
+              </h3>
+              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+                I am a BTech 4th year student passionate about research and specializing in Cloud Computing, AI/ML, Deep Learning and Computer Vision. I love transforming ideas into impactful solutions, whether it's developing AI-powered applications, writing research papers, or contributing to meaningful projects. My goal is to bridge the gap between research and real-world applications, constantly pushing the boundaries of technology.
+              </p>
+              <div className="grid w-full gap-3 sm:grid-cols-2 text-sm sm:text-base text-muted-foreground/90">
+                <div className="rounded-xl border border-primary/20 bg-card/60 px-4 py-3 backdrop-blur-sm">
+                  <p className="font-semibold text-foreground">AI, Cloud & Research</p>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Bridging intelligent systems with real-world impact.
+                  </p>
+                </div>
+                <div className="rounded-xl border border-primary/20 bg-card/60 px-4 py-3 backdrop-blur-sm">
+                  <p className="font-semibold text-foreground">Continuous learning</p>
+                  <p className="mt-1 text-sm text-muted-foreground">
+                    Driven by collaboration, innovation, and community initiatives.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div className={`mb-16 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
-          <div className="flex items-center mb-6">
-            <BookOpen className="text-primary mr-3" size={28} />
+          <div className="flex items-center gap-3 mb-8">
+            <BookOpen className="text-primary" size={28} />
             <h3 className="text-2xl font-bold">Educational Journey</h3>
           </div>
-          <div className="space-y-4 pl-4 border-l-2 border-secondary">
-            <div className="relative">
-              <div className="absolute -left-[25px] w-12 h-12 rounded-full bg-secondary flex items-center justify-center">
-                <span className="font-bold">Since 2022</span>
-              </div>
-              <div className="pl-10">
-                <h4 className="text-xl font-semibold">Bachelor of Technology</h4>
-                <p className="text-muted-foreground">Computer Science & Engineering</p>
-                <p className="text-sm text-muted-foreground">Bennett University, Expected May 2026</p>
-              </div>
-            </div>
-            <div className="relative">
-              <div className="absolute -left-[25px] w-12 h-12 rounded-full bg-secondary flex items-center justify-center">
-                <span className="font-bold">2022</span>
-              </div>
-              <div className="pl-10">
-                <h4 className="text-xl font-semibold">Secondary School</h4>
-                <p className="text-muted-foreground">Science with Computer Science</p>
-                <p className="text-sm text-muted-foreground">Delhi Public School, Dhanbad, 2020-2022</p>
-              </div>
-            </div>
-            <div className="relative">
-              <div className="absolute -left-[25px] w-12 h-12 rounded-full bg-secondary flex items-center justify-center">
-                <span className="font-bold">2020</span>
-              </div>
-              <div className="pl-10">
-                <h4 className="text-xl font-semibold">High School</h4>
-                <p className="text-muted-foreground">Core Subjects</p>
-                <p className="text-sm text-muted-foreground">Delhi Public School, Dhanbad, 2020</p>
-              </div>
+          <div className="relative pl-8 md:pl-12">
+            <span className="pointer-events-none absolute left-3 md:left-5 top-2 bottom-2 w-px bg-primary/30" aria-hidden="true" />
+            <div className="space-y-10">
+              {educationHistory.map((item, index) => (
+                <div key={index} className="relative">
+                  <span className="absolute -left-7 md:-left-9 top-1.5 flex h-4 w-4 items-center justify-center">
+                    <span className="h-3 w-3 rounded-full bg-primary shadow-[0_0_16px_rgba(80,213,255,0.55)]" />
+                  </span>
+                  <div className="rounded-xl border border-border/40 bg-card/40 px-5 py-4 backdrop-blur-sm">
+                    <h4 className="text-xl font-semibold text-foreground">{item.title}</h4>
+                    <p className="mt-1 text-sm font-medium uppercase tracking-[0.3em] text-primary/90">{item.period}</p>
+                    <p className="mt-3 text-sm sm:text-base leading-relaxed text-muted-foreground">{item.description}</p>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
