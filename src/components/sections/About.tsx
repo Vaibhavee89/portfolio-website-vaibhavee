@@ -79,6 +79,49 @@ const educationHistory: EducationItem[] = [
   },
 ];
 
+interface WorkItem {
+  title: string;
+  organisation: string;
+  period: string;
+  description: string;
+  badge: string;
+}
+
+const workHistory: WorkItem[] = [
+  {
+    title: 'Cybersecurity & Network Simulation Intern',
+    organisation: 'Centre for Development of Advanced Computing (C-DAC)',
+    period: 'Jun 2025 – Aug 2025',
+    badge: '25',
+    description:
+      'Built and demonstrated network attack simulations including ping flood and unauthorized access mitigation using ACLs and firewall policies. Co-developed a Python Flask network auditing tool leveraging Nmap, Postman, and GCP services.',
+  },
+  {
+    title: 'Internship Trainee – Analytics & Research',
+    organisation: 'CSIR-Central Institute of Mining and Fuel Research',
+    period: 'Jul 2024 – Aug 2024',
+    badge: '24',
+    description:
+      'Led sentiment analysis for educational video content and delivered dashboards capturing audience engagement insights to support strategic communication decisions.',
+  },
+  {
+    title: 'Research Co-head',
+    organisation: 'WIE-IEEE, Bennett Chapter',
+    period: 'Sep 2023 – May 2024',
+    badge: '23',
+    description:
+      'Planned and executed research-focused initiatives, workshops, and collaborative projects that increased member participation in innovation and scholarship.',
+  },
+  {
+    title: 'Design Co-head',
+    organisation: 'Bennett Cloud Computing Club & Product Design and Technology Club',
+    period: 'Sep 2023 – May 2024',
+    badge: '23',
+    description:
+      'Directed design strategy for cloud-centric events, enabling hands-on AWS and GCP sessions that elevated the club’s technical outreach efforts.',
+  },
+];
+
 const skills: Skill[] = [
   { name: 'Python', Icon: FileCode },
   { name: 'JavaScript', Icon: Zap },
@@ -333,66 +376,31 @@ export const About = () => {
         </div>
 
         <div className={`mb-16 ${isVisible ? 'animate-fade-in animate-delay-300' : 'opacity-0'}`}>
-          <div className="flex items-center mb-6">
-            <Briefcase className="text-primary mr-3" size={28} />
+          <div className="flex items-center gap-3 mb-8">
+            <Briefcase className="text-primary" size={28} />
             <h3 className="text-2xl font-bold">Work History</h3>
           </div>
-          <div className="space-y-6 pl-4 border-l-2 border-secondary">
-          <div className="relative">
-              <div className="absolute -left-[25px] w-12 h-12 rounded-full bg-secondary flex items-center justify-center">
-                <span className="font-bold">2025</span>
-              </div>
-              <div className="pl-10">
-                <h4 className="text-xl font-semibold">Intern</h4>
-                <p className="text-muted-foreground">CDAC</p>
-                <p className="text-sm text-muted-foreground">02nd June 2025- 11th August 2025</p>
-                <p className="mt-2 text-muted-foreground">
-                  Worked on a network simulation project designed to demonstrate and mitigate multiple cyberattacks, including ping flood and unauthorized access, using firewall rules, ACLs, and network security best practices. Also contributed to the Development of Network Auditing Tool using Python Flask, NMAP, Postman, GCP
-                </p>
-              </div>
+          <div className="relative pl-8 md:pl-12">
+            <span className="pointer-events-none absolute left-3 md:left-5 top-2 bottom-2 w-px bg-primary/30" aria-hidden="true" />
+            <div className="space-y-10">
+              {workHistory.map((role, index) => (
+                <div key={index} className="relative">
+                  <span className="absolute -left-7 md:-left-9 top-1.5 flex h-6 w-6 items-center justify-center">
+                    <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-xs font-semibold text-primary-foreground shadow-[0_0_16px_rgba(80,213,255,0.55)]">
+                      {role.badge}
+                    </span>
+                  </span>
+                  <div className="rounded-xl border border-border/40 bg-card/40 px-5 py-4 backdrop-blur-sm">
+                    <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
+                      <h4 className="text-xl font-semibold text-foreground">{role.title}</h4>
+                      <span className="text-sm font-medium uppercase tracking-[0.3em] text-primary/90">{role.period}</span>
+                    </div>
+                    <p className="mt-1 text-sm text-muted-foreground/80">{role.organisation}</p>
+                    <p className="mt-3 text-sm sm:text-base leading-relaxed text-muted-foreground">{role.description}</p>
+                  </div>
+                </div>
+              ))}
             </div>
-            <div className="relative">
-            
-              <div className="absolute -left-[25px] w-12 h-12 rounded-full bg-secondary flex items-center justify-center">
-                <span className="font-bold">2024</span>
-              </div>
-              <div className="pl-10">
-                <h4 className="text-xl font-semibold">Internship Trainee</h4>
-                <p className="text-muted-foreground">CSIR-CIMFR,Dhanbad</p>
-                <p className="text-sm text-muted-foreground">Jul 2024 - Aug 2024</p>
-                <p className="mt-2 text-muted-foreground">
-                  Contributed to the research and analysis of user sentiments on educational videos uploaded on various social media platforms of the organization by developing analytics dashboard. 
-                </p>
-              </div>
-            </div>
-            <div className="relative">
-              <div className="absolute -left-[25px] w-12 h-12 rounded-full bg-secondary flex items-center justify-center">
-                <span className="font-bold">2023</span>
-              </div>
-              <div className="pl-10">
-                <h4 className="text-xl font-semibold">Research co-head</h4>
-                <p className="text-muted-foreground">WIE-IEEE, Bennett Chapter</p>
-                <p className="text-sm text-muted-foreground">September 2023 - May 2024</p>
-                <p className="mt-2 text-muted-foreground">
-                Worked closely with the content and technical team in organizing and executing research-focused initia
-                tives, workshops, and projects.
-                </p>
-              </div>
-            </div>
-            <div className="relative">
-              <div className="absolute -left-[25px] w-12 h-12 rounded-full bg-secondary flex items-center justify-center">
-                <span className="font-bold">2023</span>
-              </div>
-              <div className="pl-10">
-                <h4 className="text-xl font-semibold">Design co-head</h4>
-                <p className="text-muted-foreground">Bennett Cloud Computing Club & Product Design and Technology Club</p>
-                <p className="text-sm text-muted-foreground">September 2023 - May 2024</p>
-                <p className="mt-2 text-muted-foreground">
-                Spearheaded design initiatives for cloud-related projects and supported club events by organizing hands-on sessions on AWS and GCP to promote cloud skills among students.
-                </p>
-              </div>
-            </div>
-          
           </div>
         </div>
 
