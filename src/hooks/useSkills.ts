@@ -42,6 +42,26 @@ export const useSkills = () => {
     };
 
     fetchSkills();
+
+    // Subscribe to real-time changes
+    const channel = supabase
+      .channel('skills-changes')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'skills'
+        },
+        () => {
+          fetchSkills();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, []);
 
   return { skills, loading, error };

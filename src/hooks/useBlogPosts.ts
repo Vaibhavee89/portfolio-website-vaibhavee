@@ -45,6 +45,26 @@ export const useBlogPosts = () => {
     };
 
     fetchBlogPosts();
+
+    // Subscribe to real-time changes
+    const channel = supabase
+      .channel('blog-posts-changes')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'blog_posts'
+        },
+        () => {
+          fetchBlogPosts();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, []);
 
   return { blogPosts, loading, error };

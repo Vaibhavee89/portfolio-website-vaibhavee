@@ -39,6 +39,26 @@ export const useEvents = () => {
     };
 
     fetchEvents();
+
+    // Subscribe to real-time changes
+    const channel = supabase
+      .channel('events-changes')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'events'
+        },
+        () => {
+          fetchEvents();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, []);
 
   return { events, loading, error };

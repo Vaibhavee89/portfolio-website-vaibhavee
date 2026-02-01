@@ -147,15 +147,27 @@ export default function Projects() {
     if (!confirm('Are you sure you want to delete this project?')) return;
 
     try {
-      const { error } = await supabase.from('projects').delete().eq('id', id);
+      console.log('Attempting to delete project:', id);
+      
+      // Check current session
+      const { data: { session } } = await supabase.auth.getSession();
+      console.log('Current session:', session);
+      
+      const { data, error } = await supabase.from('projects').delete().eq('id', id);
 
-      if (error) throw error;
+      if (error) {
+        console.error('Delete error:', error);
+        throw error;
+      }
+      
+      console.log('Delete successful:', data);
       toast({ title: 'Success', description: 'Project deleted successfully' });
       fetchProjects();
     } catch (error: any) {
+      console.error('Delete failed:', error);
       toast({
         title: 'Error',
-        description: error.message,
+        description: error.message || 'Failed to delete project',
         variant: 'destructive',
       });
     }

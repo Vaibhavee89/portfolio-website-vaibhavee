@@ -50,6 +50,26 @@ export const useProjects = () => {
     };
 
     fetchProjects();
+
+    // Subscribe to real-time changes
+    const channel = supabase
+      .channel('projects-changes')
+      .on(
+        'postgres_changes',
+        {
+          event: '*',
+          schema: 'public',
+          table: 'projects'
+        },
+        () => {
+          fetchProjects();
+        }
+      )
+      .subscribe();
+
+    return () => {
+      supabase.removeChannel(channel);
+    };
   }, []);
 
   return { projects, loading, error };
