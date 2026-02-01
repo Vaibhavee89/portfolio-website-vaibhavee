@@ -4,25 +4,8 @@ import {
   BookOpen,
   Trophy,
   Briefcase,
-  FileCode,
-  Brain,
-  Database,
-  MessageSquare,
-  BarChart,
-  Cloud,
-  Smartphone,
-  Award,
-  GraduationCap,
   BadgeCheck,
-  Server,
-  Github,
-  GitBranch,
-  Zap,
-  BookMarked,
-  Component,
   KeyRound,
-  Share2,
-  MessageCircle,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -36,188 +19,19 @@ import {
   DialogDescription,
 } from "@/components/ui/dialog";
 import { Card, CardContent } from '@/components/ui/card';
-
-interface Skill {
-  name: string;
-  Icon: LucideIcon;
-}
-
-interface Certification {
-  name: string;
-  issuer: string;
-  date: string;
-  Icon: LucideIcon;
-  //credentialId?: string;
-  credentialUrl?: string;
-  description?: string;
-}
-
-interface EducationItem {
-  title: string;
-  period: string;
-  description: string;
-}
-
-const educationHistory: EducationItem[] = [
-  {
-    title: 'B.Tech in Computer Science & Engineering',
-    period: '2022 - 2026',
-    description:
-      "Pursuing a bachelor's with a focus on Artificial Intelligence, Machine Learning, Cloud Computing, and Computer Vision, building strong foundations in data structures, algorithms, and distributed systems.",
-  },
-  {
-    title: 'Cloud Certifications & Research',
-    period: '2024',
-    description:
-      'Completed multiple industry-recognized credentials across AWS and deep learning, applying the knowledge to practical projects and research-led initiatives.',
-  },
-  {
-    title: 'High School Diploma — Science with Computer Science',
-    period: '2020 - 2022',
-    description:
-      'Graduated with honors while leading technology-driven activities, laying a strong analytical and mathematical groundwork for my engineering journey.',
-  },
-];
-
-interface WorkItem {
-  title: string;
-  organisation: string;
-  period: string;
-  description: string;
-  badge: string;
-}
-
-const workHistory: WorkItem[] = [
-  {
-    title: 'Cybersecurity & Network Simulation Intern',
-    organisation: 'Centre for Development of Advanced Computing (C-DAC)',
-    period: 'Jun 2025 – Aug 2025',
-    badge: '25',
-    description:
-      'Built and demonstrated network attack simulations including ping flood and unauthorized access mitigation using ACLs and firewall policies. Co-developed a Python Flask network auditing tool leveraging Nmap, Postman, and GCP services.',
-  },
-  {
-    title: 'Internship Trainee – Analytics & Research',
-    organisation: 'CSIR-Central Institute of Mining and Fuel Research',
-    period: 'Jul 2024 – Aug 2024',
-    badge: '24',
-    description:
-      'Led sentiment analysis for educational video content and delivered dashboards capturing audience engagement insights to support strategic communication decisions.',
-  },
-  {
-    title: 'Research Co-head',
-    organisation: 'WIE-IEEE, Bennett Chapter',
-    period: 'Sep 2023 – May 2024',
-    badge: '23',
-    description:
-      'Planned and executed research-focused initiatives, workshops, and collaborative projects that increased member participation in innovation and scholarship.',
-  },
-  {
-    title: 'Design Co-head',
-    organisation: 'Bennett Cloud Computing Club & Product Design and Technology Club',
-    period: 'Sep 2023 – May 2024',
-    badge: '23',
-    description:
-      'Directed design strategy for cloud-centric events, enabling hands-on AWS and GCP sessions that elevated the club’s technical outreach efforts.',
-  },
-];
-
-const skills: Skill[] = [
-  { name: 'Python', Icon: FileCode },
-  { name: 'JavaScript', Icon: Zap },
-  { name: 'TypeScript', Icon: Code },
-  { name: 'React', Icon: Component },
-  { name: 'Next.js', Icon: Code },
-  { name: 'TensorFlow', Icon: Brain },
-  { name: 'PyTorch', Icon: Brain },
-  { name: 'Scikit-learn', Icon: Database },
-  { name: 'Pandas', Icon: Database },
-  { name: 'NumPy', Icon: Database },
-  { name: 'NLP', Icon: MessageSquare },
-  { name: 'Computer Vision', Icon: Smartphone },
-  { name: 'PowerBI', Icon: BarChart },
-  { name: 'Tableau', Icon: BarChart },
-  { name: 'AWS', Icon: Cloud },
-  { name: 'GCP', Icon: Cloud },
-  { name: 'Git', Icon: GitBranch },
-  { name: 'GitHub', Icon: Github },
-  { name: 'Docker', Icon: Server },
-  { name: 'Kubernetes', Icon: Server },
-  { name: 'Jupyter', Icon: BookMarked },
-  { name: 'SQL', Icon: Database },
-  { name: 'NoSQL', Icon: Database },
-  { name: 'HTML/CSS', Icon: Code },
-];
-
-const certifications: Certification[] = [
-  {
-    name: "AWS Cloud Practitioner",
-    issuer: "Amazon Web Services",
-    date: "May 2024",
-    Icon: Cloud,
-    //credentialId: "AWS-CP-123456",
-    credentialUrl: "https://www.credly.com/badges/8ebcbe71-30e8-4961-9c8b-4ad852f0aed5/public_url",
-    description: "Fundamental knowledge of AWS Cloud, services, and terminology. Covers security, technology, billing, pricing, and core services."
-  },
-  {
-    name: "Supervised Machine Learning: Classification",
-    issuer: "IBM",
-    date: "Nov 2024",
-    Icon: Brain,
-    //credentialId: "",
-    credentialUrl: "https://coursera.org/share/cd753b05dce213265c899ae6cdb81d75",
-    description: "This course introduces the concept of Ensemble Learning, Machine Learning(ML) Algorithms, Supervised Learning, Classification Algorithms, Decision Tree"
-  },
-  {
-    name: "Improving Deep Neural Networks: Hyperparameter Tuning, Regularization, and Optimization",
-    issuer: "Deeplearning.AI",
-    date: "Nov 2024",
-    Icon: Brain,
-    //credentialId: "",
-    credentialUrl: "https://coursera.org/share/ec108e28939b593ac32dd1721302c122",
-    description: "This course offers skills in TensorFlow, Deep Learning, Hyperparameter turing, Mathematical Optimization"
-  },
-  {
-    name: "Simulation and Modeling of Natural Processes",
-    issuer: "University of Geneva",
-    date: "Nov 2024",
-    Icon: Award,
-    //credentialId: "ML-SPEC-345678",
-    credentialUrl: "https://coursera.org/share/af94e2e3392a83c452a9090e19ab3374",
-    description: "Computer Programming, Python Programming, Mathematics, Probability ans Statisctics"
-  },
-  {
-    name: "The Bits and Bytes of Computer Networking",
-    issuer: "Google",
-    date: "Apr 2024",
-    Icon: GraduationCap,
-    //credentialId: "DL-SPEC-901234",
-    credentialUrl: "https://coursera.org/share/64b9a6e0733428bc7eb1160be6ac745d",
-    description: "In-depth knowledge of computer networks such as Domain Name System, IP addressing, and routing."
-  },
-  {
-    name: "Introduction to Computers, Operating Systems & Security",
-    issuer: "Microsoft",
-    date: "Apr 2024",
-    Icon: GraduationCap,
-    //credentialId: "DL-SPEC-901234",
-    credentialUrl: "https://coursera.org/share/adfe89cc12c35b9c0c6469869b9f72fb",
-    description: "In-depth knowledge of Operating Systems, Computer Architecture and Cloud Computing"
-  },
-  {
-    name: "Foundations of User Experience (UX) Design",
-    issuer: "Google",
-    date: "Jul 2023",
-    Icon: GraduationCap,
-    //credentialId: "DL-SPEC-901234",
-    credentialUrl: "https://coursera.org/share/6ea80fd2cfb6166fe1d581f173ce6735",
-    description: "Introduction to User Experience (UX), Prototype, Wireframe, User Expericence Design (UXD), UX Research"
-  },
-];
+import { useSkills } from '@/hooks/useSkills';
+import { useCertifications } from '@/hooks/useCertifications';
+import { useEducation } from '@/hooks/useEducation';
+import { useWorkExperience } from '@/hooks/useWorkExperience';
 
 export const About = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [selectedCertificate, setSelectedCertificate] = useState<Certification | null>(null);
+  const [selectedCertificate, setSelectedCertificate] = useState<any>(null);
+  
+  const { skills, loading: skillsLoading } = useSkills();
+  const { certifications, loading: certsLoading } = useCertifications();
+  const { education, loading: eduLoading } = useEducation();
+  const { workExperience, loading: workLoading } = useWorkExperience();
   const [dialogOpen, setDialogOpen] = useState(false);
   const { toast } = useToast();
 
@@ -240,7 +54,7 @@ export const About = () => {
     };
   }, []);
 
-  const handleShowCredentials = (cert: Certification) => {
+  const handleShowCredentials = (cert: any) => {
     if (cert.credentialUrl) {
       setSelectedCertificate(cert);
       setDialogOpen(true);
@@ -303,7 +117,7 @@ export const About = () => {
           <div className="relative pl-8 md:pl-12">
             <span className="pointer-events-none absolute left-3 md:left-5 top-2 bottom-2 w-px bg-primary/30" aria-hidden="true" />
             <div className="space-y-10">
-              {educationHistory.map((item, index) => (
+              {education.map((item, index) => (
                 <div key={index} className="relative">
                   <span className="absolute -left-7 md:-left-9 top-1.5 flex h-4 w-4 items-center justify-center">
                     <span className="h-3 w-3 rounded-full bg-primary shadow-[0_0_16px_rgba(80,213,255,0.55)]" />
@@ -383,7 +197,7 @@ export const About = () => {
           <div className="relative pl-8 md:pl-12">
             <span className="pointer-events-none absolute left-3 md:left-5 top-2 bottom-2 w-px bg-primary/30" aria-hidden="true" />
             <div className="space-y-10">
-              {workHistory.map((role, index) => (
+              {workExperience.map((role, index) => (
                 <div key={index} className="relative">
                   <span className="absolute -left-7 md:-left-9 top-1.5 flex h-6 w-6 items-center justify-center">
                     <span className="flex h-6 w-6 items-center justify-center rounded-full bg-primary text-xs font-semibold text-primary-foreground shadow-[0_0_16px_rgba(80,213,255,0.55)]">

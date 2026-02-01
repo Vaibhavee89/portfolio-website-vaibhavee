@@ -1,53 +1,11 @@
 
 import { useState, useEffect } from 'react';
-import ProjectCard, { Project } from '../ui-components/ProjectCard';
-
-const projects: Project[] = [
-  {
-    id: "1",
-    title: "Portfolio-Website",
-    description: "This portfolio website serves as a personal space to highlight my achievements, projects, and professional journey.",
-    image: "/PortfolioProject(2).png",
-    tags: ["Portfolio", "skills"]  },
-  {
-    id: "2",
-    title: "QuizWhiz",
-    description: "A fast and interactive quiz app with a wide range of categories and questions.",
-    image: "/TriviaQuiz.png",
-    tags: ["Quiz", "TriviaChallenge"],
-  },
-  {
-    id: "3",
-    title: "Short.ly",
-    description: "A URL shortening service that provides detailed analytics and custom short links.",
-    image: "/Shortly.png",
-    tags: ["URL", "Shortner", "Analytics"],
-  },
-  {
-    id: "4",
-    title: "Crypto Wallet Mobile App",
-    description: "Designed a mobile app for managing cryptocurrency transactions, including wallet management and transaction history.",
-    image: "/Crypto.avif",
-    tags: ["Mobile App", "Crypto Wallet", "UI/UX Design"],
-  },
-  {
-    id: "6",
-    title: "Sudoku-Solver",
-    description: "This is a simple Sudoku solver application written in C++. It takes a 9x9 Sudoku puzzle as input and solves it using a backtracking algorithm.",
-    image: "SudokuSolver.png",
-    tags: ["C++", "Backtracking Algorithm", "Conceptual Problem Solving"],
-  },
-  {
-    id: "7",
-    title: "Ziplyn",
-    description: "Experimental project to create a file compression and extraction utility in Rust.",
-    image: "Ziplyn.png",
-    tags: ["Rust", "File Compression", "File Extraction"],
-  },
-];
+import ProjectCard from '../ui-components/ProjectCard';
+import { useProjects } from '@/hooks/useProjects';
 
 export const Projects = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const { projects, loading, error } = useProjects();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -82,17 +40,29 @@ export const Projects = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
-          {projects.map((project, index) => (
-            <div 
-              key={project.id} 
-              className={isVisible ? `animate-fade-in animate-delay-${index * 100}` : 'opacity-0'}
-              style={{ animationDelay: `${index * 100}ms` }}
-            >
-              <ProjectCard project={project} />
-            </div>
-          ))}
-        </div>
+        {loading ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <div key={i} className="h-96 bg-card/50 rounded-xl animate-pulse" />
+            ))}
+          </div>
+        ) : error ? (
+          <div className="text-center py-12">
+            <p className="text-destructive">Failed to load projects. Please try again later.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
+            {projects.map((project, index) => (
+              <div 
+                key={project.id} 
+                className={isVisible ? `animate-fade-in animate-delay-${index * 100}` : 'opacity-0'}
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <ProjectCard project={project} />
+              </div>
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
