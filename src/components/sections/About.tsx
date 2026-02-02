@@ -99,20 +99,28 @@ export const About = () => {
                   <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
                     {aboutMe.description}
                   </p>
-                  <div className="grid w-full gap-3 sm:grid-cols-2 text-sm sm:text-base text-muted-foreground/90">
-                    <div className="rounded-xl border border-primary/20 bg-card/60 px-4 py-3 backdrop-blur-sm">
-                      <p className="font-semibold text-foreground">{aboutMe.highlight_1_title}</p>
-                      <p className="mt-1 text-sm text-muted-foreground">
-                        {aboutMe.highlight_1_description}
-                      </p>
+                  {aboutMe.highlights && aboutMe.highlights.length > 0 && (
+                    <div className={`grid w-full gap-3 text-sm sm:text-base text-muted-foreground/90 ${
+                      aboutMe.highlights.length === 1 ? 'grid-cols-1' : 
+                      aboutMe.highlights.length === 2 ? 'sm:grid-cols-2' :
+                      aboutMe.highlights.length === 3 ? 'sm:grid-cols-3' :
+                      'sm:grid-cols-2 lg:grid-cols-3'
+                    }`}>
+                      {aboutMe.highlights
+                        .sort((a, b) => a.order - b.order)
+                        .map((highlight) => (
+                          <div 
+                            key={highlight.id}
+                            className="rounded-xl border border-primary/20 bg-card/60 px-4 py-3 backdrop-blur-sm"
+                          >
+                            <p className="font-semibold text-foreground">{highlight.title}</p>
+                            <p className="mt-1 text-sm text-muted-foreground">
+                              {highlight.description}
+                            </p>
+                          </div>
+                        ))}
                     </div>
-                    <div className="rounded-xl border border-primary/20 bg-card/60 px-4 py-3 backdrop-blur-sm">
-                      <p className="font-semibold text-foreground">{aboutMe.highlight_2_title}</p>
-                      <p className="mt-1 text-sm text-muted-foreground">
-                        {aboutMe.highlight_2_description}
-                      </p>
-                    </div>
-                  </div>
+                  )}
                 </div>
               </>
             ) : (

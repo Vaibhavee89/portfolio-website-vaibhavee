@@ -6,8 +6,8 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { useToast } from '@/hooks/use-toast';
-import { Save, Loader2, User } from 'lucide-react';
-import { useAboutMe } from '@/hooks/useAboutMe';
+import { Save, Loader2, User, Plus, Trash2, GripVertical } from 'lucide-react';
+import { useAboutMe, Highlight } from '@/hooks/useAboutMe';
 
 export default function AboutMe() {
   const { aboutMe, loading, refetch } = useAboutMe();
@@ -18,10 +18,7 @@ export default function AboutMe() {
     title: '',
     description: '',
     image_url: '',
-    highlight_1_title: '',
-    highlight_1_description: '',
-    highlight_2_title: '',
-    highlight_2_description: '',
+    highlights: [] as Highlight[],
   });
 
   useEffect(() => {
@@ -30,13 +27,54 @@ export default function AboutMe() {
         title: aboutMe.title,
         description: aboutMe.description,
         image_url: aboutMe.image_url,
-        highlight_1_title: aboutMe.highlight_1_title,
-        highlight_1_description: aboutMe.highlight_1_description,
-        highlight_2_title: aboutMe.highlight_2_title,
-        highlight_2_description: aboutMe.highlight_2_description,
+        highlights: aboutMe.highlights || [],
       });
     }
   }, [aboutMe]);
+
+  const addHighlight = () => {
+    const newHighlight: Highlight = {
+      id: Date.now().toString(),
+      title: '',
+      description: '',
+      order: formData.highlights.length,
+    };
+    setFormData({
+      ...formData,
+      highlights: [...formData.highlights, newHighlight],
+    });
+  };
+
+  const removeHighlight = (id: string) => {
+    setFormData({
+      ...formData,
+      highlights: formData.highlights.filter((h) => h.id !== id),
+    });
+  };
+
+  const updateHighlight = (id: string, field: 'title' | 'description', value: string) => {
+    setFormData({
+      ...formData,
+      highlights: formData.highlights.map((h) =>
+        h.id === id ? { ...h, [field]: value } : h
+      ),
+    });
+  };
+
+  const moveHighlight = (index: number, direction: 'up' | 'down') => {
+    const newHighlights = [...formData.highlights];
+    const targetIndex = direction === 'up' ? index - 1 : index + 1;
+    
+    if (targetIndex < 0 || targetIndex >= newHighlights.length) return;
+    
+    [newHighlights[index], newHighlights[targetIndex]] = [newHighlights[targetIndex], newHighlights[index]];
+    
+    newHighlights.forEach((h, i) => {
+      h.order = i;
+    });
+    
+    setFormData({ ...formData, highlights: newHighlights });
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -49,10 +87,7 @@ export default function AboutMe() {
           title: formData.title,
           description: formData.description,
           image_url: formData.image_url,
-          highlight_1_title: formData.highlight_1_title,
-          highlight_1_description: formData.highlight_1_description,
-          highlight_2_title: formData.highlight_2_title,
-          highlight_2_description: formData.highlight_2_description,
+          highlights: formData.highlights,
         })
         .eq('id', aboutMe?.id);
 
@@ -145,63 +180,85 @@ export default function AboutMe() {
 
         <Card>
           <CardHeader>
-            <CardTitle>Highlight 1</CardTitle>
-            <CardDescription>First highlight card (left side)</CardDescription>
+            <div className="flex items-center justify-between">
+              <div>
+                <CardTitle>Highlights</CardTitle>
+                <CardDescription>Add highlight cards to showcase your key strengths (optional)</CardDescription>
+              </div>
+              <Button type="button" onClick={addHighlight} size="sm">
+                <Plus className="mr-2 h-4 w-4" />
+                Add Highlight
+              </Button>
+            </div>
           </CardHeader>
           <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="highlight_1_title">Title</Label>
-              <Input
-                id="highlight_1_title"
-                value={formData.highlight_1_title}
-                onChange={(e) => setFormData({ ...formData, highlight_1_title: e.target.value })}
-                placeholder="e.g., AI, Cloud & Research"
-                required
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="highlight_1_description">Description</Label>
-              <Textarea
-                id="highlight_1_description"
-                value={formData.highlight_1_description}
-                onChange={(e) => setFormData({ ...formData, highlight_1_description: e.target.value })}
-                placeholder="Brief description..."
-                rows={2}
-                required
-              />
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle>Highlight 2</CardTitle>
-            <CardDescription>Second highlight card (right side)</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="highlight_2_title">Title</Label>
-              <Input
-                id="highlight_2_title"
-                value={formData.highlight_2_title}
-                onChange={(e) => setFormData({ ...formData, highlight_2_title: e.target.value })}
-                placeholder="e.g., Continuous learning"
-                required
-              />
-            </div>
-
-            <div className="space-y-2">
-              <Label htmlFor="highlight_2_description">Description</Label>
-              <Textarea
-                id="highlight_2_description"
-                value={formData.highlight_2_description}
-                onChange={(e) => setFormData({ ...formData, highlight_2_description: e.target.value })}
-                placeholder="Brief description..."
-                rows={2}
-                required
-              />
-            </div>
+            {formData.highlights.length === 0 ? (
+              <div className="text-center py-8 text-muted-foreground">
+                <p>No highlights added yet. Click "Add Highlight" to create one.</p>
+              </div>
+            ) : (
+              formData.highlights.map((highlight, index) => (
+                <Card key={highlight.id} className="border-2">
+                  <CardHeader className="pb-3">
+                    <div className="flex items-center justify-between">
+                      <CardTitle className="text-base">Highlight {index + 1}</CardTitle>
+                      <div className="flex items-center gap-2">
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="icon"
+                          onClick={() => moveHighlight(index, 'up')}
+                          disabled={index === 0}
+                          title="Move up"
+                        >
+                          <GripVertical className="h-4 w-4" />
+                        </Button>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="icon"
+                          onClick={() => moveHighlight(index, 'down')}
+                          disabled={index === formData.highlights.length - 1}
+                          title="Move down"
+                        >
+                          <GripVertical className="h-4 w-4 rotate-180" />
+                        </Button>
+                        <Button
+                          type="button"
+                          variant="ghost"
+                          size="icon"
+                          onClick={() => removeHighlight(highlight.id)}
+                          className="text-destructive hover:text-destructive"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                        </Button>
+                      </div>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="space-y-3">
+                    <div className="space-y-2">
+                      <Label htmlFor={`highlight_${highlight.id}_title`}>Title</Label>
+                      <Input
+                        id={`highlight_${highlight.id}_title`}
+                        value={highlight.title}
+                        onChange={(e) => updateHighlight(highlight.id, 'title', e.target.value)}
+                        placeholder="e.g., AI, Cloud & Research"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <Label htmlFor={`highlight_${highlight.id}_description`}>Description</Label>
+                      <Textarea
+                        id={`highlight_${highlight.id}_description`}
+                        value={highlight.description}
+                        onChange={(e) => updateHighlight(highlight.id, 'description', e.target.value)}
+                        placeholder="Brief description..."
+                        rows={2}
+                      />
+                    </div>
+                  </CardContent>
+                </Card>
+              ))
+            )}
           </CardContent>
         </Card>
 

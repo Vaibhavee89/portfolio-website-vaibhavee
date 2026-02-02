@@ -1,15 +1,19 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/lib/supabase';
 
+export interface Highlight {
+  id: string;
+  title: string;
+  description: string;
+  order: number;
+}
+
 export interface AboutMe {
   id: string;
   title: string;
   description: string;
   image_url: string;
-  highlight_1_title: string;
-  highlight_1_description: string;
-  highlight_2_title: string;
-  highlight_2_description: string;
+  highlights: Highlight[];
   created_at: string;
   updated_at: string;
 }
