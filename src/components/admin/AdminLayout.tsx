@@ -15,10 +15,12 @@ import {
   Menu,
   X,
   Code,
+  User,
 } from 'lucide-react';
 
 const navigation = [
   { name: 'Dashboard', href: '/admin/dashboard', icon: LayoutDashboard },
+  { name: 'About Me', href: '/admin/about', icon: User },
   { name: 'Projects', href: '/admin/projects', icon: FolderKanban },
   { name: 'Skills', href: '/admin/skills', icon: Code },
   { name: 'Certifications', href: '/admin/certifications', icon: Award },

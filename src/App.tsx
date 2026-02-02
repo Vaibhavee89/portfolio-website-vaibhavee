@@ -14,6 +14,7 @@ import Login from "./pages/admin/Login";
 import Dashboard from "./pages/admin/Dashboard";
 import Projects from "./pages/admin/Projects";
 import Skills from "./pages/admin/Skills";
+import AboutMe from "./pages/admin/AboutMe";
 import { ChatWidget } from "./components/chat/ChatWidget";
 
 const queryClient = new QueryClient();
@@ -42,6 +43,7 @@ const App = () => (
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="projects" element={<Projects />} />
               <Route path="skills" element={<Skills />} />
+              <Route path="about" element={<AboutMe />} />
             </Route>
             
             <Route path="*" element={<NotFound />} />

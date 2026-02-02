@@ -23,11 +23,13 @@ import { useSkills } from '@/hooks/useSkills';
 import { useCertifications } from '@/hooks/useCertifications';
 import { useEducation } from '@/hooks/useEducation';
 import { useWorkExperience } from '@/hooks/useWorkExperience';
+import { useAboutMe } from '@/hooks/useAboutMe';
 
 export const About = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [selectedCertificate, setSelectedCertificate] = useState<any>(null);
   
+  const { aboutMe, loading: aboutLoading } = useAboutMe();
   const { skills, loading: skillsLoading } = useSkills();
   const { certifications, loading: certsLoading } = useCertifications();
   const { education, loading: eduLoading } = useEducation();
@@ -75,37 +77,49 @@ export const About = () => {
             About Me
           </span>
           <div className="glass-card mt-6 mx-auto w-full max-w-5xl p-6 sm:p-8 md:p-10 flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-12">
-            <div className="flex-shrink-0 w-full max-w-[260px]">
-              <div className="relative aspect-square w-full overflow-hidden rounded-[24px] border border-primary/30 bg-card/80 shadow-[0_18px_42px_rgba(26,160,255,0.18)]">
-                <img
-                  src="/MyImage.png"
-                  alt="Portrait of Vaibhavee"
-                  className="h-full w-full object-cover object-top"
-                />
+            {aboutLoading ? (
+              <div className="w-full text-center py-8">
+                <p className="text-muted-foreground">Loading...</p>
               </div>
-            </div>
-            <div className="space-y-4 text-center md:text-left">
-              <h3 className="text-2xl sm:text-3xl font-bold text-foreground">
-                A passionate technologist
-              </h3>
-              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-                I am a BTech 4th year student passionate about research and specializing in Cloud Computing, AI/ML, Deep Learning and Computer Vision. I love transforming ideas into impactful solutions, whether it's developing AI-powered applications, writing research papers, or contributing to meaningful projects. My goal is to bridge the gap between research and real-world applications, constantly pushing the boundaries of technology.
-              </p>
-              <div className="grid w-full gap-3 sm:grid-cols-2 text-sm sm:text-base text-muted-foreground/90">
-                <div className="rounded-xl border border-primary/20 bg-card/60 px-4 py-3 backdrop-blur-sm">
-                  <p className="font-semibold text-foreground">AI, Cloud & Research</p>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    Bridging intelligent systems with real-world impact.
-                  </p>
+            ) : aboutMe ? (
+              <>
+                <div className="flex-shrink-0 w-full max-w-[260px]">
+                  <div className="relative aspect-square w-full overflow-hidden rounded-[24px] border border-primary/30 bg-card/80 shadow-[0_18px_42px_rgba(26,160,255,0.18)]">
+                    <img
+                      src={aboutMe.image_url}
+                      alt="Portrait of Vaibhavee"
+                      className="h-full w-full object-cover object-top"
+                    />
+                  </div>
                 </div>
-                <div className="rounded-xl border border-primary/20 bg-card/60 px-4 py-3 backdrop-blur-sm">
-                  <p className="font-semibold text-foreground">Continuous learning</p>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    Driven by collaboration, innovation, and community initiatives.
+                <div className="space-y-4 text-center md:text-left">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-foreground">
+                    {aboutMe.title}
+                  </h3>
+                  <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+                    {aboutMe.description}
                   </p>
+                  <div className="grid w-full gap-3 sm:grid-cols-2 text-sm sm:text-base text-muted-foreground/90">
+                    <div className="rounded-xl border border-primary/20 bg-card/60 px-4 py-3 backdrop-blur-sm">
+                      <p className="font-semibold text-foreground">{aboutMe.highlight_1_title}</p>
+                      <p className="mt-1 text-sm text-muted-foreground">
+                        {aboutMe.highlight_1_description}
+                      </p>
+                    </div>
+                    <div className="rounded-xl border border-primary/20 bg-card/60 px-4 py-3 backdrop-blur-sm">
+                      <p className="font-semibold text-foreground">{aboutMe.highlight_2_title}</p>
+                      <p className="mt-1 text-sm text-muted-foreground">
+                        {aboutMe.highlight_2_description}
+                      </p>
+                    </div>
+                  </div>
                 </div>
+              </>
+            ) : (
+              <div className="w-full text-center py-8">
+                <p className="text-muted-foreground">No content available</p>
               </div>
-            </div>
+            )}
           </div>
         </div>
 
