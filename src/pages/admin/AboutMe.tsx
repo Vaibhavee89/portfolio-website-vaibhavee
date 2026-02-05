@@ -21,13 +21,28 @@ export default function AboutMe() {
     highlights: [] as Highlight[],
   });
 
+  const normalizeHighlights = (highlights: Highlight[]) =>
+    highlights
+      .slice()
+      .sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+      .map((highlight, index) => ({ ...highlight, order: index }));
+
+  const sanitizeHighlights = (highlights: Highlight[]) =>
+    normalizeHighlights(
+      highlights.filter((highlight) => {
+        const title = highlight.title?.trim() ?? '';
+        const description = highlight.description?.trim() ?? '';
+        return title !== '' || description !== '';
+      })
+    );
+
   useEffect(() => {
     if (aboutMe) {
       setFormData({
         title: aboutMe.title,
         description: aboutMe.description,
         image_url: aboutMe.image_url,
-        highlights: aboutMe.highlights || [],
+        highlights: normalizeHighlights(aboutMe.highlights || []),
       });
     }
   }, [aboutMe]);
@@ -46,9 +61,10 @@ export default function AboutMe() {
   };
 
   const removeHighlight = (id: string) => {
+    const filtered = formData.highlights.filter((h) => h.id !== id);
     setFormData({
       ...formData,
-      highlights: formData.highlights.filter((h) => h.id !== id),
+      highlights: normalizeHighlights(filtered),
     });
   };
 
@@ -81,17 +97,24 @@ export default function AboutMe() {
     setSaving(true);
 
     try {
+      const sanitizedHighlights = sanitizeHighlights(formData.highlights);
+
       const { error } = await supabase
         .from('about_me')
         .update({
           title: formData.title,
           description: formData.description,
           image_url: formData.image_url,
-          highlights: formData.highlights,
+          highlights: sanitizedHighlights,
         })
         .eq('id', aboutMe?.id);
 
       if (error) throw error;
+
+      setFormData((prev) => ({
+        ...prev,
+        highlights: sanitizedHighlights,
+      }));
 
       toast({
         title: 'Success',

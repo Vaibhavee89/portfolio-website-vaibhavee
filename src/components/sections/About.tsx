@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import {
   Code,
   BookOpen,
@@ -6,6 +6,8 @@ import {
   Briefcase,
   BadgeCheck,
   KeyRound,
+  ChevronDown,
+  ChevronUp,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -35,7 +37,27 @@ export const About = () => {
   const { education, loading: eduLoading } = useEducation();
   const { workExperience, loading: workLoading } = useWorkExperience();
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [showCertifications, setShowCertifications] = useState(false);
   const { toast } = useToast();
+
+  const latestCertifications = useMemo(() => {
+    if (!certifications.length) return [];
+
+    const withTimestamps = certifications.map((cert) => {
+      const parsed = Date.parse(cert.date);
+      return { cert, timestamp: Number.isNaN(parsed) ? null : parsed };
+    });
+
+    const hasValidTimestamps = withTimestamps.every(({ timestamp }) => timestamp !== null);
+
+    const sorted = hasValidTimestamps
+      ? withTimestamps
+          .sort((a, b) => (b.timestamp! - a.timestamp!))
+          .map(({ cert }) => cert)
+      : certifications;
+
+    return sorted.slice(0, 2);
+  }, [certifications]);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -162,32 +184,87 @@ export const About = () => {
               <h3>Certifications Databank</h3>
             </div>
 
-            <div className="certification-grid">
-              {certifications.map((cert, index) => (
-                <div key={index} className="cert-card">
-                  <div className="cert-card__header">
-                    <div className="cert-card__icon">
-                      <cert.Icon size={26} className="drop-shadow-[0_0_12px_rgba(80,213,255,0.6)]" />
+            {showCertifications ? (
+              <div className="certification-grid grid gap-6 md:grid-cols-2">
+                {certifications.map((cert, index) => (
+                  <div key={index} className="cert-card h-full flex flex-col">
+                    <div className="cert-card__header">
+                      <div className="cert-card__icon">
+                        <cert.Icon size={26} className="drop-shadow-[0_0_12px_rgba(80,213,255,0.6)]" />
+                      </div>
+                      <div className="cert-card__meta">
+                        <h4>{cert.name}</h4>
+                        <p>{cert.issuer}</p>
+                        <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground/70">{cert.date}</p>
+                      </div>
                     </div>
-                    <div className="cert-card__meta">
-                      <h4>{cert.name}</h4>
-                      <p>{cert.issuer}</p>
-                      <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground/70">{cert.date}</p>
-                    </div>
-                  </div>
 
-                  <div className="cert-card__actions">
-                    <button
-                      type="button"
-                      className="glow-button glow-button--primary flex items-center justify-center gap-2"
-                      onClick={() => handleShowCredentials(cert)}
-                    >
-                      <KeyRound size={16} />
-                      Show Credentials
-                    </button>
+                    <div className="cert-card__actions mt-auto">
+                      <button
+                        type="button"
+                        className="glow-button glow-button--primary flex items-center justify-center gap-2"
+                        onClick={() => handleShowCredentials(cert)}
+                      >
+                        <KeyRound size={16} />
+                        Show Credentials
+                      </button>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+            ) : (
+              <div className="rounded-2xl border border-primary/30 bg-primary/5 py-8 px-6">
+                {latestCertifications.length > 0 ? (
+                  <div>
+                    <p className="text-xs uppercase tracking-[0.4em] text-primary/80 text-center">
+                      Latest Credentials
+                    </p>
+                    <div className="mt-6 grid gap-4 sm:grid-cols-2">
+                      {latestCertifications.map((cert, index) => (
+                        <div
+                          key={`${cert.name}-${index}`}
+                          className="rounded-2xl border border-primary/25 bg-card/70 p-5 backdrop-blur-xl"
+                        >
+                          <div className="flex items-center justify-between mb-4">
+                            <div className="flex items-center gap-3">
+                              <div className="h-11 w-11 rounded-2xl border border-primary/30 bg-primary/5 flex items-center justify-center text-primary">
+                                <cert.Icon size={20} />
+                              </div>
+                              <div>
+                                <p className="text-[11px] uppercase tracking-[0.5em] text-muted-foreground/80">
+                                  {cert.date}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                          <h4 className="text-base font-semibold text-foreground leading-snug">
+                            {cert.name}
+                          </h4>
+                          <p className="text-sm text-muted-foreground/90">{cert.issuer}</p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="text-center text-muted-foreground">
+                    <p className="text-base sm:text-lg">Tap below to explore Vaibhavee's certifications databank.</p>
+                  </div>
+                )}
+              </div>
+            )}
+
+            <div className="mt-8 flex justify-center">
+              <button
+                type="button"
+                onClick={() => setShowCertifications((prev) => !prev)}
+                aria-expanded={showCertifications}
+                className={`databank-toggle ${showCertifications ? 'is-active' : ''}`}
+              >
+                <span>{showCertifications ? 'Hide Certifications' : 'Show Certifications'}</span>
+                <span className="databank-toggle__icon">
+                  {showCertifications ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+                </span>
+              </button>
             </div>
           </div>
         </div>
