@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { supabase } from '@/lib/supabase';
+import { mockProjects } from '@/data/mockData';
 
 export interface Project {
   id: string;
@@ -25,14 +25,10 @@ export const useProjects = () => {
     const fetchProjects = async () => {
       try {
         setLoading(true);
-        const { data, error } = await supabase
-          .from('projects')
-          .select('*')
-          .order('display_order', { ascending: true });
+        // Simulate async operation
+        await new Promise(resolve => setTimeout(resolve, 200));
 
-        if (error) throw error;
-
-        const formattedProjects: Project[] = (data || []).map(project => ({
+        const formattedProjects: Project[] = mockProjects.map(project => ({
           id: project.id,
           title: project.title,
           description: project.description,
@@ -50,26 +46,6 @@ export const useProjects = () => {
     };
 
     fetchProjects();
-
-    // Subscribe to real-time changes
-    const channel = supabase
-      .channel('projects-changes')
-      .on(
-        'postgres_changes',
-        {
-          event: '*',
-          schema: 'public',
-          table: 'projects'
-        },
-        () => {
-          fetchProjects();
-        }
-      )
-      .subscribe();
-
-    return () => {
-      supabase.removeChannel(channel);
-    };
   }, []);
 
   return { projects, loading, error };
@@ -84,28 +60,14 @@ export const useProjectDetails = (projectId: string) => {
     const fetchProjectDetails = async () => {
       try {
         setLoading(true);
-        
-        const { data: projectData, error: projectError } = await supabase
-          .from('projects')
-          .select('*')
-          .eq('id', projectId)
-          .single();
+        // Simulate async operation
+        await new Promise(resolve => setTimeout(resolve, 200));
 
-        if (projectError) throw projectError;
+        const projectData = mockProjects.find(p => p.id === projectId);
+
         if (!projectData) throw new Error('Project not found');
 
-        const { data: imagesData, error: imagesError } = await supabase
-          .from('project_images')
-          .select('image_url')
-          .eq('project_id', projectId)
-          .order('display_order', { ascending: true });
-
-        if (imagesError) throw imagesError;
-
-        const images = imagesData?.map(img => img.image_url) || [];
-        if (images.length === 0 && projectData.image_url) {
-          images.push(projectData.image_url);
-        }
+        const images = projectData.image_url ? [projectData.image_url] : [];
 
         const formattedProject: ProjectDetails = {
           id: projectData.id,

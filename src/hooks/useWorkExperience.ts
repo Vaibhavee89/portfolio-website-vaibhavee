@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { supabase } from '@/lib/supabase';
+import { mockWorkExperience } from '@/data/mockData';
 
 export interface WorkItem {
   title: string;
@@ -18,14 +18,10 @@ export const useWorkExperience = () => {
     const fetchWorkExperience = async () => {
       try {
         setLoading(true);
-        const { data, error } = await supabase
-          .from('work_experience')
-          .select('*')
-          .order('display_order', { ascending: true });
+        // Simulate async operation
+        await new Promise(resolve => setTimeout(resolve, 200));
 
-        if (error) throw error;
-
-        const formattedWork: WorkItem[] = (data || []).map(work => ({
+        const formattedWork: WorkItem[] = mockWorkExperience.map(work => ({
           title: work.title,
           organisation: work.organisation,
           period: work.period,

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { supabase } from '@/lib/supabase';
+import { mockAboutMe } from '@/data/mockData';
 
 export interface Highlight {
   id: string;
@@ -30,13 +30,9 @@ export function useAboutMe() {
   async function fetchAboutMe() {
     try {
       setLoading(true);
-      const { data, error } = await supabase
-        .from('about_me')
-        .select('*')
-        .single();
-
-      if (error) throw error;
-      setAboutMe(data);
+      // Simulate async operation
+      await new Promise(resolve => setTimeout(resolve, 300));
+      setAboutMe(mockAboutMe);
     } catch (err) {
       console.error('Error fetching about me:', err);
       setError(err instanceof Error ? err.message : 'Failed to fetch about me data');

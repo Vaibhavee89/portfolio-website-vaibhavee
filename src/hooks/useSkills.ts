@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import { supabase } from '@/lib/supabase';
-import * as LucideIcons from 'lucide-react';
+import { mockSkills } from '@/data/mockData';
 import type { LucideIcon } from 'lucide-react';
 
 export interface Skill {
@@ -17,22 +16,9 @@ export const useSkills = () => {
     const fetchSkills = async () => {
       try {
         setLoading(true);
-        const { data, error } = await supabase
-          .from('skills')
-          .select('*')
-          .order('display_order', { ascending: true });
-
-        if (error) throw error;
-
-        const formattedSkills: Skill[] = (data || []).map(skill => {
-          const IconComponent = (LucideIcons as any)[skill.icon_name] || LucideIcons.Code;
-          return {
-            name: skill.name,
-            Icon: IconComponent
-          };
-        });
-
-        setSkills(formattedSkills);
+        // Simulate async operation
+        await new Promise(resolve => setTimeout(resolve, 200));
+        setSkills(mockSkills);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to fetch skills');
         console.error('Error fetching skills:', err);
@@ -42,26 +28,6 @@ export const useSkills = () => {
     };
 
     fetchSkills();
-
-    // Subscribe to real-time changes
-    const channel = supabase
-      .channel('skills-changes')
-      .on(
-        'postgres_changes',
-        {
-          event: '*',
-          schema: 'public',
-          table: 'skills'
-        },
-        () => {
-          fetchSkills();
-        }
-      )
-      .subscribe();
-
-    return () => {
-      supabase.removeChannel(channel);
-    };
   }, []);
 
   return { skills, loading, error };

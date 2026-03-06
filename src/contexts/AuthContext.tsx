@@ -1,10 +1,19 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { User, Session } from '@supabase/supabase-js';
-import { supabase } from '@/lib/supabase';
+
+// Mock User and Session types since Supabase is disabled
+type User = {
+  id: string;
+  email?: string;
+} | null;
+
+type Session = {
+  user: User;
+  access_token: string;
+} | null;
 
 interface AuthContextType {
-  user: User | null;
-  session: Session | null;
+  user: User;
+  session: Session;
   loading: boolean;
   signIn: (email: string, password: string) => Promise<{ error: any }>;
   signOut: () => Promise<void>;
@@ -13,38 +22,38 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [user, setUser] = useState<User | null>(null);
-  const [session, setSession] = useState<Session | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState<User>(null);
+  const [session, setSession] = useState<Session>(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-      setLoading(false);
-    });
-
-    const {
-      data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-      setLoading(false);
-    });
-
-    return () => subscription.unsubscribe();
+    // Check if user was previously logged in (localStorage)
+    const savedUser = localStorage.getItem('mock_auth_user');
+    if (savedUser) {
+      const parsedUser = JSON.parse(savedUser);
+      setUser(parsedUser);
+      setSession({ user: parsedUser, access_token: 'mock_token' });
+    }
+    setLoading(false);
   }, []);
 
   const signIn = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
-    return { error };
+    // Mock authentication - accept any credentials for now
+    // In production, this would validate against a backend
+    if (email && password) {
+      const mockUser = { id: '1', email };
+      setUser(mockUser);
+      setSession({ user: mockUser, access_token: 'mock_token' });
+      localStorage.setItem('mock_auth_user', JSON.stringify(mockUser));
+      return { error: null };
+    }
+    return { error: { message: 'Invalid credentials' } };
   };
 
   const signOut = async () => {
-    await supabase.auth.signOut();
+    setUser(null);
+    setSession(null);
+    localStorage.removeItem('mock_auth_user');
   };
 
   return (

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { supabase } from '@/lib/supabase';
+import { mockBlogPosts } from '@/data/mockData';
 
 export interface BlogPost {
   id: string;
@@ -19,14 +19,10 @@ export const useBlogPosts = () => {
     const fetchBlogPosts = async () => {
       try {
         setLoading(true);
-        const { data, error } = await supabase
-          .from('blog_posts')
-          .select('*')
-          .order('display_order', { ascending: true });
+        // Simulate async operation
+        await new Promise(resolve => setTimeout(resolve, 200));
 
-        if (error) throw error;
-
-        const formattedPosts: BlogPost[] = (data || []).map(post => ({
+        const formattedPosts: BlogPost[] = mockBlogPosts.map(post => ({
           id: post.id,
           title: post.title,
           excerpt: post.excerpt,
@@ -45,26 +41,6 @@ export const useBlogPosts = () => {
     };
 
     fetchBlogPosts();
-
-    // Subscribe to real-time changes
-    const channel = supabase
-      .channel('blog-posts-changes')
-      .on(
-        'postgres_changes',
-        {
-          event: '*',
-          schema: 'public',
-          table: 'blog_posts'
-        },
-        () => {
-          fetchBlogPosts();
-        }
-      )
-      .subscribe();
-
-    return () => {
-      supabase.removeChannel(channel);
-    };
   }, []);
 
   return { blogPosts, loading, error };

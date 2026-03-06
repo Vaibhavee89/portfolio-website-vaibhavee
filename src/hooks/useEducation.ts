@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { supabase } from '@/lib/supabase';
+import { mockEducation } from '@/data/mockData';
 
 export interface EducationItem {
   title: string;
@@ -16,14 +16,10 @@ export const useEducation = () => {
     const fetchEducation = async () => {
       try {
         setLoading(true);
-        const { data, error } = await supabase
-          .from('education')
-          .select('*')
-          .order('display_order', { ascending: true });
+        // Simulate async operation
+        await new Promise(resolve => setTimeout(resolve, 200));
 
-        if (error) throw error;
-
-        const formattedEducation: EducationItem[] = (data || []).map(edu => ({
+        const formattedEducation: EducationItem[] = mockEducation.map(edu => ({
           title: edu.title,
           period: edu.period,
           description: edu.description

@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
-import { supabase } from '@/lib/supabase';
-import * as LucideIcons from 'lucide-react';
+import { mockCertifications } from '@/data/mockData';
 import type { LucideIcon } from 'lucide-react';
 
 export interface Certification {
@@ -21,24 +20,17 @@ export const useCertifications = () => {
     const fetchCertifications = async () => {
       try {
         setLoading(true);
-        const { data, error } = await supabase
-          .from('certifications')
-          .select('*')
-          .order('display_order', { ascending: true });
+        // Simulate async operation
+        await new Promise(resolve => setTimeout(resolve, 200));
 
-        if (error) throw error;
-
-        const formattedCertifications: Certification[] = (data || []).map(cert => {
-          const IconComponent = (LucideIcons as any)[cert.icon_name] || LucideIcons.Award;
-          return {
-            name: cert.name,
-            issuer: cert.issuer,
-            date: cert.date,
-            Icon: IconComponent,
-            credentialUrl: cert.credential_url || undefined,
-            description: cert.description || undefined
-          };
-        });
+        const formattedCertifications: Certification[] = mockCertifications.map(cert => ({
+          name: cert.name,
+          issuer: cert.issuer,
+          date: cert.date,
+          Icon: cert.Icon,
+          credentialUrl: cert.credential_url || undefined,
+          description: cert.description || undefined
+        }));
 
         setCertifications(formattedCertifications);
       } catch (err) {

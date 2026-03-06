@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { supabase } from '@/lib/supabase';
+import { mockEvents } from '@/data/mockData';
 
 export interface EventImage {
   src: string;
@@ -16,14 +16,10 @@ export const useEvents = () => {
     const fetchEvents = async () => {
       try {
         setLoading(true);
-        const { data, error } = await supabase
-          .from('events')
-          .select('*')
-          .order('display_order', { ascending: true });
+        // Simulate async operation
+        await new Promise(resolve => setTimeout(resolve, 200));
 
-        if (error) throw error;
-
-        const formattedEvents: EventImage[] = (data || []).map(event => ({
+        const formattedEvents: EventImage[] = mockEvents.map(event => ({
           src: event.image_url,
           alt: event.alt_text,
           caption: event.caption
@@ -39,26 +35,6 @@ export const useEvents = () => {
     };
 
     fetchEvents();
-
-    // Subscribe to real-time changes
-    const channel = supabase
-      .channel('events-changes')
-      .on(
-        'postgres_changes',
-        {
-          event: '*',
-          schema: 'public',
-          table: 'events'
-        },
-        () => {
-          fetchEvents();
-        }
-      )
-      .subscribe();
-
-    return () => {
-      supabase.removeChannel(channel);
-    };
   }, []);
 
   return { events, loading, error };
