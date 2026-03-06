@@ -15,7 +15,7 @@ import Dashboard from "./pages/admin/Dashboard";
 import Projects from "./pages/admin/Projects";
 import Skills from "./pages/admin/Skills";
 import AboutMe from "./pages/admin/AboutMe";
-import { ChatWidget } from "./components/chat/ChatWidget";
+// import { ChatWidget } from "./components/chat/ChatWidget";
 
 const queryClient = new QueryClient();
 
@@ -48,7 +48,7 @@ const App = () => (
             
             <Route path="*" element={<NotFound />} />
           </Routes>
-          <ChatWidget />
+          {/* <ChatWidget /> */}
         </BrowserRouter>
       </TooltipProvider>
     </AuthProvider>
