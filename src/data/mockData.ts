@@ -188,6 +188,13 @@ export const mockEvents = [
     alt_text: 'HackCBS 7.0',
     caption: 'HackCBS 7.0',
     display_order: 11
+  },
+  {
+    id: '13',
+    image_url: '/Scopely.jpg',
+    alt_text: 'GenAI team at Scopely',
+    caption: 'GenAI team at Scopely',
+    display_order: 12
   }
 ];
 
