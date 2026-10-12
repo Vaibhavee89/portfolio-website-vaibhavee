@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { supabase } from '@/lib/supabase';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -23,6 +22,7 @@ import {
 } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
+import { mockProjects } from '@/data/mockData';
 import { Plus, Pencil, Trash2, ExternalLink } from 'lucide-react';
 
 interface Project {
@@ -64,13 +64,8 @@ export default function Projects() {
 
   const fetchProjects = async () => {
     try {
-      const { data, error } = await supabase
-        .from('projects')
-        .select('*')
-        .order('display_order', { ascending: true });
-
-      if (error) throw error;
-      setProjects(data || []);
+      // Mock mode: read from src/data/mockData.ts
+      setProjects(mockProjects as Project[]);
     } catch (error: any) {
       toast({
         title: 'Error',
@@ -99,24 +94,13 @@ export default function Projects() {
     };
 
     try {
-      if (editingProject) {
-        const { error } = await supabase
-          .from('projects')
-          .update(projectData)
-          .eq('id', editingProject.id);
-
-        if (error) throw error;
-        toast({ title: 'Success', description: 'Project updated successfully' });
-      } else {
-        const { error } = await supabase.from('projects').insert([projectData]);
-
-        if (error) throw error;
-        toast({ title: 'Success', description: 'Project created successfully' });
-      }
-
-      setDialogOpen(false);
-      resetForm();
-      fetchProjects();
+      // Mock mode: nothing is written. Edit src/data/mockData.ts to change projects.
+      void projectData;
+      toast({
+        title: 'Not saved',
+        description: 'Saving is disabled in mock mode. Edit src/data/mockData.ts to change projects.',
+        variant: 'destructive',
+      });
     } catch (error: any) {
       toast({
         title: 'Error',
@@ -146,31 +130,12 @@ export default function Projects() {
   const handleDelete = async (id: string) => {
     if (!confirm('Are you sure you want to delete this project?')) return;
 
-    try {
-      console.log('Attempting to delete project:', id);
-      
-      // Check current session
-      const { data: { session } } = await supabase.auth.getSession();
-      console.log('Current session:', session);
-      
-      const { data, error } = await supabase.from('projects').delete().eq('id', id);
-
-      if (error) {
-        console.error('Delete error:', error);
-        throw error;
-      }
-      
-      console.log('Delete successful:', data);
-      toast({ title: 'Success', description: 'Project deleted successfully' });
-      fetchProjects();
-    } catch (error: any) {
-      console.error('Delete failed:', error);
-      toast({
-        title: 'Error',
-        description: error.message || 'Failed to delete project',
-        variant: 'destructive',
-      });
-    }
+    // Mock mode: nothing is deleted. Edit src/data/mockData.ts to change projects.
+    toast({
+      title: 'Not deleted',
+      description: `Deleting is disabled in mock mode (project ${id}).`,
+      variant: 'destructive',
+    });
   };
 
   const resetForm = () => {

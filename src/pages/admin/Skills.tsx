@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { supabase } from '@/lib/supabase';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -21,6 +20,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { useToast } from '@/hooks/use-toast';
+import { mockSkills } from '@/data/mockData';
 import { Plus, Pencil, Trash2 } from 'lucide-react';
 
 interface Skill {
@@ -49,13 +49,8 @@ export default function Skills() {
 
   const fetchSkills = async () => {
     try {
-      const { data, error } = await supabase
-        .from('skills')
-        .select('*')
-        .order('display_order', { ascending: true });
-
-      if (error) throw error;
-      setSkills(data || []);
+      // Mock mode: read from src/data/mockData.ts
+      setSkills(mockSkills as Skill[]);
     } catch (error: any) {
       toast({
         title: 'Error',
@@ -71,24 +66,13 @@ export default function Skills() {
     e.preventDefault();
 
     try {
-      if (editingSkill) {
-        const { error } = await supabase
-          .from('skills')
-          .update(formData)
-          .eq('id', editingSkill.id);
-
-        if (error) throw error;
-        toast({ title: 'Success', description: 'Skill updated successfully' });
-      } else {
-        const { error } = await supabase.from('skills').insert([formData]);
-
-        if (error) throw error;
-        toast({ title: 'Success', description: 'Skill created successfully' });
-      }
-
-      setDialogOpen(false);
-      resetForm();
-      fetchSkills();
+      // Mock mode: nothing is written. Edit src/data/mockData.ts to change skills.
+      void formData;
+      toast({
+        title: 'Not saved',
+        description: 'Saving is disabled in mock mode. Edit src/data/mockData.ts to change skills.',
+        variant: 'destructive',
+      });
     } catch (error: any) {
       toast({
         title: 'Error',
@@ -111,19 +95,12 @@ export default function Skills() {
   const handleDelete = async (id: string) => {
     if (!confirm('Are you sure you want to delete this skill?')) return;
 
-    try {
-      const { error } = await supabase.from('skills').delete().eq('id', id);
-
-      if (error) throw error;
-      toast({ title: 'Success', description: 'Skill deleted successfully' });
-      fetchSkills();
-    } catch (error: any) {
-      toast({
-        title: 'Error',
-        description: error.message,
-        variant: 'destructive',
-      });
-    }
+    // Mock mode: nothing is deleted. Edit src/data/mockData.ts to change skills.
+    toast({
+      title: 'Not deleted',
+      description: `Deleting is disabled in mock mode (skill ${id}).`,
+      variant: 'destructive',
+    });
   };
 
   const resetForm = () => {

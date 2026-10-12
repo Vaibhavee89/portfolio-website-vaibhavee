@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { supabase } from '@/lib/supabase';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -97,31 +96,14 @@ export default function AboutMe() {
     setSaving(true);
 
     try {
-      const sanitizedHighlights = sanitizeHighlights(formData.highlights);
-
-      const { error } = await supabase
-        .from('about_me')
-        .update({
-          title: formData.title,
-          description: formData.description,
-          image_url: formData.image_url,
-          highlights: sanitizedHighlights,
-        })
-        .eq('id', aboutMe?.id);
-
-      if (error) throw error;
-
-      setFormData((prev) => ({
-        ...prev,
-        highlights: sanitizedHighlights,
-      }));
+      // Mock mode: there is no database to write to. Edit src/data/mockData.ts instead.
+      sanitizeHighlights(formData.highlights);
 
       toast({
-        title: 'Success',
-        description: 'About Me section updated successfully',
+        title: 'Not saved',
+        description: 'Saving is disabled in mock mode. Edit src/data/mockData.ts to change About Me.',
+        variant: 'destructive',
       });
-
-      refetch();
     } catch (error) {
       console.error('Error updating about me:', error);
       toast({

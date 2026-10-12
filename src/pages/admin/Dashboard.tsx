@@ -1,6 +1,14 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { supabase } from '@/lib/supabase';
+import {
+  mockProjects,
+  mockSkills,
+  mockCertifications,
+  mockEducation,
+  mockWorkExperience,
+  mockBlogPosts,
+  mockEvents,
+} from '@/data/mockData';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import {
@@ -39,24 +47,15 @@ export default function Dashboard() {
   useEffect(() => {
     async function fetchStats() {
       try {
-        const [projects, skills, certs, edu, work, blogs, events] = await Promise.all([
-          supabase.from('projects').select('id', { count: 'exact', head: true }),
-          supabase.from('skills').select('id', { count: 'exact', head: true }),
-          supabase.from('certifications').select('id', { count: 'exact', head: true }),
-          supabase.from('education').select('id', { count: 'exact', head: true }),
-          supabase.from('work_experience').select('id', { count: 'exact', head: true }),
-          supabase.from('blog_posts').select('id', { count: 'exact', head: true }),
-          supabase.from('events').select('id', { count: 'exact', head: true }),
-        ]);
-
+        // Mock mode: counts come from the static data in src/data/mockData.ts
         setStats({
-          projects: projects.count || 0,
-          skills: skills.count || 0,
-          certifications: certs.count || 0,
-          education: edu.count || 0,
-          workExperience: work.count || 0,
-          blogPosts: blogs.count || 0,
-          events: events.count || 0,
+          projects: mockProjects.length,
+          skills: mockSkills.length,
+          certifications: mockCertifications.length,
+          education: mockEducation.length,
+          workExperience: mockWorkExperience.length,
+          blogPosts: mockBlogPosts.length,
+          events: mockEvents.length,
         });
       } catch (error) {
         console.error('Error fetching stats:', error);
