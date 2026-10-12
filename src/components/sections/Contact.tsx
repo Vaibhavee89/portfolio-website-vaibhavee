@@ -114,18 +114,18 @@ export const Contact = () => {
                 <h3 className="text-lg font-bold mb-3">Location</h3>
                 <div className="w-full h-64 rounded-lg overflow-hidden border border-border">
                   <iframe
-                    src="https://www.google.com/maps?q=231,+3rd+Cross,+opp.+BBMP+Office,+near+Central+Mall,+Bellandur,+Bengaluru,+Karnataka+560103&output=embed"
+                    src="https://www.google.com/maps?q=Janta+Flat,+Housing+Colony,+Bartand,+Dhanbad,+Jharkhand&output=embed"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
                     allowFullScreen
                     loading="lazy"
                     referrerPolicy="no-referrer-when-downgrade"
-                    title="Location Map - Bellandur, Bengaluru"
+                    title="Location Map - Dhanbad, Jharkhand"
                   ></iframe>
                 </div>
                 <p className="text-muted-foreground mt-2 text-sm">
-                  231, 3rd Cross, opp. BBMP Office, near Central Mall, Bellandur, Bengaluru, Karnataka 560103
+                  Near Janta Flat, Housing Colony, Bartand, Dhanbad, Jharkhand
                 </p>
               </div>
             </div>
@@ -140,7 +140,7 @@ export const Contact = () => {
                   href="mailto:vaibhaveesingh89@gmail.com" 
                   className="text-muted-foreground hover:text-primary transition-colors"
                 >
-                  singhvaibhavee1@gmail.com
+                  vaibhaveesingh89@gmail.com
                 </a>
               </div>
             </div>

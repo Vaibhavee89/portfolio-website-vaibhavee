@@ -3,19 +3,19 @@ import * as LucideIcons from 'lucide-react';
 export const mockAboutMe = {
   id: '1',
   title: 'A passionate technologist',
-  description: 'I am a BTech 4th year student passionate about research and specializing in Cloud Computing, AI/ML, Deep Learning and Computer Vision. I love transforming ideas into impactful solutions, whether it\'s developing AI-powered applications, writing research papers, or contributing to meaningful projects. My goal is to bridge the gap between research and real-world applications, constantly pushing the boundaries of technology.',
+  description: 'I am a Software Development Engineer with a B.Tech in Computer Science and Engineering from Bennett University (2022 - 2026). I work across data platforms, cloud infrastructure and AI engineering, building internal tools for analysts and engineers, Airflow and Pinot automation, and LLM integrations such as MCP connectors and AI agents. I enjoy turning messy operational problems into reliable, self-service systems.',
   image_url: '/MyImage.png',
   highlights: [
     {
       id: '1',
-      title: 'AI, Cloud & Research',
-      description: 'Bridging intelligent systems with real-world impact.',
+      title: 'Data Platform & Cloud',
+      description: 'Airflow, Apache Pinot, AWS migrations and Terraform-managed infrastructure.',
       order: 0
     },
     {
       id: '2',
-      title: 'Continuous learning',
-      description: 'Driven by collaboration, innovation, and community initiatives.',
+      title: 'AI Engineering',
+      description: 'MCP connectors, AI agents, semantic search and LLM evaluation.',
       order: 1
     }
   ],
@@ -25,16 +25,26 @@ export const mockAboutMe = {
 
 export const mockSkills = [
   { name: 'Python', icon_name: 'Code' },
-  { name: 'TensorFlow', icon_name: 'Brain' },
-  { name: 'PyTorch', icon_name: 'Cpu' },
+  { name: 'C++', icon_name: 'Cpu' },
+  { name: 'JavaScript', icon_name: 'Code2' },
+  { name: 'SQL', icon_name: 'Database' },
+  { name: 'LLMs & AI Agents', icon_name: 'Brain' },
+  { name: 'MCP', icon_name: 'Workflow' },
+  { name: 'Semantic Search', icon_name: 'Search' },
+  { name: 'Apache Airflow', icon_name: 'Workflow' },
+  { name: 'Apache Pinot', icon_name: 'Database' },
+  { name: 'Kafka', icon_name: 'Server' },
+  { name: 'Redis', icon_name: 'Server' },
   { name: 'AWS', icon_name: 'Cloud' },
   { name: 'Docker', icon_name: 'Package' },
+  { name: 'Kubernetes', icon_name: 'Package' },
+  { name: 'Terraform', icon_name: 'Cloud' },
+  { name: 'Argo CD', icon_name: 'GitBranch' },
+  { name: 'Grafana', icon_name: 'Terminal' },
   { name: 'React', icon_name: 'Code2' },
+  { name: 'Next.js', icon_name: 'Code2' },
   { name: 'Node.js', icon_name: 'Server' },
   { name: 'Git', icon_name: 'GitBranch' },
-  { name: 'Linux', icon_name: 'Terminal' },
-  { name: 'SQL', icon_name: 'Database' },
-  { name: 'MongoDB', icon_name: 'Database' },
   { name: 'CI/CD', icon_name: 'Workflow' }
 ].map((skill, index) => ({
   id: String(index + 1),
@@ -48,10 +58,10 @@ export const mockProjects = [
   {
     id: 'spam-detection',
     title: 'Instagram Spam Detection',
-    description: 'AI-powered spam account detection system using machine learning',
-    full_description: 'Developed a comprehensive spam detection system for Instagram using machine learning algorithms. Published research paper in IEEE IC3SE-2024 conference proceedings.',
+    description: 'Machine learning system for identifying spam accounts on Instagram',
+    full_description: 'Research on identifying spam accounts on Instagram using machine learning. Published as "Identifying Spam Accounts on Instagram" in the IEEE IC3SE-2024 proceedings.',
     image_url: '/placeholder.svg',
-    tags: ['Python', 'ML', 'Research'],
+    tags: ['Python', 'Machine Learning', 'Research'],
     live_link: '',
     github_link: '',
     display_order: 0,
@@ -61,9 +71,9 @@ export const mockProjects = [
     id: 'prabhawatt',
     title: 'PrabhaWatt',
     description: 'Solar energy management and electricity saving platform',
-    full_description: 'A solar energy management platform that helps optimize electricity consumption. Top 10 finalist at Luminous Techno-X Hackathon out of 500+ teams.',
+    full_description: 'A solar energy management platform for optimizing electricity consumption. Top 10 Grand Finalist at Luminous Techno-X 2024.',
     image_url: '/placeholder.svg',
-    tags: ['React', 'IoT', 'Cloud'],
+    tags: ['Solar Energy', 'Energy Management', 'Hackathon'],
     live_link: '',
     github_link: '',
     display_order: 1,
@@ -95,24 +105,24 @@ export const mockEvents = [
 export const mockCertifications = [
   {
     id: '1',
-    name: 'AWS Certified Solutions Architect',
+    name: 'AWS Certified Cloud Practitioner',
     issuer: 'Amazon Web Services',
-    date: 'January 2024',
+    date: '',
     icon_name: 'Award',
     Icon: LucideIcons.Award,
-    credential_url: 'https://www.credly.com',
-    description: 'Professional certification for AWS cloud architecture',
+    credential_url: '',
+    description: 'AWS Cloud fundamentals certification',
     display_order: 0
   },
   {
     id: '2',
-    name: 'TensorFlow Developer Certificate',
-    issuer: 'Google',
-    date: 'December 2023',
+    name: 'Generative AI Fundamentals Accreditation',
+    issuer: 'Databricks Academy',
+    date: '',
     icon_name: 'Award',
     Icon: LucideIcons.Award,
-    credential_url: 'https://www.credential.net',
-    description: 'Professional certification for TensorFlow',
+    credential_url: '',
+    description: 'Generative AI fundamentals accreditation from Databricks Academy',
     display_order: 1
   }
 ];
@@ -120,9 +130,9 @@ export const mockCertifications = [
 export const mockEducation = [
   {
     id: '1',
-    title: 'Bachelor of Technology in Computer Science',
-    period: '2021 - 2025',
-    description: 'Specialization in AI/ML and Cloud Computing. Focus on research and practical applications in computer vision and deep learning.',
+    title: 'B.Tech in Computer Science and Engineering, Bennett University (Greater Noida, India)',
+    period: '2022 - 2026',
+    description: 'CGPA: 8.37/10.',
     display_order: 0
   }
 ];
@@ -130,20 +140,20 @@ export const mockEducation = [
 export const mockWorkExperience = [
   {
     id: '1',
-    title: 'AI Research Intern',
-    organisation: 'Tech Company',
-    period: '2023 - Present',
+    title: 'Software Development Engineer Intern, Data Platform',
+    organisation: 'Blinkit',
+    period: 'April 2026 - October 2026',
     badge: '01',
-    description: 'Working on cutting-edge AI/ML projects focused on computer vision and natural language processing.',
+    description: 'Built GET, PUT and DELETE REST APIs and refactored a capacity planner into a dynamic, multi-tenant system with React UI and YAML-defined forecast metrics. Built an Airflow DAG that syncs business-unit metrics into AWS RDS, and an AI agent for self-service DAG debugging (integrating Airflow, Commuter, Slack and Grafana MCPs) that let analysts self-resolve 200+ failures a day. Added Claude Code and GitHub CLI to a JupyterHub deployment used by 1,400+ users, led cross-account AWS migrations with Terraform, Atlantis and Argo CD, and automated Apache Pinot table onboarding with Airflow.',
     display_order: 0
   },
   {
     id: '2',
-    title: 'Cloud Engineering Intern',
-    organisation: 'Cloud Solutions Inc',
-    period: '2022 - 2023',
+    title: 'AI Engineering Intern',
+    organisation: 'Scopely',
+    period: 'September 2025 - March 2026',
     badge: '02',
-    description: 'Developed cloud-native applications and implemented CI/CD pipelines using AWS services.',
+    description: 'Designed and deployed 15+ reusable MCP connectors for Claude Code, Codex and the internal AI platform, covering Google Workspace, Confluence, Unity and internal APIs. Added authentication and role-based access control for MCPs on the internal AI chat platform used by 3,000+ employees. Built an AI-powered presentation evaluation platform for 50+ hackathon teams, migrated an AI Assistant from the OpenAI Assistants API to the Responses API, and designed LLM evaluation metrics integrated with Braintrust.',
     display_order: 1
   }
 ];
