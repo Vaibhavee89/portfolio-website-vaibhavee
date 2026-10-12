@@ -3,7 +3,7 @@ import * as LucideIcons from 'lucide-react';
 export const mockAboutMe = {
   id: '1',
   title: 'A passionate technologist',
-  description: 'I am a Software Development Engineer with a B.Tech in Computer Science and Engineering from Bennett University (2022 - 2026). I work across data platforms, cloud infrastructure and AI engineering, building internal tools for analysts and engineers, Airflow and Pinot automation, and LLM integrations such as MCP connectors and AI agents. I enjoy turning messy operational problems into reliable, self-service systems.',
+  description: 'I am a Computer Science graduate of Bennett University (Class of 2026) focused on AI, machine learning and cloud-native systems. I work across data platforms, cloud infrastructure and AI engineering, building LLM-powered tools, MCP connectors and AI evaluation pipelines. Earlier I worked on cybersecurity at CDAC and research at CIMFR (CSIR), and my research spans AI systems, cybersecurity and applied machine learning, with IEEE publications and a co-authored book chapter on DDoS threat intelligence.',
   image_url: '/MyImage.png',
   highlights: [
     {
@@ -78,6 +78,18 @@ export const mockProjects = [
     github_link: '',
     display_order: 1,
     featured: true
+  },
+  {
+    id: 'netra',
+    title: 'NETRA',
+    description: 'AI-powered cybercrime reporting and analysis system',
+    full_description: 'NETRA is an AI-powered system for reporting and analysing cybercrime, presented as a publication alongside the DDoS threat intelligence work.',
+    image_url: '/placeholder.svg',
+    tags: ['Python', 'AI', 'Cybersecurity'],
+    live_link: '',
+    github_link: '',
+    display_order: 2,
+    featured: false
   }
 ];
 
@@ -155,5 +167,23 @@ export const mockWorkExperience = [
     badge: '02',
     description: 'Designed and deployed 15+ reusable MCP connectors for Claude Code, Codex and the internal AI platform, covering Google Workspace, Confluence, Unity and internal APIs. Added authentication and role-based access control for MCPs on the internal AI chat platform used by 3,000+ employees. Built an AI-powered presentation evaluation platform for 50+ hackathon teams, migrated an AI Assistant from the OpenAI Assistants API to the Responses API, and designed LLM evaluation metrics integrated with Braintrust.',
     display_order: 1
+  },
+  {
+    id: '3',
+    title: 'Trainee, Cybersecurity & Network Systems',
+    organisation: 'CDAC India',
+    period: 'June 2025 - August 2025',
+    badge: '03',
+    description: 'Contributed to the backend of a Flask-based network auditing tool for automated vulnerability scanning. Built a network simulation to demonstrate and mitigate ping floods and unauthorized access using firewall rules and access control lists.',
+    display_order: 2
+  },
+  {
+    id: '4',
+    title: 'Internship Trainee, Social Media Research',
+    organisation: 'CIMFR (CSIR), Dhanbad',
+    period: 'July 2024 - August 2024',
+    badge: '04',
+    description: 'Researched and analysed social media data, focusing on user engagement and sentiment trends.',
+    display_order: 3
   }
 ];

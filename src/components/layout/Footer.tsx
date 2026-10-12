@@ -35,7 +35,7 @@ export const Footer = () => {
               <a href="https://github.com/Vaibhavee89" target="_blank" rel="noopener noreferrer" className="p-2 bg-background rounded-full hover:text-primary transition-colors" aria-label="GitHub">
                 <Github size={20} />
               </a>
-              <a href="https://www.linkedin.com/in/vaibhavee-singh-1b7996252/" target="_blank" rel="noopener noreferrer" className="p-2 bg-background rounded-full hover:text-primary transition-colors" aria-label="LinkedIn">
+              <a href="https://www.linkedin.com/in/vaibhaveesingh-1b7996252/" target="_blank" rel="noopener noreferrer" className="p-2 bg-background rounded-full hover:text-primary transition-colors" aria-label="LinkedIn">
                 <Linkedin size={20} />
               </a>
               <a href="https://x.com/VaibhaveeSingh3" target="_blank" rel="noopener noreferrer" className="p-2 bg-background rounded-full hover:text-primary transition-colors" aria-label="Twitter">
