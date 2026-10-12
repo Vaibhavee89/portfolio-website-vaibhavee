@@ -107,10 +107,87 @@ export const mockBlogPosts = [
 export const mockEvents = [
   {
     id: '1',
-    image_url: '/placeholder.svg',
-    alt_text: 'Tech Conference',
-    caption: 'Speaking at Tech Conference 2024',
+    image_url: '/GitTogether.jpg',
+    alt_text: 'Git Together at Microsoft office Greater Noida- Nov 2024',
+    caption: 'Git Together at Microsoft office Greater Noida- Nov 2024',
     display_order: 0
+  },
+  {
+    id: '2',
+    image_url: '/Student_volunteer_conference.jpg',
+    alt_text: 'Student volunteer at ICICC-2025',
+    caption: 'Student Volunteer at ICICC-2025',
+    display_order: 1
+  },
+  {
+    id: '3',
+    image_url: '/ResearchHackathon.jpg',
+    alt_text: 'Participated in Research Hackathon organized at Bennett University during first year of college',
+    caption: 'Participated in Research Hackathon organized at Bennett University during first year of college',
+    display_order: 2
+  },
+  {
+    id: '4',
+    image_url: '/HP_PowerLab.jpg',
+    alt_text: 'HP PowerLab Hackathon Certificate',
+    caption: 'HP PowerLab Hackathon Certificate',
+    display_order: 3
+  },
+  {
+    id: '5',
+    image_url: '/Team-Luminous.jpg',
+    alt_text: 'With my team at Luminous Techno-X Hackathon',
+    caption: 'With my team at Luminous Techno-X Hackathon',
+    display_order: 4
+  },
+  {
+    id: '6',
+    image_url: '/LuminousHackathon.jpg',
+    alt_text: 'Luminous Techno-X Hackathon',
+    caption: 'Luminous Techno-X Hackathon',
+    display_order: 5
+  },
+  {
+    id: '7',
+    image_url: '/ProjectShowcase2ndYear.jpg',
+    alt_text: 'Project Showcase during 2nd year of college',
+    caption: 'Project Showcase during 2nd year of college',
+    display_order: 6
+  },
+  {
+    id: '8',
+    image_url: '/AWS_StudentCommunityDay.jpg',
+    alt_text: 'AWS Student Community Day',
+    caption: 'AWS Student Community Day',
+    display_order: 7
+  },
+  {
+    id: '9',
+    image_url: '/AnshMehra.jpg',
+    alt_text: 'Got an opportunity to meet Ansh Mehra at Google DevFest New Delhi- 2023',
+    caption: 'Got an opportunity to meet Ansh Mehra at Google DevFest New Delhi- 2023',
+    display_order: 8
+  },
+  {
+    id: '10',
+    image_url: '/Paper_Presentation_Certificate.jpg',
+    alt_text: 'Paper Presentation Certificate',
+    caption: 'Paper Presentation Certificate',
+    display_order: 9
+  },
+  {
+    id: '11',
+    image_url: '/GoogleDevFest-2023.jpg',
+    alt_text: 'Google DevFest New Delhi- 2023',
+    caption: 'Google DevFest New Delhi- 2023',
+    display_order: 10
+  },
+  {
+    id: '12',
+    image_url: '/Hackcbs.jpg',
+    alt_text: 'HackCBS 7.0',
+    caption: 'HackCBS 7.0',
+    display_order: 11
   }
 ];
 
