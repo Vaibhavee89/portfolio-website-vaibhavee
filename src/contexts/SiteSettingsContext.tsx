@@ -1,10 +1,10 @@
-import { createContext, useContext, useEffect, useState, useCallback } from 'react';
-import { readVisitorTheme, writeVisitorTheme, resolveTheme } from '@/lib/themes';
+import { createContext, useContext, useEffect, useState } from 'react';
+import { DEFAULT_THEME, THEMES } from '@/lib/themes';
 
 // Values used until the API responds, or if it fails. They match the
 // migration defaults, so the page looks the same either way.
 export const DEFAULT_SETTINGS: Record<string, string> = {
-  theme: 'nebula',
+  theme: DEFAULT_THEME,
   hero_title: 'INNOVATE',
   hero_highlight: 'ITERATE & INSPIRE',
   hero_subtitle: 'Crafting data-driven, immersive experiences across the cloud, AI/ML, and human-centered design. Welcome to my portfolio.',
@@ -15,18 +15,16 @@ export const DEFAULT_SETTINGS: Record<string, string> = {
 
 interface SiteSettingsContextType {
   settings: Record<string, string>;
-  // The theme actually applied to the page, after visitor choice and site default.
+  // The theme applied to the page — set only via Settings in the admin
+  // panel. There is no visitor-facing switcher; every visitor sees the
+  // site default.
   activeTheme: string;
-  // null means "follow the site default".
-  visitorTheme: string | null;
-  setVisitorTheme: (id: string | null) => void;
 }
 
 const SiteSettingsContext = createContext<SiteSettingsContextType | undefined>(undefined);
 
 export function SiteSettingsProvider({ children }: { children: React.ReactNode }) {
   const [settings, setSettings] = useState<Record<string, string>>(DEFAULT_SETTINGS);
-  const [visitorTheme, setVisitorThemeState] = useState<string | null>(() => readVisitorTheme());
 
   useEffect(() => {
     let cancelled = false;
@@ -44,19 +42,14 @@ export function SiteSettingsProvider({ children }: { children: React.ReactNode }
     };
   }, []);
 
-  const activeTheme = resolveTheme(visitorTheme, settings.theme);
+  const activeTheme = THEMES.some((t) => t.id === settings.theme) ? settings.theme : DEFAULT_THEME;
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', activeTheme);
   }, [activeTheme]);
 
-  const setVisitorTheme = useCallback((id: string | null) => {
-    writeVisitorTheme(id);
-    setVisitorThemeState(id);
-  }, []);
-
   return (
-    <SiteSettingsContext.Provider value={{ settings, activeTheme, visitorTheme, setVisitorTheme }}>
+    <SiteSettingsContext.Provider value={{ settings, activeTheme }}>
       {children}
     </SiteSettingsContext.Provider>
   );
