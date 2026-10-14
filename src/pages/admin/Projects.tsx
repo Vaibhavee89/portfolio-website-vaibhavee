@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -57,11 +57,7 @@ export default function Projects() {
     featured: false,
   });
 
-  useEffect(() => {
-    fetchProjects();
-  }, []);
-
-  const fetchProjects = async () => {
+  const fetchProjects = useCallback(async () => {
     try {
       const res = await fetch('/api/projects');
       if (!res.ok) throw new Error('Failed to fetch projects');
@@ -75,7 +71,11 @@ export default function Projects() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [toast]);
+
+  useEffect(() => {
+    fetchProjects();
+  }, [fetchProjects]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

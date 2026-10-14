@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -53,11 +53,7 @@ export default function Certifications() {
   const [formData, setFormData] = useState(emptyForm);
   const { toast } = useToast();
 
-  useEffect(() => {
-    fetchCertifications();
-  }, []);
-
-  const fetchCertifications = async () => {
+  const fetchCertifications = useCallback(async () => {
     try {
       const res = await fetch('/api/certifications');
       if (!res.ok) throw new Error('Failed to load certifications');
@@ -71,7 +67,11 @@ export default function Certifications() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [toast]);
+
+  useEffect(() => {
+    fetchCertifications();
+  }, [fetchCertifications]);
 
   const resetForm = () => {
     setEditing(null);

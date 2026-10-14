@@ -16,25 +16,50 @@ This portfolio website serves as a personal space to highlight my achievements, 
 
 ## 🛠️ Tech Stack
 
-The project is developed using:
-
+**Frontend**
 - ⚡ **Vite** - Fast build tool for modern web development.
 - 📜 **TypeScript** - Ensuring type safety and better development experience.
 - ⚛️ **React** - A powerful library for building user interfaces.
-- 🎨 **shadcn-ui** - UI components for a clean and minimalistic design.
-- 🖌 **Tailwind CSS** - Utility-first CSS framework for responsive styling.
+- 🎨 **shadcn-ui** / **Tailwind CSS** - UI components and utility-first styling.
+- 🌌 **Three.js** (via `@react-three/fiber`) - The scroll-driven space background scene.
+
+**Backend / admin panel**
+- ▲ **Vercel Serverless Functions** (`api/`) - REST endpoints for all content and admin auth.
+- 🐘 **Postgres on Neon** (`@neondatabase/serverless`) - Persistent storage for every content section.
+- 🔐 Session cookie auth (JWT, httpOnly) for the `/admin` panel - see `BACKEND_SETUP.md`.
 
 ## ✨ Features
 
-- 🎭 **Modern UI/UX** - A clean and elegant design.
-- 🌙 **Dark Mode Support** - Seamless light/dark mode switch.
+- 🎭 **Modern UI/UX** - A clean and elegant design with a live 3D background.
+- 🎨 **Multiple Colour Themes** - Visitors can switch themes from the header; the admin sets the site default.
 - 📜 **Responsive Design** - Works perfectly on all screen sizes.
 - 📄 **Project Showcase** - Displaying my best projects with detailed descriptions.
+- 🛠️ **Admin Panel** (`/admin`) - Edit projects, skills, certifications, education, work experience, blog posts, events and landing-page content, backed by Postgres.
 - 📧 **Contact Section** - Easy-to-use contact form for networking.
 
-## 🏗️ How to Run Locally
+## 📁 Project Structure
 
-To edit or run the project on your local machine, follow these steps:
+```
+api/                  Vercel serverless functions (REST API + admin auth)
+  _lib/                 Shared auth (JWT/cookie) and database client
+  admin/                 Login / logout / session-check endpoints
+  *.ts                  One file per content type (projects, skills, ...)
+db/                    Postgres schema, seed script, migration scripts
+public/                Static assets (images, resume, favicon)
+src/
+  components/
+    sections/            Page sections (Hero, About, Projects, ...)
+    layout/               Header, Footer, ThemeSwitcher
+    admin/                Admin panel layout & route guard
+    three/                The Three.js space background
+    ui/                   shadcn-ui primitives
+  contexts/              Auth and site-settings React contexts
+  hooks/                 Data-fetching hooks, one per content type
+  lib/                   Shared helpers (themes, utils)
+  pages/                 Route-level pages, including pages/admin/*
+```
+
+## 🏗️ How to Run Locally
 
 ```sh
 # Step 1: Clone the repository
@@ -46,9 +71,14 @@ cd <YOUR_PROJECT_NAME>
 # Step 3: Install dependencies
 npm install
 
-# Step 4: Start the development server
+# Step 4: Start the frontend-only dev server (no /api routes)
 npm run dev
 ```
+
+`npm run dev` serves the frontend only — it can't run the `/api` routes
+(Vite doesn't execute them as serverless functions). To exercise the admin
+panel and backend locally, follow **`BACKEND_SETUP.md`** to connect a Neon
+database and run `npx vercel dev` instead.
 
 ## 📌 Contributing
 

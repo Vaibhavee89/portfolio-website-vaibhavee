@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -42,11 +42,7 @@ export default function Skills() {
     display_order: 0,
   });
 
-  useEffect(() => {
-    fetchSkills();
-  }, []);
-
-  const fetchSkills = async () => {
+  const fetchSkills = useCallback(async () => {
     try {
       const res = await fetch('/api/skills');
       if (!res.ok) throw new Error('Failed to fetch skills');
@@ -60,7 +56,11 @@ export default function Skills() {
     } finally {
       setLoading(false);
     }
-  };
+  }, [toast]);
+
+  useEffect(() => {
+    fetchSkills();
+  }, [fetchSkills]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
