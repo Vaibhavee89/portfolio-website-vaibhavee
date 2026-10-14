@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { mockBlogPosts } from '@/data/mockData';
 
 export interface BlogPost {
   id: string;
@@ -8,6 +7,15 @@ export interface BlogPost {
   date: string;
   readTime: string;
   devToUrl: string;
+}
+
+interface BlogPostRow {
+  id: string;
+  title: string;
+  excerpt: string;
+  date: string;
+  read_time: string;
+  dev_to_url: string;
 }
 
 export const useBlogPosts = () => {
@@ -19,19 +27,20 @@ export const useBlogPosts = () => {
     const fetchBlogPosts = async () => {
       try {
         setLoading(true);
-        // Simulate async operation
-        await new Promise(resolve => setTimeout(resolve, 200));
+        const res = await fetch('/api/blog-posts');
+        if (!res.ok) throw new Error('Failed to fetch blog posts');
+        const rows: BlogPostRow[] = await res.json();
 
-        const formattedPosts: BlogPost[] = mockBlogPosts.map(post => ({
-          id: post.id,
-          title: post.title,
-          excerpt: post.excerpt,
-          date: post.date,
-          readTime: post.read_time,
-          devToUrl: post.dev_to_url
-        }));
-
-        setBlogPosts(formattedPosts);
+        setBlogPosts(
+          rows.map((post) => ({
+            id: post.id,
+            title: post.title,
+            excerpt: post.excerpt,
+            date: post.date,
+            readTime: post.read_time,
+            devToUrl: post.dev_to_url,
+          }))
+        );
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to fetch blog posts');
         console.error('Error fetching blog posts:', err);

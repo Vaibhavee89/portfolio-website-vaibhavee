@@ -22,7 +22,6 @@ import {
 } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
 import { useToast } from '@/hooks/use-toast';
-import { mockProjects } from '@/data/mockData';
 import { Plus, Pencil, Trash2, ExternalLink } from 'lucide-react';
 
 interface Project {
@@ -64,12 +63,13 @@ export default function Projects() {
 
   const fetchProjects = async () => {
     try {
-      // Mock mode: read from src/data/mockData.ts
-      setProjects(mockProjects as Project[]);
-    } catch (error: any) {
+      const res = await fetch('/api/projects');
+      if (!res.ok) throw new Error('Failed to fetch projects');
+      setProjects(await res.json());
+    } catch (error) {
       toast({
         title: 'Error',
-        description: error.message,
+        description: error instanceof Error ? error.message : 'Failed to fetch projects',
         variant: 'destructive',
       });
     } finally {
@@ -94,17 +94,23 @@ export default function Projects() {
     };
 
     try {
-      // Mock mode: nothing is written. Edit src/data/mockData.ts to change projects.
-      void projectData;
-      toast({
-        title: 'Not saved',
-        description: 'Saving is disabled in mock mode. Edit src/data/mockData.ts to change projects.',
-        variant: 'destructive',
+      const isEditing = !!editingProject;
+      const res = await fetch('/api/projects', {
+        method: isEditing ? 'PUT' : 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(projectData),
       });
-    } catch (error: any) {
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to save project');
+
+      toast({ title: isEditing ? 'Project updated' : 'Project created' });
+      setDialogOpen(false);
+      resetForm();
+      fetchProjects();
+    } catch (error) {
       toast({
         title: 'Error',
-        description: error.message,
+        description: error instanceof Error ? error.message : 'Failed to save project',
         variant: 'destructive',
       });
     }
@@ -130,12 +136,19 @@ export default function Projects() {
   const handleDelete = async (id: string) => {
     if (!confirm('Are you sure you want to delete this project?')) return;
 
-    // Mock mode: nothing is deleted. Edit src/data/mockData.ts to change projects.
-    toast({
-      title: 'Not deleted',
-      description: `Deleting is disabled in mock mode (project ${id}).`,
-      variant: 'destructive',
-    });
+    try {
+      const res = await fetch(`/api/projects?id=${encodeURIComponent(id)}`, { method: 'DELETE' });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to delete project');
+      toast({ title: 'Project deleted' });
+      fetchProjects();
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description: error instanceof Error ? error.message : 'Failed to delete project',
+        variant: 'destructive',
+      });
+    }
   };
 
   const resetForm = () => {

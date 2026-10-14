@@ -24,7 +24,7 @@ export default function Login() {
     const { error } = await signIn(email, password);
 
     if (error) {
-      setError(error.message);
+      setError(error);
       setLoading(false);
     } else {
       navigate('/admin/dashboard');
@@ -91,10 +91,6 @@ export default function Login() {
             <Button type="submit" className="w-full" disabled={loading}>
               {loading ? 'Signing in...' : 'Sign In'}
             </Button>
-
-            <div className="text-center text-sm text-muted-foreground">
-              <p>Enter any email and password to continue (demo mode)</p>
-            </div>
           </form>
         </CardContent>
       </Card>

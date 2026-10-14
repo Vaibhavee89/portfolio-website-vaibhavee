@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { mockWorkExperience } from '@/data/mockData';
 
 export interface WorkItem {
   title: string;
@@ -18,18 +17,10 @@ export const useWorkExperience = () => {
     const fetchWorkExperience = async () => {
       try {
         setLoading(true);
-        // Simulate async operation
-        await new Promise(resolve => setTimeout(resolve, 200));
-
-        const formattedWork: WorkItem[] = mockWorkExperience.map(work => ({
-          title: work.title,
-          organisation: work.organisation,
-          period: work.period,
-          description: work.description,
-          badge: work.badge
-        }));
-
-        setWorkExperience(formattedWork);
+        const res = await fetch('/api/work-experience');
+        if (!res.ok) throw new Error('Failed to fetch work experience');
+        const rows: WorkItem[] = await res.json();
+        setWorkExperience(rows);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to fetch work experience');
         console.error('Error fetching work experience:', err);

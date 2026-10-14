@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { mockProjects } from '@/data/mockData';
 
 export interface Project {
   id: string;
@@ -16,6 +15,17 @@ export interface ProjectDetails extends Project {
   images: string[];
 }
 
+interface ProjectRow {
+  id: string;
+  title: string;
+  description: string;
+  full_description: string | null;
+  image_url: string | null;
+  tags: string[];
+  live_link: string | null;
+  github_link: string | null;
+}
+
 export const useProjects = () => {
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
@@ -25,15 +35,16 @@ export const useProjects = () => {
     const fetchProjects = async () => {
       try {
         setLoading(true);
-        // Simulate async operation
-        await new Promise(resolve => setTimeout(resolve, 200));
+        const res = await fetch('/api/projects');
+        if (!res.ok) throw new Error('Failed to fetch projects');
+        const rows: ProjectRow[] = await res.json();
 
-        const formattedProjects: Project[] = mockProjects.map(project => ({
+        const formattedProjects: Project[] = rows.map((project) => ({
           id: project.id,
           title: project.title,
           description: project.description,
           image: project.image_url || '',
-          tags: project.tags || []
+          tags: project.tags || [],
         }));
 
         setProjects(formattedProjects);
@@ -60,12 +71,9 @@ export const useProjectDetails = (projectId: string) => {
     const fetchProjectDetails = async () => {
       try {
         setLoading(true);
-        // Simulate async operation
-        await new Promise(resolve => setTimeout(resolve, 200));
-
-        const projectData = mockProjects.find(p => p.id === projectId);
-
-        if (!projectData) throw new Error('Project not found');
+        const res = await fetch(`/api/projects?id=${encodeURIComponent(projectId)}`);
+        if (!res.ok) throw new Error('Project not found');
+        const projectData: ProjectRow = await res.json();
 
         const images = projectData.image_url ? [projectData.image_url] : [];
 
@@ -78,7 +86,7 @@ export const useProjectDetails = (projectId: string) => {
           tags: projectData.tags || [],
           liveLink: projectData.live_link || undefined,
           githubLink: projectData.github_link || undefined,
-          images: images
+          images,
         };
 
         setProject(formattedProject);

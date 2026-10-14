@@ -1,14 +1,5 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  mockProjects,
-  mockSkills,
-  mockCertifications,
-  mockEducation,
-  mockWorkExperience,
-  mockBlogPosts,
-  mockEvents,
-} from '@/data/mockData';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import {
@@ -47,15 +38,25 @@ export default function Dashboard() {
   useEffect(() => {
     async function fetchStats() {
       try {
-        // Mock mode: counts come from the static data in src/data/mockData.ts
+        const [projects, skills, certifications, education, workExperience, blogPosts, events] =
+          await Promise.all([
+            fetch('/api/projects').then((r) => r.json()),
+            fetch('/api/skills').then((r) => r.json()),
+            fetch('/api/certifications').then((r) => r.json()),
+            fetch('/api/education').then((r) => r.json()),
+            fetch('/api/work-experience').then((r) => r.json()),
+            fetch('/api/blog-posts').then((r) => r.json()),
+            fetch('/api/events').then((r) => r.json()),
+          ]);
+
         setStats({
-          projects: mockProjects.length,
-          skills: mockSkills.length,
-          certifications: mockCertifications.length,
-          education: mockEducation.length,
-          workExperience: mockWorkExperience.length,
-          blogPosts: mockBlogPosts.length,
-          events: mockEvents.length,
+          projects: projects.length,
+          skills: skills.length,
+          certifications: certifications.length,
+          education: education.length,
+          workExperience: workExperience.length,
+          blogPosts: blogPosts.length,
+          events: events.length,
         });
       } catch (error) {
         console.error('Error fetching stats:', error);

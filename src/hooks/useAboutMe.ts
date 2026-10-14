@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { mockAboutMe } from '@/data/mockData';
 
 export interface Highlight {
   id: string;
@@ -30,9 +29,10 @@ export function useAboutMe() {
   async function fetchAboutMe() {
     try {
       setLoading(true);
-      // Simulate async operation
-      await new Promise(resolve => setTimeout(resolve, 300));
-      setAboutMe(mockAboutMe);
+      const res = await fetch('/api/about-me');
+      if (!res.ok) throw new Error('Failed to fetch about me data');
+      const data: AboutMe = await res.json();
+      setAboutMe(data);
     } catch (err) {
       console.error('Error fetching about me:', err);
       setError(err instanceof Error ? err.message : 'Failed to fetch about me data');

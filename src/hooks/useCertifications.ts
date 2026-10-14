@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { mockCertifications } from '@/data/mockData';
+import * as LucideIcons from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
 export interface Certification {
@@ -11,6 +11,16 @@ export interface Certification {
   description?: string;
 }
 
+interface CertificationRow {
+  id: string;
+  name: string;
+  issuer: string;
+  date: string | null;
+  icon_name: string;
+  credential_url: string | null;
+  description: string | null;
+}
+
 export const useCertifications = () => {
   const [certifications, setCertifications] = useState<Certification[]>([]);
   const [loading, setLoading] = useState(true);
@@ -20,19 +30,20 @@ export const useCertifications = () => {
     const fetchCertifications = async () => {
       try {
         setLoading(true);
-        // Simulate async operation
-        await new Promise(resolve => setTimeout(resolve, 200));
+        const res = await fetch('/api/certifications');
+        if (!res.ok) throw new Error('Failed to fetch certifications');
+        const rows: CertificationRow[] = await res.json();
 
-        const formattedCertifications: Certification[] = mockCertifications.map(cert => ({
-          name: cert.name,
-          issuer: cert.issuer,
-          date: cert.date,
-          Icon: cert.Icon,
-          credentialUrl: cert.credential_url || undefined,
-          description: cert.description || undefined
-        }));
-
-        setCertifications(formattedCertifications);
+        setCertifications(
+          rows.map((cert) => ({
+            name: cert.name,
+            issuer: cert.issuer,
+            date: cert.date || '',
+            Icon: (LucideIcons as unknown as Record<string, LucideIcon>)[cert.icon_name] || LucideIcons.Award,
+            credentialUrl: cert.credential_url || undefined,
+            description: cert.description || undefined,
+          }))
+        );
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to fetch certifications');
         console.error('Error fetching certifications:', err);

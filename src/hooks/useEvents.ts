@@ -1,9 +1,15 @@
 import { useState, useEffect } from 'react';
-import { mockEvents } from '@/data/mockData';
 
 export interface EventImage {
   src: string;
   alt: string;
+  caption: string;
+}
+
+interface EventRow {
+  id: string;
+  image_url: string;
+  alt_text: string;
   caption: string;
 }
 
@@ -16,16 +22,17 @@ export const useEvents = () => {
     const fetchEvents = async () => {
       try {
         setLoading(true);
-        // Simulate async operation
-        await new Promise(resolve => setTimeout(resolve, 200));
+        const res = await fetch('/api/events');
+        if (!res.ok) throw new Error('Failed to fetch events');
+        const rows: EventRow[] = await res.json();
 
-        const formattedEvents: EventImage[] = mockEvents.map(event => ({
-          src: event.image_url,
-          alt: event.alt_text,
-          caption: event.caption
-        }));
-
-        setEvents(formattedEvents);
+        setEvents(
+          rows.map((event) => ({
+            src: event.image_url,
+            alt: event.alt_text,
+            caption: event.caption,
+          }))
+        );
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to fetch events');
         console.error('Error fetching events:', err);

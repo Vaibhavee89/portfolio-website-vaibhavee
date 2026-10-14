@@ -96,14 +96,21 @@ export default function AboutMe() {
     setSaving(true);
 
     try {
-      // Mock mode: there is no database to write to. Edit src/data/mockData.ts instead.
-      sanitizeHighlights(formData.highlights);
-
-      toast({
-        title: 'Not saved',
-        description: 'Saving is disabled in mock mode. Edit src/data/mockData.ts to change About Me.',
-        variant: 'destructive',
+      const res = await fetch('/api/about-me', {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          title: formData.title,
+          description: formData.description,
+          image_url: formData.image_url,
+          highlights: sanitizeHighlights(formData.highlights),
+        }),
       });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to update About Me section');
+
+      toast({ title: 'About Me updated' });
+      refetch();
     } catch (error) {
       console.error('Error updating about me:', error);
       toast({

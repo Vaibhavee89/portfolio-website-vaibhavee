@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { mockEducation } from '@/data/mockData';
 
 export interface EducationItem {
   title: string;
@@ -16,16 +15,10 @@ export const useEducation = () => {
     const fetchEducation = async () => {
       try {
         setLoading(true);
-        // Simulate async operation
-        await new Promise(resolve => setTimeout(resolve, 200));
-
-        const formattedEducation: EducationItem[] = mockEducation.map(edu => ({
-          title: edu.title,
-          period: edu.period,
-          description: edu.description
-        }));
-
-        setEducation(formattedEducation);
+        const res = await fetch('/api/education');
+        if (!res.ok) throw new Error('Failed to fetch education');
+        const rows: EducationItem[] = await res.json();
+        setEducation(rows);
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to fetch education');
         console.error('Error fetching education:', err);

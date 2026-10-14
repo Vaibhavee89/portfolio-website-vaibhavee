@@ -1,3 +1,7 @@
+// NOTE: no longer imported by the app or the admin panel — content now
+// lives in Postgres (see db/schema.sql) and is edited via /admin or direct
+// SQL, not this file. Kept only as a readable reference for what db/seed.mjs
+// originally seeded; editing this file has no effect on the live site.
 import * as LucideIcons from 'lucide-react';
 
 export const mockAboutMe = {

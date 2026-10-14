@@ -1,10 +1,17 @@
 import { useState, useEffect } from 'react';
-import { mockSkills } from '@/data/mockData';
+import * as LucideIcons from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 
 export interface Skill {
   name: string;
   Icon: LucideIcon;
+}
+
+interface SkillRow {
+  id: string;
+  name: string;
+  icon_name: string;
+  display_order: number;
 }
 
 export const useSkills = () => {
@@ -16,9 +23,16 @@ export const useSkills = () => {
     const fetchSkills = async () => {
       try {
         setLoading(true);
-        // Simulate async operation
-        await new Promise(resolve => setTimeout(resolve, 200));
-        setSkills(mockSkills);
+        const res = await fetch('/api/skills');
+        if (!res.ok) throw new Error('Failed to fetch skills');
+        const rows: SkillRow[] = await res.json();
+
+        setSkills(
+          rows.map((row) => ({
+            name: row.name,
+            Icon: (LucideIcons as unknown as Record<string, LucideIcon>)[row.icon_name] || LucideIcons.Code,
+          }))
+        );
       } catch (err) {
         setError(err instanceof Error ? err.message : 'Failed to fetch skills');
         console.error('Error fetching skills:', err);

@@ -20,7 +20,6 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { useToast } from '@/hooks/use-toast';
-import { mockSkills } from '@/data/mockData';
 import { Plus, Pencil, Trash2 } from 'lucide-react';
 
 interface Skill {
@@ -49,12 +48,13 @@ export default function Skills() {
 
   const fetchSkills = async () => {
     try {
-      // Mock mode: read from src/data/mockData.ts
-      setSkills(mockSkills as Skill[]);
-    } catch (error: any) {
+      const res = await fetch('/api/skills');
+      if (!res.ok) throw new Error('Failed to fetch skills');
+      setSkills(await res.json());
+    } catch (error) {
       toast({
         title: 'Error',
-        description: error.message,
+        description: error instanceof Error ? error.message : 'Failed to fetch skills',
         variant: 'destructive',
       });
     } finally {
@@ -66,17 +66,25 @@ export default function Skills() {
     e.preventDefault();
 
     try {
-      // Mock mode: nothing is written. Edit src/data/mockData.ts to change skills.
-      void formData;
-      toast({
-        title: 'Not saved',
-        description: 'Saving is disabled in mock mode. Edit src/data/mockData.ts to change skills.',
-        variant: 'destructive',
+      const isEditing = !!editingSkill;
+      const res = await fetch('/api/skills', {
+        method: isEditing ? 'PUT' : 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(
+          isEditing ? { ...formData, id: editingSkill!.id } : { ...formData, id: crypto.randomUUID() }
+        ),
       });
-    } catch (error: any) {
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to save skill');
+
+      toast({ title: isEditing ? 'Skill updated' : 'Skill created' });
+      setDialogOpen(false);
+      resetForm();
+      fetchSkills();
+    } catch (error) {
       toast({
         title: 'Error',
-        description: error.message,
+        description: error instanceof Error ? error.message : 'Failed to save skill',
         variant: 'destructive',
       });
     }
@@ -95,12 +103,19 @@ export default function Skills() {
   const handleDelete = async (id: string) => {
     if (!confirm('Are you sure you want to delete this skill?')) return;
 
-    // Mock mode: nothing is deleted. Edit src/data/mockData.ts to change skills.
-    toast({
-      title: 'Not deleted',
-      description: `Deleting is disabled in mock mode (skill ${id}).`,
-      variant: 'destructive',
-    });
+    try {
+      const res = await fetch(`/api/skills?id=${encodeURIComponent(id)}`, { method: 'DELETE' });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || 'Failed to delete skill');
+      toast({ title: 'Skill deleted' });
+      fetchSkills();
+    } catch (error) {
+      toast({
+        title: 'Error',
+        description: error instanceof Error ? error.message : 'Failed to delete skill',
+        variant: 'destructive',
+      });
+    }
   };
 
   const resetForm = () => {
