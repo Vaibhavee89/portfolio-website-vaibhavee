@@ -19,6 +19,7 @@ import AboutMe from "./pages/admin/AboutMe";
 import ComingSoon from "./pages/admin/ComingSoon";
 import Certifications from "./pages/admin/Certifications";
 import Education from "./pages/admin/Education";
+import WorkExperience from "./pages/admin/WorkExperience";
 
 const queryClient = new QueryClient();
 
@@ -58,6 +59,7 @@ const App = () => (
               <Route path="about" element={<AboutMe />} />
               <Route path="certifications" element={<Certifications />} />
               <Route path="education" element={<Education />} />
+              <Route path="work-experience" element={<WorkExperience />} />
               {/* Sidebar sections without an editor yet — show a placeholder instead of a blank page */}
               <Route path="*" element={<ComingSoon />} />
             </Route>
