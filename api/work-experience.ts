@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
-import { sql } from './_lib/db';
+import { sql } from './_lib/db.js';
 
 // Read-only for now — there's no admin UI for work experience yet. Add
 // POST/PUT/DELETE here (mirroring api/skills.ts, with requireAuth) when

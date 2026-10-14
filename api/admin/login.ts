@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import bcrypt from 'bcryptjs';
-import { createSessionCookie } from '../_lib/auth';
+import { createSessionCookie } from '../_lib/auth.js';
 
 // Minimal in-memory rate limiter. Resets on a cold start, which is fine for
 // a single-admin login — it just raises the cost of brute-forcing, it
