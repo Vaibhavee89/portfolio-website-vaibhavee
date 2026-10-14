@@ -93,7 +93,7 @@ export default function Login() {
             </Button>
 
             <div className="text-center text-sm text-muted-foreground">
-              <p>Use your Supabase admin credentials</p>
+              <p>Enter any email and password to continue (demo mode)</p>
             </div>
           </form>
         </CardContent>

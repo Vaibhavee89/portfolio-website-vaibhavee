@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 
-// Mock User and Session types since Supabase is disabled
+// Mock auth: the admin panel has no backend, so this just accepts any
+// email/password and persists the session to localStorage.
 type User = {
   id: string;
   email?: string;
