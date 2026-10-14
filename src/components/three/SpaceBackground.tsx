@@ -27,6 +27,14 @@ type Anchor = { scrollY: number; z: number };
 const START_Z = 6;
 const END_Z = -64;
 
+// Vignette tuning — tweak these to experiment. Darkens the top and bottom
+// edges of the viewport (where nav/footer sit) more than the center, as a
+// contrast safety margin for text over the starfield. Edit and save to see
+// changes instantly via HMR.
+const VIGNETTE_TOP_OPACITY = 0.35; // 0 = invisible, 1 = fully opaque black
+const VIGNETTE_BOTTOM_OPACITY = 0.55;
+const VIGNETTE_COLOR = '#01000c'; // matches the html background base color
+
 // Waypoint mesh depths, paired with the id of the section they should
 // line up with. Keep these ids in sync with the `id` props in
 // src/components/sections/*.tsx.
@@ -318,6 +326,25 @@ const SpaceBackground = () => {
           <Scene targetZRef={targetZRef} />
         </Suspense>
       </Canvas>
+
+      {/* Vignette: see VIGNETTE_* constants above to tune. Two independent
+          layers (top/bottom) so their opacities can differ. Sits above the
+          canvas but is still behind all page content (same pointer-events
+          -none wrapper), so it never blocks clicks. */}
+      <div
+        className="absolute inset-x-0 top-0 h-[28vh]"
+        style={{
+          background: `linear-gradient(to bottom, ${VIGNETTE_COLOR}, transparent)`,
+          opacity: VIGNETTE_TOP_OPACITY,
+        }}
+      />
+      <div
+        className="absolute inset-x-0 bottom-0 h-[40vh]"
+        style={{
+          background: `linear-gradient(to top, ${VIGNETTE_COLOR}, transparent)`,
+          opacity: VIGNETTE_BOTTOM_OPACITY,
+        }}
+      />
     </div>
   );
 };
