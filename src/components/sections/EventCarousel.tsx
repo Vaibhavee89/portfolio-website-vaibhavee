@@ -90,7 +90,7 @@ const EventCarousel = () => {
                   <CarouselItem key={index} className="pl-2 md:pl-4 basis-full sm:basis-1/2 lg:basis-1/3">
                     <div className="floating-frame" style={{ animationDelay: `${(index % 5) * 0.4}s` }}>
                       <div className="floating-frame-glow" />
-                      <Card className="overflow-hidden">
+                      <Card className="overflow-hidden border-0">
                         <CardContent className="p-0 relative group">
                           <div className="aspect-video overflow-hidden">
                             <img
