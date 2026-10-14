@@ -80,18 +80,24 @@
     backdrop-filter: blur(3px);
   }
   
-  body::after {
-    content: "";
-    position: fixed;
-    inset: 0;
-    background-image:
-      radial-gradient(1px 1px at 24px 26px, rgba(255, 255, 255, 0.7) 0, transparent 55%),
-      radial-gradient(1px 1px at 48px 68px, rgba(120, 200, 255, 0.58) 0, transparent 55%),
-      radial-gradient(1px 1px at 84px 18px, rgba(255, 170, 120, 0.48) 0, transparent 55%);
-    background-size: 170px 170px;
-    opacity: 0.45;
-    pointer-events: none;
-    z-index: -1;
+  /* Static star dots — shown only as a fallback for prefers-reduced-motion
+     or missing WebGL, when the Three.js SpaceBackground canvas doesn't
+     render. Kept as a single declaration so there is only ever one "stars"
+     layer on screen, never both at once. */
+  @media (prefers-reduced-motion: reduce) {
+    body::after {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        radial-gradient(1px 1px at 24px 26px, rgba(255, 255, 255, 0.7) 0, transparent 55%),
+        radial-gradient(1px 1px at 48px 68px, rgba(120, 200, 255, 0.58) 0, transparent 55%),
+        radial-gradient(1px 1px at 84px 18px, rgba(255, 170, 120, 0.48) 0, transparent 55%);
+      background-size: 170px 170px;
+      opacity: 0.45;
+      pointer-events: none;
+      z-index: -1;
+    }
   }
   
   #root {

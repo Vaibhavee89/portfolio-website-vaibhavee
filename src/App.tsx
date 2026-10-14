@@ -2,8 +2,9 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AuthProvider } from "./contexts/AuthContext";
+import SpaceBackground from "./components/three/SpaceBackground";
 import ProtectedRoute from "./components/admin/ProtectedRoute";
 import AdminLayout from "./components/admin/AdminLayout";
 import Index from "./pages/Index";
@@ -19,6 +20,14 @@ import AboutMe from "./pages/admin/AboutMe";
 
 const queryClient = new QueryClient();
 
+// The space scene is for the public portfolio pages only — the admin
+// dashboard uses its own plain UI, so it's skipped there.
+const SiteBackground = () => {
+  const { pathname } = useLocation();
+  if (pathname.startsWith("/admin")) return null;
+  return <SpaceBackground />;
+};
+
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <AuthProvider>
@@ -26,6 +35,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
+          <SiteBackground />
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/blog" element={<BlogPage />} />
