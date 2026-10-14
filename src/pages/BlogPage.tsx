@@ -94,12 +94,12 @@ const BlogPage = () => {
               {blogPosts.map((post, index) => (
                 <div
                   key={post.id}
-                  className={isVisible ? 'animate-fade-in' : 'opacity-0'}
+                  className={`h-full ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}
                   style={{ animationDelay: `${index * 100 + 400}ms` }}
                 >
-                  <div className="floating-frame" style={{ animationDelay: `${(index % 5) * 0.4}s` }}>
+                  <div className="floating-frame h-full" style={{ animationDelay: `${(index % 5) * 0.4}s` }}>
                     <div className="floating-frame-glow" />
-                    <article className="bg-card border border-border rounded-xl overflow-hidden card-hover">
+                    <article className="bg-card border border-border rounded-xl overflow-hidden card-hover h-full flex flex-col">
                       <div className="aspect-video overflow-hidden">
                         <img
                           src={post.image}
@@ -108,19 +108,19 @@ const BlogPage = () => {
                         />
                       </div>
 
-                      <div className="p-6">
+                      <div className="p-6 flex flex-col flex-grow">
                         <div className="flex justify-between items-center mb-4">
                           <span className="text-sm text-muted-foreground">{post.date}</span>
                         </div>
 
                         <h2 className="text-xl font-bold mb-2 line-clamp-2">{post.title}</h2>
-                        <p className="text-muted-foreground mb-4 line-clamp-3">{post.excerpt}</p>
+                        <p className="text-muted-foreground mb-4 line-clamp-3 flex-grow">{post.excerpt}</p>
 
                         <a
                           href={post.devToUrl}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center font-medium text-foreground hover:text-primary transition-colors"
+                          className="inline-flex items-center font-medium text-foreground hover:text-primary transition-colors mt-auto"
                         >
                           Read on dev.to <ArrowRight size={16} className="ml-1" />
                         </a>

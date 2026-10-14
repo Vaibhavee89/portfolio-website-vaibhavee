@@ -56,21 +56,21 @@ const Blogs = () => {
             {blogPosts.map((blog, index) => (
               <div
                 key={blog.id}
-                className={isVisible ? 'animate-fade-in' : 'opacity-0'}
+                className={`h-full ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="floating-frame" style={{ animationDelay: `${(index % 5) * 0.4}s` }}>
+                <div className="floating-frame h-full" style={{ animationDelay: `${(index % 5) * 0.4}s` }}>
                   <div className="floating-frame-glow" />
-                  <Card className="card-hover overflow-hidden">
+                  <Card className="card-hover overflow-hidden h-full flex flex-col">
                     <CardHeader className="pb-3">
                       <div className="flex justify-between items-center mb-1">
                         <span className="text-sm sm:text-base text-muted-foreground">
                           {blog.date} · {blog.readTime} read
                         </span>
                       </div>
-                      <CardTitle className="text-xl sm:text-2xl">{blog.title}</CardTitle>
+                      <CardTitle className="text-xl sm:text-2xl line-clamp-2">{blog.title}</CardTitle>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="flex-grow">
                       <CardDescription className="text-base sm:text-lg line-clamp-3">
                         {blog.excerpt}
                       </CardDescription>
