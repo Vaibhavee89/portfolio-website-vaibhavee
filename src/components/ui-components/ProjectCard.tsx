@@ -27,16 +27,16 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const [isHovered, setIsHovered] = useState(false);
   
   return (
-    <div 
-      className="card-hover rounded-xl overflow-hidden bg-card border border-border h-full"
+    <div
+      className="card-hover rounded-xl overflow-hidden bg-card border border-border h-full flex flex-col"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      <div className="relative overflow-hidden aspect-video">
-        <img 
-          src={project.image} 
-          alt={project.title} 
-          className="w-full h-full object-contain transition-transform duration-700 ease-out"
+      <div className="relative overflow-hidden aspect-video shrink-0">
+        <img
+          src={project.image}
+          alt={project.title}
+          className="w-full h-full object-cover transition-transform duration-700 ease-out"
           style={{
             transform: isHovered ? 'scale(1.05)' : 'scale(1)'
           }}
@@ -61,7 +61,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
         </div>
       </div>
       
-      <div className="p-6">
+      <div className="p-6 flex flex-col grow">
         <div className="flex flex-wrap gap-2 mb-4">
           {project.tags.map((tag, index) => (
             <span
@@ -72,13 +72,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
             </span>
           ))}
         </div>
-        
+
         <h3 className="text-xl font-bold mb-2">{project.title}</h3>
-        <p className="text-muted-foreground mb-4">{project.description}</p>
-        
-        <Link 
+        <p className="text-muted-foreground mb-4 line-clamp-3">{project.description}</p>
+
+        <Link
           to={`/project/${project.id}`}
-          className="inline-flex items-center font-medium text-foreground hover:text-primary transition-colors"
+          className="inline-flex items-center font-medium text-foreground hover:text-primary transition-colors mt-auto"
         >
           View Project <ArrowUpRight size={16} className="ml-1" />
         </Link>
