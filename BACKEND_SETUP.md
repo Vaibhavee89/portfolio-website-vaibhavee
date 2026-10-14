@@ -15,11 +15,19 @@ require your own Vercel account access.
 ## 2. Link your local checkout to the Vercel project
 
 ```sh
-npm install -g vercel   # if you don't have the CLI yet
-vercel login
-vercel link             # run inside this repo, follow the prompts
-vercel env pull .env.local
+npx vercel login
+npx vercel link             # run inside this repo, follow the prompts
+npx vercel env pull .env.local
 ```
+
+(Using `npx` instead of a global `npm install -g vercel` avoids the
+`EACCES`/permission-denied error that command often hits on macOS, since it
+doesn't need to write into a root-owned global `node_modules`. If you'd
+rather have a persistent `vercel` command instead of typing `npx` each time,
+fix the underlying npm permissions — see
+[docs.npmjs.com/resolving-eacces-permissions-errors](https://docs.npmjs.com/resolving-eacces-permissions-errors-when-installing-packages-globally) —
+rather than using `sudo npm install -g`, which tends to create more
+permission problems later.)
 
 That last command writes `.env.local` with the database connection string
 (`DATABASE_URL` or `POSTGRES_URL`) pulled from your Vercel project. This file
@@ -46,7 +54,7 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 ## 4. Set environment variables
 
 Add these in **Vercel → Project Settings → Environment Variables** (and to
-`.env.local` for local testing with `vercel dev`):
+`.env.local` for local testing with `npx vercel dev`):
 
 | Variable | Value |
 |---|---|
@@ -75,7 +83,7 @@ just serves their raw source as text, it doesn't execute them as serverless
 functions. To actually exercise the admin login and API routes locally, use:
 
 ```sh
-vercel dev
+npx vercel dev
 ```
 
 Then visit `/admin/login`, sign in with the email/password from step 3, and
@@ -84,7 +92,7 @@ refresh.
 
 ## 7. Deploy
 
-Push to your connected branch (or `vercel --prod`). The environment
+Push to your connected branch (or `npx vercel --prod`). The environment
 variables you set in step 4 apply automatically; nothing else to configure.
 
 ---
