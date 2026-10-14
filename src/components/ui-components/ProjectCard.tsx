@@ -14,6 +14,15 @@ interface ProjectCardProps {
   project: Project;
 }
 
+// Cycled per tag so a card's pills read as distinct flat chips (closer to the
+// reference's colorful tag treatment) instead of one uniform secondary pill —
+// kept to existing design tokens rather than new raw colors.
+const TAG_COLORS = [
+  'bg-primary/15 text-primary',
+  'bg-accent/15 text-accent',
+  'bg-secondary text-secondary-foreground',
+];
+
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const [isHovered, setIsHovered] = useState(false);
   
@@ -55,9 +64,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       <div className="p-6">
         <div className="flex flex-wrap gap-2 mb-4">
           {project.tags.map((tag, index) => (
-            <span 
-              key={index} 
-              className="px-3 py-1 text-xs font-medium bg-secondary rounded-full"
+            <span
+              key={index}
+              className={`px-3 py-1 text-xs font-medium rounded-full ${TAG_COLORS[index % TAG_COLORS.length]}`}
             >
               {tag}
             </span>

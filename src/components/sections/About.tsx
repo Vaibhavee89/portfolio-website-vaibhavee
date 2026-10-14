@@ -106,12 +106,15 @@ export const About = () => {
             ) : aboutMe ? (
               <>
                 <div className="flex-shrink-0 w-full max-w-[260px]">
-                  <div className="relative aspect-square w-full overflow-hidden rounded-[24px] border border-primary/30 bg-card/80 shadow-[0_18px_42px_rgba(26,160,255,0.18)]">
-                    <img
-                      src={aboutMe.image_url}
-                      alt="Portrait of Vaibhavee"
-                      className="h-full w-full object-cover object-top"
-                    />
+                  <div className="floating-frame">
+                    <div className="floating-frame-glow" />
+                    <div className="relative aspect-square w-full overflow-hidden rounded-[24px] border border-primary/30 bg-card/80 shadow-[0_18px_42px_rgba(26,160,255,0.18)]">
+                      <img
+                        src={aboutMe.image_url}
+                        alt="Portrait of Vaibhavee"
+                        className="h-full w-full object-cover object-top"
+                      />
+                    </div>
                   </div>
                 </div>
                 <div className="space-y-4 text-center md:text-left">
@@ -187,27 +190,30 @@ export const About = () => {
             {showCertifications ? (
               <div className="certification-grid grid gap-6 md:grid-cols-2">
                 {certifications.map((cert, index) => (
-                  <div key={index} className="cert-card h-full flex flex-col">
-                    <div className="cert-card__header">
-                      <div className="cert-card__icon">
-                        <cert.Icon size={26} className="drop-shadow-[0_0_12px_rgba(80,213,255,0.6)]" />
+                  <div key={index} className="floating-frame h-full" style={{ animationDelay: `${(index % 5) * 0.4}s` }}>
+                    <div className="floating-frame-glow" />
+                    <div className="cert-card h-full flex flex-col">
+                      <div className="cert-card__header">
+                        <div className="cert-card__icon">
+                          <cert.Icon size={26} className="drop-shadow-[0_0_12px_rgba(80,213,255,0.6)]" />
+                        </div>
+                        <div className="cert-card__meta">
+                          <h4>{cert.name}</h4>
+                          <p>{cert.issuer}</p>
+                          <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground/70">{cert.date}</p>
+                        </div>
                       </div>
-                      <div className="cert-card__meta">
-                        <h4>{cert.name}</h4>
-                        <p>{cert.issuer}</p>
-                        <p className="text-xs uppercase tracking-[0.3em] text-muted-foreground/70">{cert.date}</p>
-                      </div>
-                    </div>
 
-                    <div className="cert-card__actions mt-auto">
-                      <button
-                        type="button"
-                        className="glow-button glow-button--primary flex items-center justify-center gap-2"
-                        onClick={() => handleShowCredentials(cert)}
-                      >
-                        <KeyRound size={16} />
-                        Show Credentials
-                      </button>
+                      <div className="cert-card__actions mt-auto">
+                        <button
+                          type="button"
+                          className="glow-button glow-button--primary flex items-center justify-center gap-2"
+                          onClick={() => handleShowCredentials(cert)}
+                        >
+                          <KeyRound size={16} />
+                          Show Credentials
+                        </button>
+                      </div>
                     </div>
                   </div>
                 ))}
@@ -323,18 +329,24 @@ export const About = () => {
             <h3 className="text-2xl font-bold">Achievements</h3>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <div className="p-6 bg-card rounded-xl border border-border">
-              <h4 className="text-xl font-semibold mb-2">Top 10 Grand Finalist at Luminous Techno-X Hackathon</h4>
-              <p className="text-muted-foreground">
-                Contributed to the development of PrabhaWatt- a solar energy management and electricity saving platform,
-                placing among the top 10 finalists out of 500+ teams.
-              </p>
+            <div className="floating-frame h-full">
+              <div className="floating-frame-glow" />
+              <div className="p-6 bg-card rounded-xl border border-border h-full">
+                <h4 className="text-xl font-semibold mb-2">Top 10 Grand Finalist at Luminous Techno-X Hackathon</h4>
+                <p className="text-muted-foreground">
+                  Contributed to the development of PrabhaWatt- a solar energy management and electricity saving platform,
+                  placing among the top 10 finalists out of 500+ teams.
+                </p>
+              </div>
             </div>
-            <div className="p-6 bg-card rounded-xl border border-border">
-              <h4 className="text-xl font-semibold mb-2">Published Research Paper</h4>
-              <p className="text-muted-foreground">
-              Published a research paper on "Spam accounts detection on Instagram" in IEEE IC3SE-2024 conference proceedings.
-              </p>
+            <div className="floating-frame h-full" style={{ animationDelay: '0.4s' }}>
+              <div className="floating-frame-glow" />
+              <div className="p-6 bg-card rounded-xl border border-border h-full">
+                <h4 className="text-xl font-semibold mb-2">Published Research Paper</h4>
+                <p className="text-muted-foreground">
+                Published a research paper on "Spam accounts detection on Instagram" in IEEE IC3SE-2024 conference proceedings.
+                </p>
+              </div>
             </div>
           </div>
         </div>

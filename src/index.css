@@ -71,9 +71,9 @@
     content: "";
     position: fixed;
     inset: clamp(14px, 4vw, 46px);
-    border: 1.5px dashed rgba(0, 210, 255, 0.5);
+    border: 1.5px dashed rgba(0, 210, 255, 0.4);
     border-radius: 38px;
-    box-shadow: 0 0 26px rgba(0, 215, 255, 0.38), inset 0 0 32px rgba(0, 145, 255, 0.18);
+    box-shadow: 0 0 18px rgba(0, 215, 255, 0.26), inset 0 0 20px rgba(0, 145, 255, 0.12);
     pointer-events: none;
     z-index: 0;
     opacity: 0.92;
@@ -127,12 +127,28 @@
     box-shadow: 0 0 20px rgba(80, 213, 255, 0.6);
   }
   
-  .cert-card__icon {
-    @apply w-14 h-14 rounded-2xl flex items-center justify-center border border-primary/45 text-primary;
-    background-color: rgba(255, 255, 255, 0.06);
-    box-shadow: 0 0 26px rgba(80, 213, 255, 0.38);
+  .cert-card {
+    @apply rounded-2xl border border-border/50 bg-card/90 p-5 transition-colors duration-300 hover:border-primary/40;
   }
-  
+
+  .cert-card__header {
+    @apply flex items-start gap-4 mb-4;
+  }
+
+  .cert-card__icon {
+    @apply w-14 h-14 shrink-0 rounded-2xl flex items-center justify-center border border-primary/45 text-primary;
+    background-color: rgba(255, 255, 255, 0.06);
+    box-shadow: 0 0 18px rgba(80, 213, 255, 0.28);
+  }
+
+  .cert-card__meta h4 {
+    @apply text-lg font-semibold text-foreground;
+  }
+
+  .cert-card__meta p {
+    @apply text-sm text-muted-foreground;
+  }
+
   .section-subheading {
     @apply text-xl sm:text-2xl text-muted-foreground/90 mb-10 sm:mb-12 max-w-3xl leading-relaxed;
   }
@@ -144,29 +160,30 @@
   }
   
   .card-hover {
-    @apply relative overflow-hidden rounded-2xl transition-all duration-500 ease-out bg-card/80 border border-primary/25 backdrop-blur-2xl;
-    box-shadow: 0 0 28px rgba(14, 120, 210, 0.2), inset 0 0 18px rgba(20, 70, 122, 0.3);
+    @apply relative overflow-hidden rounded-xl transition-all duration-300 ease-out bg-card border border-border/60;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
   }
-  
+
   .card-hover::before {
     content: "";
     position: absolute;
     inset: -140% 40% 20% -40%;
-    background: linear-gradient(120deg, rgba(126, 215, 255, 0.4) 0%, transparent 60%);
+    background: linear-gradient(120deg, rgba(126, 215, 255, 0.22) 0%, transparent 60%);
     transform: rotate(18deg);
     opacity: 0;
-    transition: opacity 0.55s ease, transform 0.6s ease;
+    transition: opacity 0.4s ease, transform 0.5s ease;
     pointer-events: none;
   }
-  
+
   .card-hover:hover::before {
     opacity: 1;
     transform: rotate(18deg) translateY(26%);
   }
-  
+
   .card-hover:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 0 42px rgba(26, 160, 255, 0.4);
+    transform: translateY(-4px);
+    border-color: rgba(80, 213, 255, 0.35);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45), 0 0 24px rgba(80, 213, 255, 0.18);
   }
   
   .button-primary {
@@ -205,6 +222,59 @@
     pointer-events: none;
   }
 
+  /* Hero portrait: a gently bobbing "portal" so it reads as part of the
+     floating space scene instead of a static card pinned on top of it. */
+  .quantum-portal {
+    position: relative;
+    animation: portalFloat 7s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  .portal-glow {
+    position: absolute;
+    inset: -14%;
+    border-radius: 32px;
+    background: radial-gradient(circle, rgba(80, 213, 255, 0.4) 0%, rgba(200, 147, 255, 0.24) 55%, transparent 75%);
+    filter: blur(28px);
+    opacity: 0.6;
+    animation: portalPulse 4.5s ease-in-out infinite;
+    pointer-events: none;
+  }
+
+  .portal-core {
+    position: relative;
+    z-index: 1;
+    border-radius: 24px;
+    overflow: hidden;
+    border: 1px solid rgba(120, 220, 255, 0.4);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), 0 0 24px rgba(80, 213, 255, 0.25);
+    background: rgba(8, 10, 30, 0.6);
+  }
+
+  /* Reusable floating treatment for other images across the site (project
+     cards, blog thumbnails, event carousel, project detail, about portrait).
+     Always wrap this around a NEW element, never the card's own root — many
+     cards already use `transform` for their hover-lift (card-hover) or a
+     one-shot `animate-fade-in`, and a continuous `animation` shorthand on
+     the same element would silently replace those instead of combining. */
+  .floating-frame {
+    position: relative;
+    animation: gentleFloat 6.5s ease-in-out infinite;
+    will-change: transform;
+  }
+
+  .floating-frame-glow {
+    position: absolute;
+    inset: -8%;
+    z-index: -1;
+    border-radius: 24px;
+    background: radial-gradient(circle, rgba(80, 213, 255, 0.28) 0%, rgba(200, 147, 255, 0.16) 55%, transparent 75%);
+    filter: blur(18px);
+    opacity: 0.4;
+    animation: portalPulse 4.5s ease-in-out infinite;
+    pointer-events: none;
+  }
+
   .glow-button {
     @apply relative inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 font-semibold uppercase tracking-[0.2em] transition-all duration-300;
     letter-spacing: 0.18em;
@@ -224,25 +294,32 @@
   .glow-button--secondary {
     @apply glow-button text-primary border border-primary/60 backdrop-blur-lg;
     background-color: rgba(255, 255, 255, 0.06);
-    box-shadow: 0 0 28px rgba(90, 200, 255, 0.34), inset 0 0 18px rgba(45, 130, 255, 0.28);
+    box-shadow: 0 0 18px rgba(90, 200, 255, 0.24), inset 0 0 12px rgba(45, 130, 255, 0.2);
   }
 
   .glow-button--secondary:hover {
     transform: translateY(-2px) scale(1.015);
-    box-shadow: 0 0 38px rgba(90, 200, 255, 0.52);
+    box-shadow: 0 0 26px rgba(90, 200, 255, 0.4);
   }
 
   .badge-pulse {
     animation: badgePulse 2.6s ease-in-out infinite;
   }
 
+  .gradient-text {
+    background: linear-gradient(100deg, #50d5ff 0%, #7ed7ff 55%, #c893ff 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
   .starlight-pill {
-    @apply px-4 py-2 rounded-full text-sm sm:text-base text-primary/90 border border-primary/35 shadow-[0_0_22px_rgba(90,200,255,0.4)] backdrop-blur-lg;
+    @apply px-4 py-2 rounded-full text-sm sm:text-base text-primary/90 border border-primary/35 shadow-[0_0_14px_rgba(90,200,255,0.28)] backdrop-blur-lg;
     background-color: rgba(255, 255, 255, 0.06);
   }
 
   .databank-toggle {
-    @apply inline-flex items-center gap-3 rounded-full px-8 py-3 text-base font-semibold tracking-[0.2em] uppercase transition-all duration-300 border border-primary/60 text-primary shadow-[0_0_25px_rgba(70,190,255,0.45)];
+    @apply inline-flex items-center gap-3 rounded-full px-8 py-3 text-base font-semibold tracking-[0.2em] uppercase transition-all duration-300 border border-primary/60 text-primary shadow-[0_0_16px_rgba(70,190,255,0.3)];
     background-color: rgba(15, 25, 40, 0.75);
     letter-spacing: 0.22em;
     position: relative;
@@ -253,7 +330,7 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at top, rgba(120, 220, 255, 0.25), transparent 55%);
+    background: radial-gradient(circle at top, rgba(120, 220, 255, 0.18), transparent 55%);
     opacity: 0.6;
     pointer-events: none;
   }
@@ -261,17 +338,17 @@
   .databank-toggle__icon {
     @apply flex h-8 w-8 items-center justify-center rounded-full border border-primary/50 text-primary;
     background: rgba(255, 255, 255, 0.08);
-    box-shadow: inset 0 0 12px rgba(120, 200, 255, 0.3);
+    box-shadow: inset 0 0 10px rgba(120, 200, 255, 0.24);
   }
 
   .databank-toggle:hover {
-    @apply text-primary shadow-[0_0_35px_rgba(90,220,255,0.6)];
+    @apply text-primary shadow-[0_0_24px_rgba(90,220,255,0.42)];
     transform: translateY(-2px);
   }
 
   .databank-toggle.is-active {
-    background: rgba(80, 213, 255, 0.12);
-    box-shadow: 0 0 35px rgba(90, 220, 255, 0.55), inset 0 0 18px rgba(80, 213, 255, 0.35);
+    background: rgba(80, 213, 255, 0.1);
+    box-shadow: 0 0 22px rgba(90, 220, 255, 0.38), inset 0 0 14px rgba(80, 213, 255, 0.26);
   }
 }
 
@@ -312,6 +389,21 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+@keyframes portalFloat {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-16px) rotate(1deg); }
+}
+
+@keyframes portalPulse {
+  0%, 100% { opacity: 0.55; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.06); }
+}
+
+@keyframes gentleFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
 }
 
 /* Add this to your global CSS or a relevant CSS module */

@@ -79,9 +79,11 @@ const ProjectDetail = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
             <div className="lg:col-span-2">
               <div className={`mb-8 ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}>
-                <div className="bg-card rounded-xl overflow-hidden">
+                <div className="floating-frame">
+                  <div className="floating-frame-glow" />
+                  <div className="bg-card rounded-xl overflow-hidden">
                   <div className="relative aspect-video">
-                    <img 
+                    <img
                       src={project.images[currentImageIndex]} 
                       alt={project.title} 
                       className="w-full h-full object-cover"
@@ -121,9 +123,10 @@ const ProjectDetail = () => {
                       ))}
                     </div>
                   </div>
+                  </div>
                 </div>
               </div>
-              
+
               <div className={`space-y-6 ${isVisible ? 'animate-fade-in animate-delay-200' : 'opacity-0'}`}>
                 <h1 className="text-3xl md:text-4xl font-bold">{project.title}</h1>
                 

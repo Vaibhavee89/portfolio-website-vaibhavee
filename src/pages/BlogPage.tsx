@@ -92,39 +92,42 @@ const BlogPage = () => {
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {blogPosts.map((post, index) => (
-                <article 
-                  key={post.id} 
-                  className={`bg-card border border-border rounded-xl overflow-hidden card-hover ${
-                    isVisible ? 'animate-fade-in' : 'opacity-0'
-                  }`}
+                <div
+                  key={post.id}
+                  className={isVisible ? 'animate-fade-in' : 'opacity-0'}
                   style={{ animationDelay: `${index * 100 + 400}ms` }}
                 >
-                  <div className="aspect-video overflow-hidden">
-                    <img
-                      src={post.image}
-                      alt={post.title}
-                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                    />
+                  <div className="floating-frame" style={{ animationDelay: `${(index % 5) * 0.4}s` }}>
+                    <div className="floating-frame-glow" />
+                    <article className="bg-card border border-border rounded-xl overflow-hidden card-hover">
+                      <div className="aspect-video overflow-hidden">
+                        <img
+                          src={post.image}
+                          alt={post.title}
+                          className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                        />
+                      </div>
+
+                      <div className="p-6">
+                        <div className="flex justify-between items-center mb-4">
+                          <span className="text-sm text-muted-foreground">{post.date}</span>
+                        </div>
+
+                        <h2 className="text-xl font-bold mb-2 line-clamp-2">{post.title}</h2>
+                        <p className="text-muted-foreground mb-4 line-clamp-3">{post.excerpt}</p>
+
+                        <a
+                          href={post.devToUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center font-medium text-foreground hover:text-primary transition-colors"
+                        >
+                          Read on dev.to <ArrowRight size={16} className="ml-1" />
+                        </a>
+                      </div>
+                    </article>
                   </div>
-                  
-                  <div className="p-6">
-                    <div className="flex justify-between items-center mb-4">
-                      <span className="text-sm text-muted-foreground">{post.date}</span>
-                    </div>
-                    
-                    <h2 className="text-xl font-bold mb-2 line-clamp-2">{post.title}</h2>
-                    <p className="text-muted-foreground mb-4 line-clamp-3">{post.excerpt}</p>
-                    
-                    <a
-                      href={post.devToUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center font-medium text-foreground hover:text-primary transition-colors"
-                    >
-                      Read on dev.to <ArrowRight size={16} className="ml-1" />
-                    </a>
-                  </div>
-                </article>
+                </div>
               ))}
             </div>
             

@@ -110,10 +110,9 @@ export const Hero = () => {
 
           <div className="space-y-4">
             <p className="uppercase tracking-[0.6em] text-xs sm:text-sm text-primary/80">Innovate · Iterate · Inspire</p>
-            <h1 className="text-3xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold leading-[1.05] text-foreground/95">
-              <span className="libertinus-mono-regular">
-                INNOVATE&nbsp;&ndash;&nbsp;ITERATE&nbsp;&ndash;&nbsp;INSPIRE
-              </span>
+            <h1 className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-extrabold leading-[1.02] tracking-tight text-foreground">
+              INNOVATE<br />
+              <span className="gradient-text">ITERATE &amp; INSPIRE</span>
             </h1>
             <p className="text-base sm:text-lg text-muted-foreground/80 max-w-2xl mx-auto lg:mx-0">
               Crafting data-driven, immersive experiences across the cloud, AI/ML, and human-centered design. Welcome to my portfolio.

@@ -54,32 +54,37 @@ const Blogs = () => {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
             {blogPosts.map((blog, index) => (
-              <Card 
-                key={blog.id} 
-                className={`card-hover overflow-hidden ${isVisible ? 'animate-fade-in' : 'opacity-0'}`}
+              <div
+                key={blog.id}
+                className={isVisible ? 'animate-fade-in' : 'opacity-0'}
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <CardHeader className="pb-3">
-                  <div className="flex justify-between items-center mb-1">
-                    <span className="text-sm sm:text-base text-muted-foreground">
-                      {blog.date} · {blog.readTime} read
-                    </span>
-                  </div>
-                  <CardTitle className="text-xl sm:text-2xl">{blog.title}</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <CardDescription className="text-base sm:text-lg line-clamp-3">
-                    {blog.excerpt}
-                  </CardDescription>
-                </CardContent>
-                <CardFooter>
-                  <Button variant="ghost" className="p-0 h-auto text-primary hover:text-primary hover:bg-transparent" asChild>
-                    <a href={blog.devToUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-base">
-                      Read on dev.to <ArrowRight className="h-4 w-4" />
-                    </a>
-                  </Button>
-                </CardFooter>
-              </Card>
+                <div className="floating-frame" style={{ animationDelay: `${(index % 5) * 0.4}s` }}>
+                  <div className="floating-frame-glow" />
+                  <Card className="card-hover overflow-hidden">
+                    <CardHeader className="pb-3">
+                      <div className="flex justify-between items-center mb-1">
+                        <span className="text-sm sm:text-base text-muted-foreground">
+                          {blog.date} · {blog.readTime} read
+                        </span>
+                      </div>
+                      <CardTitle className="text-xl sm:text-2xl">{blog.title}</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                      <CardDescription className="text-base sm:text-lg line-clamp-3">
+                        {blog.excerpt}
+                      </CardDescription>
+                    </CardContent>
+                    <CardFooter>
+                      <Button variant="ghost" className="p-0 h-auto text-primary hover:text-primary hover:bg-transparent" asChild>
+                        <a href={blog.devToUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-base">
+                          Read on dev.to <ArrowRight className="h-4 w-4" />
+                        </a>
+                      </Button>
+                    </CardFooter>
+                  </Card>
+                </div>
+              </div>
             ))}
           </div>
         )}

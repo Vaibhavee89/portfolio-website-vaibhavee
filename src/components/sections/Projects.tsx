@@ -53,12 +53,15 @@ export const Projects = () => {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8">
             {projects.map((project, index) => (
-              <div 
-                key={project.id} 
+              <div
+                key={project.id}
                 className={isVisible ? `animate-fade-in animate-delay-${index * 100}` : 'opacity-0'}
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <ProjectCard project={project} />
+                <div className="floating-frame" style={{ animationDelay: `${(index % 5) * 0.4}s` }}>
+                  <div className="floating-frame-glow" />
+                  <ProjectCard project={project} />
+                </div>
               </div>
             ))}
           </div>

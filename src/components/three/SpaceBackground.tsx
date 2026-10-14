@@ -1,25 +1,91 @@
 import { useRef, useMemo, Suspense, useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Canvas, useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
 
 /**
  * Persistent, full-page space scene rendered once behind every section.
- * The camera "flies" forward as the page scrolls (scroll progress -> camera
- * depth), passing distant star layers and a few floating wireframe bodies,
- * so the whole page reads as one continuous flight through space instead of
- * separate per-section effects.
+ * The camera "flies" forward as the page scrolls, passing distant star
+ * layers and a few floating wireframe bodies, so the whole page reads as
+ * one continuous flight through space instead of separate per-section
+ * effects.
  *
- * Scroll progress is tracked in a plain mutable ref (not React state) and
- * read directly inside useFrame, so scrolling never triggers a re-render.
+ * Camera depth is driven by actual section positions (measured with
+ * getBoundingClientRect), not a flat scroll fraction, so each waypoint
+ * mesh arrives when its matching section is centered in the viewport
+ * instead of at an arbitrary point in the page. Section heights shift
+ * once async data (projects/blogs/events) loads in, so positions are
+ * re-measured on resize, on route change, and via a ResizeObserver on
+ * <body> that catches those layout shifts. This is inherently a little
+ * fragile against future markup/id changes in the sections below — if a
+ * section's id changes, its anchor silently falls back to straight-line
+ * interpolation between its neighbors.
  */
 
-type ScrollRef = { current: number };
+type Anchor = { scrollY: number; z: number };
 
-function getScrollProgress() {
-  const doc = document.documentElement;
-  const scrollable = doc.scrollHeight - window.innerHeight;
-  if (scrollable <= 0) return 0;
-  return Math.min(Math.max(window.scrollY / scrollable, 0), 1);
+const START_Z = 6;
+const END_Z = -64;
+
+// Waypoint mesh depths, paired with the id of the section they should
+// line up with. Keep these ids in sync with the `id` props in
+// src/components/sections/*.tsx.
+const SECTION_ANCHORS: { id: string; z: number }[] = [
+  { id: 'about', z: -14 },
+  { id: 'projects', z: -28 },
+  { id: 'blogs', z: -40 },
+  { id: 'events', z: -48 },
+  { id: 'contact', z: -58 },
+];
+
+const ASTEROID_Z = -14; // matches 'about'
+const RINGED_BODY_Z = -28; // matches 'projects'
+const DESTINATION_PLANET_Z = -58; // matches 'contact'
+
+function measureAnchors(): Anchor[] {
+  const viewportHeight = window.innerHeight;
+  const maxScroll = Math.max(document.documentElement.scrollHeight - viewportHeight, 0);
+
+  const anchors: Anchor[] = [{ scrollY: 0, z: START_Z }];
+
+  for (const { id, z } of SECTION_ANCHORS) {
+    const el = document.getElementById(id);
+    if (!el) continue; // section not present on this route (e.g. /blog)
+    const rect = el.getBoundingClientRect();
+    const top = rect.top + window.scrollY;
+    const center = top + rect.height / 2 - viewportHeight / 2;
+    anchors.push({ scrollY: Math.min(Math.max(center, 0), maxScroll), z });
+  }
+
+  anchors.push({ scrollY: maxScroll, z: END_Z });
+
+  // Anchors must be strictly increasing in scrollY for interpolation to
+  // behave; sort and collapse any that land within a pixel of each other
+  // (e.g. very short sections, or routes with no matching ids at all).
+  anchors.sort((a, b) => a.scrollY - b.scrollY);
+  const deduped: Anchor[] = [];
+  for (const anchor of anchors) {
+    const prev = deduped[deduped.length - 1];
+    if (!prev || anchor.scrollY - prev.scrollY > 1) deduped.push(anchor);
+  }
+  return deduped;
+}
+
+function interpolateZ(scrollY: number, anchors: Anchor[]): number {
+  if (anchors.length === 0) return START_Z;
+  if (scrollY <= anchors[0].scrollY) return anchors[0].z;
+  const last = anchors[anchors.length - 1];
+  if (scrollY >= last.scrollY) return last.z;
+
+  for (let i = 1; i < anchors.length; i++) {
+    if (scrollY <= anchors[i].scrollY) {
+      const a = anchors[i - 1];
+      const b = anchors[i];
+      const t = (scrollY - a.scrollY) / (b.scrollY - a.scrollY);
+      return a.z + t * (b.z - a.z);
+    }
+  }
+  return last.z;
 }
 
 // --- Star layers -----------------------------------------------------------
@@ -64,7 +130,7 @@ function StarLayer({ count, radius, size, color, zSpread, driftSpeed }: LayerPro
         size={size}
         sizeAttenuation
         transparent
-        opacity={0.9}
+        opacity={0.75}
         depthWrite={false}
       />
     </points>
@@ -124,13 +190,11 @@ function DestinationPlanet({ z }: { z: number }) {
 
 // --- Scroll-driven camera rig ------------------------------------------------
 
-const START_Z = 6;
-const END_Z = -60;
+type TargetZRef = { current: number };
 
-function ScrollCameraRig({ scrollRef }: { scrollRef: ScrollRef }) {
+function ScrollCameraRig({ targetZRef }: { targetZRef: TargetZRef }) {
   useFrame((state) => {
-    const targetZ = START_Z + scrollRef.current * (END_Z - START_Z);
-    state.camera.position.z += (targetZ - state.camera.position.z) * 0.06;
+    state.camera.position.z += (targetZRef.current - state.camera.position.z) * 0.06;
 
     // Gentle pointer parallax layered on top of the scroll dolly
     const targetX = state.pointer.x * 0.4;
@@ -142,16 +206,16 @@ function ScrollCameraRig({ scrollRef }: { scrollRef: ScrollRef }) {
   return null;
 }
 
-function Scene({ scrollRef }: { scrollRef: ScrollRef }) {
+function Scene({ targetZRef }: { targetZRef: TargetZRef }) {
   return (
     <>
-      <ScrollCameraRig scrollRef={scrollRef} />
-      <StarLayer count={500} radius={10} size={0.028} color="#eaf6ff" zSpread={90} driftSpeed={0.004} />
-      <StarLayer count={320} radius={8} size={0.045} color="#7ed7ff" zSpread={90} driftSpeed={-0.006} />
-      <StarLayer count={120} radius={6} size={0.07} color="#c893ff" zSpread={90} driftSpeed={0.01} />
-      <Asteroid z={-16} />
-      <RingedBody z={-34} />
-      <DestinationPlanet z={-54} />
+      <ScrollCameraRig targetZRef={targetZRef} />
+      <StarLayer count={180} radius={10} size={0.026} color="#eaf6ff" zSpread={90} driftSpeed={0.004} />
+      <StarLayer count={90} radius={8} size={0.04} color="#7ed7ff" zSpread={90} driftSpeed={-0.006} />
+      <StarLayer count={30} radius={6} size={0.06} color="#c893ff" zSpread={90} driftSpeed={0.01} />
+      <Asteroid z={ASTEROID_Z} />
+      <RingedBody z={RINGED_BODY_Z} />
+      <DestinationPlanet z={DESTINATION_PLANET_Z} />
     </>
   );
 }
@@ -187,30 +251,51 @@ function useWebGLSupport() {
 const SpaceBackground = () => {
   const reducedMotion = useReducedMotion();
   const supportsWebGL = useWebGLSupport();
-  const scrollRef = useRef(0);
+  const { pathname } = useLocation();
+  const anchorsRef = useRef<Anchor[]>([{ scrollY: 0, z: START_Z }, { scrollY: 0, z: END_Z }]);
+  const targetZRef = useRef(START_Z);
 
   useEffect(() => {
     if (reducedMotion || !supportsWebGL) return;
 
     let ticking = false;
-    const update = () => {
-      scrollRef.current = getScrollProgress();
+
+    const remeasure = () => {
+      anchorsRef.current = measureAnchors();
+      targetZRef.current = interpolateZ(window.scrollY, anchorsRef.current);
+    };
+
+    const updateScroll = () => {
+      targetZRef.current = interpolateZ(window.scrollY, anchorsRef.current);
       ticking = false;
     };
     const onScroll = () => {
       if (ticking) return;
       ticking = true;
-      requestAnimationFrame(update);
+      requestAnimationFrame(updateScroll);
     };
+    const onResize = () => remeasure();
 
-    update();
+    // Initial measure, then once more shortly after mount/route change to
+    // catch async project/blog/event data that lands after first paint.
+    remeasure();
+    const settleTimer = window.setTimeout(remeasure, 1200);
+
     window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', onScroll);
+    window.addEventListener('resize', onResize);
+
+    // Catches section height changes from async content without needing
+    // to poll (e.g. project/blog/event cards loading in after fetch).
+    const resizeObserver = new ResizeObserver(() => remeasure());
+    resizeObserver.observe(document.body);
+
     return () => {
+      window.clearTimeout(settleTimer);
       window.removeEventListener('scroll', onScroll);
-      window.removeEventListener('resize', onScroll);
+      window.removeEventListener('resize', onResize);
+      resizeObserver.disconnect();
     };
-  }, [reducedMotion, supportsWebGL]);
+  }, [reducedMotion, supportsWebGL, pathname]);
 
   // Leave only the static CSS nebula gradient (already on <html>) for users
   // who prefer reduced motion or lack WebGL, instead of rendering nothing.
@@ -230,7 +315,7 @@ const SpaceBackground = () => {
         gl={{ antialias: true, alpha: true }}
       >
         <Suspense fallback={null}>
-          <Scene scrollRef={scrollRef} />
+          <Scene targetZRef={targetZRef} />
         </Suspense>
       </Canvas>
     </div>
