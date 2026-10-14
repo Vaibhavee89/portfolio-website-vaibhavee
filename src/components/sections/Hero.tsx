@@ -4,9 +4,11 @@ import { useToast } from "@/hooks/use-toast";
 import { useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { handleScrollToSection } from "@/lib/utils";
+import { useSiteSettings } from "@/contexts/SiteSettingsContext";
 
 export const Hero = () => {
   const { toast } = useToast();
+  const { settings } = useSiteSettings();
 
   const handleDownloadResume = () => {
     try {
@@ -111,11 +113,11 @@ export const Hero = () => {
           <div className="space-y-4">
             <p className="uppercase tracking-[0.6em] text-xs sm:text-sm text-primary/80">Innovate · Iterate · Inspire</p>
             <h1 className="text-4xl sm:text-6xl lg:text-7xl xl:text-8xl font-extrabold leading-[1.02] tracking-tight text-foreground">
-              INNOVATE<br />
-              <span className="gradient-text">ITERATE &amp; INSPIRE</span>
+              {settings.hero_title}<br />
+              <span className="gradient-text">{settings.hero_highlight}</span>
             </h1>
             <p className="text-base sm:text-lg text-muted-foreground/80 max-w-2xl mx-auto lg:mx-0">
-              Crafting data-driven, immersive experiences across the cloud, AI/ML, and human-centered design. Welcome to my portfolio.
+              {settings.hero_subtitle}
             </p>
           </div>
 
@@ -147,7 +149,7 @@ export const Hero = () => {
             <div className="portal-glow" />
             <div className="portal-core">
               <img
-                src="/femaleprogrammer.png"
+                src={settings.hero_image_url}
                 alt="Vaibhavee Singh"
                 className="w-full h-full object-cover"
               />

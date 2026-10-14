@@ -2,6 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import ThemeSwitcher from './ThemeSwitcher';
 
 interface NavItem {
   label: string;
@@ -87,6 +88,10 @@ export const Header = () => {
             )
           ))}
         </nav>
+
+        <div className="flex items-center gap-3 ml-auto md:ml-0">
+          <ThemeSwitcher />
+        </div>
 
         {/* Mobile Navigation Toggle */}
         <div className="flex items-center gap-3 md:hidden">

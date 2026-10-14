@@ -20,6 +20,8 @@ import ComingSoon from "./pages/admin/ComingSoon";
 import Certifications from "./pages/admin/Certifications";
 import Education from "./pages/admin/Education";
 import WorkExperience from "./pages/admin/WorkExperience";
+import SettingsPage from "./pages/admin/Settings";
+import { SiteSettingsProvider } from "./contexts/SiteSettingsContext";
 import BlogPosts from "./pages/admin/BlogPosts";
 import Events from "./pages/admin/Events";
 
@@ -39,6 +41,7 @@ const App = () => (
       <TooltipProvider>
         <Toaster />
         <Sonner />
+        <SiteSettingsProvider>
         <BrowserRouter>
           <SiteBackground />
           <Routes>
@@ -64,6 +67,7 @@ const App = () => (
               <Route path="work-experience" element={<WorkExperience />} />
               <Route path="blog-posts" element={<BlogPosts />} />
               <Route path="events" element={<Events />} />
+              <Route path="settings" element={<SettingsPage />} />
               {/* Sidebar sections without an editor yet — show a placeholder instead of a blank page */}
               <Route path="*" element={<ComingSoon />} />
             </Route>
@@ -71,6 +75,7 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
+        </SiteSettingsProvider>
       </TooltipProvider>
     </AuthProvider>
   </QueryClientProvider>

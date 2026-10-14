@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "db:seed": "node db/seed.mjs",
-    "auth:hash": "node db/hash-password.mjs"
+    "auth:hash": "node db/hash-password.mjs",
+    "db:migrate-settings": "node db/migrate-settings.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",

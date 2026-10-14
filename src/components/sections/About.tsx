@@ -23,6 +23,7 @@ import {
 import { Card, CardContent } from '@/components/ui/card';
 import { useSkills } from '@/hooks/useSkills';
 import { useCertifications } from '@/hooks/useCertifications';
+import { useSiteSettings } from '@/contexts/SiteSettingsContext';
 import { useEducation } from '@/hooks/useEducation';
 import { useWorkExperience } from '@/hooks/useWorkExperience';
 import { useAboutMe } from '@/hooks/useAboutMe';
@@ -32,6 +33,7 @@ export const About = () => {
   const [selectedCertificate, setSelectedCertificate] = useState<any>(null);
   
   const { aboutMe, loading: aboutLoading } = useAboutMe();
+  const { settings } = useSiteSettings();
   const { skills, loading: skillsLoading } = useSkills();
   const { certifications, loading: certsLoading } = useCertifications();
   const { education, loading: eduLoading } = useEducation();
@@ -110,7 +112,7 @@ export const About = () => {
                     <div className="floating-frame-glow" />
                     <div className="relative aspect-square w-full overflow-hidden rounded-[24px] border border-primary/30 bg-card/80 shadow-[0_18px_42px_rgba(26,160,255,0.18)]">
                       <img
-                        src={aboutMe.image_url}
+                        src={settings.about_image_url || aboutMe.image_url}
                         alt="Portrait of Vaibhavee"
                         className="h-full w-full object-cover object-top"
                       />
@@ -119,7 +121,7 @@ export const About = () => {
                 </div>
                 <div className="space-y-4 text-center md:text-left">
                   <h3 className="text-2xl sm:text-3xl font-bold text-foreground">
-                    {aboutMe.title}
+                    {settings.about_title || aboutMe.title}
                   </h3>
                   <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
                     {aboutMe.description}

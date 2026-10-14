@@ -85,3 +85,11 @@ CREATE TABLE IF NOT EXISTS work_experience (
   description TEXT NOT NULL,
   display_order INT NOT NULL DEFAULT 0
 );
+
+-- Site-wide settings (theme, landing-page and about-section overrides).
+-- Empty value = "use the default" (for About, falls back to the About Me page).
+CREATE TABLE IF NOT EXISTS site_settings (
+  key TEXT PRIMARY KEY,
+  value TEXT NOT NULL DEFAULT '',
+  updated_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
