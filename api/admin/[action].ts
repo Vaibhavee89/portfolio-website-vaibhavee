@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import bcrypt from 'bcryptjs';
-import { createSessionCookie } from '../_lib/auth.js';
+import { createSessionCookie, clearSessionCookie, getSessionEmail } from '../_lib/auth.js';
 
 // Minimal in-memory rate limiter. Resets on a cold start, which is fine for
 // a single-admin login — it just raises the cost of brute-forcing, it
@@ -20,7 +20,7 @@ function isRateLimited(key: string): boolean {
   return entry.count > MAX_ATTEMPTS;
 }
 
-export default async function handler(req: VercelRequest, res: VercelResponse) {
+async function handleLogin(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
     res.status(405).json({ error: 'Method not allowed' });
     return;
@@ -58,4 +58,40 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   res.setHeader('Set-Cookie', createSessionCookie(adminEmail));
   res.status(200).json({ email: adminEmail });
+}
+
+function handleLogout(req: VercelRequest, res: VercelResponse) {
+  if (req.method !== 'POST') {
+    res.status(405).json({ error: 'Method not allowed' });
+    return;
+  }
+  res.setHeader('Set-Cookie', clearSessionCookie());
+  res.status(200).json({ ok: true });
+}
+
+function handleMe(req: VercelRequest, res: VercelResponse) {
+  const email = getSessionEmail(req);
+  if (!email) {
+    res.status(200).json({ authenticated: false });
+    return;
+  }
+  res.status(200).json({ authenticated: true, email });
+}
+
+export default async function handler(req: VercelRequest, res: VercelResponse) {
+  const { action } = req.query;
+
+  switch (action) {
+    case 'login':
+      await handleLogin(req, res);
+      return;
+    case 'logout':
+      handleLogout(req, res);
+      return;
+    case 'me':
+      handleMe(req, res);
+      return;
+    default:
+      res.status(404).json({ error: 'Not found' });
+  }
 }
