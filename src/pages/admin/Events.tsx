@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from '@/components/ui/card';
+import { ImageUpload } from '@/components/admin/ImageUpload';
 import {
   Dialog,
   DialogContent,
@@ -165,19 +166,12 @@ export default function Events() {
               </DialogDescription>
             </DialogHeader>
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="space-y-2">
-                <Label htmlFor="image_url">Image Path or URL *</Label>
-                <Input
-                  id="image_url"
-                  value={formData.image_url}
-                  onChange={(e) => setFormData({ ...formData, image_url: e.target.value })}
-                  placeholder="/GitTogether.jpg"
-                  required
-                />
-                <p className="text-xs text-muted-foreground">
-                  A file in the public folder (e.g. /event.jpg) or a full image URL
-                </p>
-              </div>
+              <ImageUpload
+                label="Event Image"
+                value={formData.image_url}
+                onChange={(url) => setFormData({ ...formData, image_url: url })}
+                required
+              />
 
               <div className="space-y-2">
                 <Label htmlFor="caption">Caption *</Label>

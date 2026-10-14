@@ -21,6 +21,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
+import { ImageUpload } from '@/components/admin/ImageUpload';
 import { useToast } from '@/hooks/use-toast';
 import { Plus, Pencil, Trash2, ExternalLink } from 'lucide-react';
 
@@ -250,15 +251,11 @@ export default function Projects() {
                 />
               </div>
 
-              <div className="space-y-2">
-                <Label htmlFor="image_url">Image URL</Label>
-                <Input
-                  id="image_url"
-                  value={formData.image_url}
-                  onChange={(e) => setFormData({ ...formData, image_url: e.target.value })}
-                  placeholder="/project-image.png"
-                />
-              </div>
+              <ImageUpload
+                label="Project Image"
+                value={formData.image_url}
+                onChange={(url) => setFormData({ ...formData, image_url: url })}
+              />
 
               <div className="space-y-2">
                 <Label htmlFor="tags">Tags (comma-separated)</Label>

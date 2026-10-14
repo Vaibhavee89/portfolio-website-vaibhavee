@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { ImageUpload } from '@/components/admin/ImageUpload';
 import { useToast } from '@/hooks/use-toast';
 import { THEMES } from '@/lib/themes';
 import { DEFAULT_SETTINGS } from '@/contexts/SiteSettingsContext';
@@ -133,11 +134,11 @@ export default function SettingsPage() {
               <Label htmlFor="hero_subtitle">Subtitle</Label>
               <Textarea id="hero_subtitle" rows={3} value={form.hero_subtitle} onChange={(e) => update('hero_subtitle', e.target.value)} />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="hero_image_url">Image Path or URL</Label>
-              <Input id="hero_image_url" value={form.hero_image_url} onChange={(e) => update('hero_image_url', e.target.value)} placeholder="/femaleprogrammer.png" />
-              <p className="text-xs text-muted-foreground">A file in the public folder (e.g. /photo.png) or a full image URL</p>
-            </div>
+            <ImageUpload
+              label="Hero Image"
+              value={form.hero_image_url}
+              onChange={(url) => update('hero_image_url', url)}
+            />
           </CardContent>
         </Card>
 
@@ -153,10 +154,11 @@ export default function SettingsPage() {
               <Label htmlFor="about_title">Heading</Label>
               <Input id="about_title" value={form.about_title} onChange={(e) => update('about_title', e.target.value)} placeholder="Leave empty to use About Me title" />
             </div>
-            <div className="space-y-2">
-              <Label htmlFor="about_image_url">Portrait Image Path or URL</Label>
-              <Input id="about_image_url" value={form.about_image_url} onChange={(e) => update('about_image_url', e.target.value)} placeholder="Leave empty to use About Me image" />
-            </div>
+            <ImageUpload
+              label="Portrait Image (leave empty to use About Me image)"
+              value={form.about_image_url}
+              onChange={(url) => update('about_image_url', url)}
+            />
           </CardContent>
         </Card>
 

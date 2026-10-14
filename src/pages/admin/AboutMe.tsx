@@ -4,6 +4,7 @@ import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { ImageUpload } from '@/components/admin/ImageUpload';
 import { useToast } from '@/hooks/use-toast';
 import { Save, Loader2, User, Plus, Trash2, GripVertical } from 'lucide-react';
 import { useAboutMe, Highlight } from '@/hooks/useAboutMe';
@@ -174,19 +175,12 @@ export default function AboutMe() {
               </p>
             </div>
 
-            <div className="space-y-2">
-              <Label htmlFor="image_url">Profile Image URL</Label>
-              <Input
-                id="image_url"
-                value={formData.image_url}
-                onChange={(e) => setFormData({ ...formData, image_url: e.target.value })}
-                placeholder="/MyImage.png"
-                required
-              />
-              <p className="text-xs text-muted-foreground">
-                Path to your profile image (e.g., /MyImage.png)
-              </p>
-            </div>
+            <ImageUpload
+              label="Profile Image"
+              value={formData.image_url}
+              onChange={(url) => setFormData({ ...formData, image_url: url })}
+              required
+            />
           </CardContent>
         </Card>
 
