@@ -16,6 +16,8 @@ import Dashboard from "./pages/admin/Dashboard";
 import Projects from "./pages/admin/Projects";
 import Skills from "./pages/admin/Skills";
 import AboutMe from "./pages/admin/AboutMe";
+import ComingSoon from "./pages/admin/ComingSoon";
+import Certifications from "./pages/admin/Certifications";
 
 const queryClient = new QueryClient();
 
@@ -53,6 +55,9 @@ const App = () => (
               <Route path="projects" element={<Projects />} />
               <Route path="skills" element={<Skills />} />
               <Route path="about" element={<AboutMe />} />
+              <Route path="certifications" element={<Certifications />} />
+              {/* Sidebar sections without an editor yet — show a placeholder instead of a blank page */}
+              <Route path="*" element={<ComingSoon />} />
             </Route>
             
             <Route path="*" element={<NotFound />} />
