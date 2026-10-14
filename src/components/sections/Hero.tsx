@@ -4,6 +4,7 @@ import { useToast } from "@/hooks/use-toast";
 import { useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { handleScrollToSection } from "@/lib/utils";
+import HeroStarfield from "@/components/three/HeroStarfield";
 
 export const Hero = () => {
   const { toast } = useToast();
@@ -100,8 +101,9 @@ export const Hero = () => {
   }, []);
 
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center relative px-4 sm:px-8 lg:px-12 py-24">
-      <div className="w-full max-w-6xl mx-auto grid lg:grid-cols-[1.15fr_minmax(280px,1fr)] gap-10 items-center">
+    <section className="min-h-screen flex flex-col justify-center items-center relative px-4 sm:px-8 lg:px-12 py-24 overflow-hidden">
+      <HeroStarfield />
+      <div className="relative z-10 w-full max-w-6xl mx-auto grid lg:grid-cols-[1.15fr_minmax(280px,1fr)] gap-10 items-center">
         <div className="order-2 lg:order-1 space-y-8 text-center lg:text-left animate-fade-in">
           <span className="inline-flex items-center gap-2 starlight-pill badge-pulse mx-auto lg:mx-0">
             <span className="w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_18px_rgba(80,213,255,0.9)]"></span>
