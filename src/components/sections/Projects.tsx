@@ -55,10 +55,10 @@ export const Projects = () => {
             {projects.map((project, index) => (
               <div
                 key={project.id}
-                className={isVisible ? `animate-fade-in animate-delay-${index * 100}` : 'opacity-0'}
+                className={`h-full ${isVisible ? `animate-fade-in animate-delay-${index * 100}` : 'opacity-0'}`}
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="floating-frame" style={{ animationDelay: `${(index % 5) * 0.4}s` }}>
+                <div className="floating-frame h-full" style={{ animationDelay: `${(index % 5) * 0.4}s` }}>
                   <div className="floating-frame-glow" />
                   <ProjectCard project={project} />
                 </div>
