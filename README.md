@@ -37,6 +37,48 @@ This portfolio website serves as a personal space to highlight my achievements, 
 - 🛠️ **Admin Panel** (`/admin`) - Edit projects, skills, certifications, education, work experience, blog posts, events and landing-page content, backed by Postgres.
 - 📧 **Contact Section** - Easy-to-use contact form for networking.
 
+## 🏛️ Architecture
+
+```mermaid
+flowchart TB
+    subgraph Client["Browser"]
+        SPA["React SPA (Vite)\nreact-router-dom + TanStack Query"]
+    end
+
+    subgraph Vercel["Vercel"]
+        CDN["Static CDN\n(dist/ — index.html, assets)"]
+        subgraph Functions["Serverless Functions (api/)"]
+            Public["Content endpoints\nprojects, skills, blog-posts,\neducation, work-experience,\ncertifications, events, settings,\nabout-me"]
+            Admin["Admin endpoints\napi/admin/[action]\nlogin · logout · session"]
+            Upload["api/upload\n(Blob client upload token)"]
+            Lib["_lib/auth.ts — JWT cookie\n_lib/db.ts — Neon client"]
+        end
+    end
+
+    DB[("Neon Postgres\n(DATABASE_URL)")]
+    Blob[("Vercel Blob\n(image uploads)")]
+
+    SPA -- "GET /*  (SPA routes)" --> CDN
+    SPA -- "fetch /api/*" --> Public
+    SPA -- "fetch /api/admin/*\n(httpOnly session cookie)" --> Admin
+    SPA -- "upload image" --> Upload
+
+    Public --> Lib
+    Admin --> Lib
+    Upload --> Lib
+    Lib --> DB
+    Upload --> Blob
+```
+
+**Request flow**
+
+1. **Frontend** — a Vite/React SPA (`src/`) is built to static assets and served from Vercel's CDN. `vercel.json` rewrites every non-`/api` path back to `index.html` so client-side routing works on refresh/deep links.
+2. **Data fetching** — page components call hooks in `src/hooks/` (one per content type), which hit the matching REST endpoint under `api/*.ts` via TanStack Query.
+3. **API layer** — each `api/*.ts` file is an independent Vercel serverless function (Node runtime via `@vercel/node`). Public GET endpoints read content tables; the same files guard their write methods (`PUT`/`POST`/`DELETE`) behind `requireAuth`.
+4. **Auth** — `api/admin/[action].ts` handles `login`/`logout`/`session`. On login it verifies credentials against the `admin` table (bcrypt) and sets an httpOnly, `SameSite=strict` JWT cookie (`api/_lib/auth.ts`). Every admin write handler calls `requireAuth`, which is the real security boundary — the client-side `AuthContext`/`ProtectedRoute` only control what the UI shows.
+5. **Database** — all functions share one Neon Postgres client (`api/_lib/db.ts`, via `@neondatabase/serverless`), reading `DATABASE_URL`/`POSTGRES_URL`. Schema lives in `db/schema.sql`; `db/seed.mjs` creates tables and seeds them from `src/data/mockData.ts`.
+6. **Image uploads** — the admin panel requests a client upload token from `api/upload.ts`, which authenticates the admin then calls `@vercel/blob/client`'s `handleUpload`; the browser uploads the file directly to Vercel Blob and stores the returned URL on the relevant record.
+
 ## 📁 Project Structure
 
 ```
