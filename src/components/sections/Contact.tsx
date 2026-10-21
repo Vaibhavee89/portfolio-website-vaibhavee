@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { Mail, MapPin, Phone } from 'lucide-react';
-import emailjs from 'emailjs-com';
 import { useToast } from '@/hooks/use-toast';
 
 export const Contact = () => {
@@ -14,10 +13,6 @@ export const Contact = () => {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const SERVICE_ID = "service_sa0701f"; // Replace with your EmailJS service ID
-  const TEMPLATE_ID = "template_1btlxkf"; // Replace with your EmailJS template ID
-  const USER_ID = "uHDchT0A49BDcc_SQ"; // Replace with your EmailJS user ID
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -48,21 +43,16 @@ export const Contact = () => {
     setIsSubmitting(true);
     
     try {
-      const templateParams = {
-        from_name: formData.name,
-        from_email: formData.email,
-        subject: formData.subject,
-        message: formData.message,
-        to_name: 'Vaibhavee Singh', // Your name
-        reply_to: formData.email,
-      };
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
 
-      await emailjs.send(
-        SERVICE_ID,
-        TEMPLATE_ID,
-        templateParams,
-        USER_ID
-      );
+      if (!response.ok) {
+        const body = await response.json().catch(() => ({}));
+        throw new Error(body.error || 'Failed to send message');
+      }
 
       setIsSubmitting(false);
       setIsSubmitted(true);

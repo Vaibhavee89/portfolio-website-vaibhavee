@@ -1,6 +1,5 @@
 
 import { useEffect } from 'react';
-import emailjs from 'emailjs-com';
 import Header from '../components/layout/Header';
 import Footer from '../components/layout/Footer';
 import Hero from '../components/sections/Hero';
@@ -12,9 +11,6 @@ import EventCarousel from '../components/sections/EventCarousel';
 
 const Index = () => {
   useEffect(() => {
-    // Initialize EmailJS
-    emailjs.init("user_yourUserId"); // Replace with your actual USER_ID from EmailJS
-    
     // Animation on scroll
     const animateOnScroll = () => {
       const elements = document.querySelectorAll('.animate-on-scroll');

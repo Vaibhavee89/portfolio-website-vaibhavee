@@ -27,6 +27,7 @@ This portfolio website serves as a personal space to highlight my achievements, 
 - ▲ **Vercel Serverless Functions** (`api/`) - REST endpoints for all content and admin auth.
 - 🐘 **Postgres on Neon** (`@neondatabase/serverless`) - Persistent storage for every content section.
 - 🔐 Session cookie auth (JWT, httpOnly) for the `/admin` panel - see `BACKEND_SETUP.md`.
+- 📨 **Resend** - Sends the "Get In Touch" contact form via `api/contact.ts` - see `BACKEND_SETUP.md`.
 
 ## ✨ Features
 
@@ -51,23 +52,27 @@ flowchart TB
             Public["Content endpoints\nprojects, skills, blog-posts,\neducation, work-experience,\ncertifications, events, settings,\nabout-me"]
             Admin["Admin endpoints\napi/admin/[action]\nlogin · logout · session"]
             Upload["api/upload\n(Blob client upload token)"]
+            Contact["api/contact\n(contact form)"]
             Lib["_lib/auth.ts — JWT cookie\n_lib/db.ts — Neon client"]
         end
     end
 
     DB[("Neon Postgres\n(DATABASE_URL)")]
     Blob[("Vercel Blob\n(image uploads)")]
+    Resend[("Resend\n(email delivery)")]
 
     SPA -- "GET /*  (SPA routes)" --> CDN
     SPA -- "fetch /api/*" --> Public
     SPA -- "fetch /api/admin/*\n(httpOnly session cookie)" --> Admin
     SPA -- "upload image" --> Upload
+    SPA -- "submit contact form" --> Contact
 
     Public --> Lib
     Admin --> Lib
     Upload --> Lib
     Lib --> DB
     Upload --> Blob
+    Contact --> Resend
 ```
 
 **Request flow**
@@ -78,6 +83,7 @@ flowchart TB
 4. **Auth** — `api/admin/[action].ts` handles `login`/`logout`/`session`. On login it verifies credentials against the `admin` table (bcrypt) and sets an httpOnly, `SameSite=strict` JWT cookie (`api/_lib/auth.ts`). Every admin write handler calls `requireAuth`, which is the real security boundary — the client-side `AuthContext`/`ProtectedRoute` only control what the UI shows.
 5. **Database** — all functions share one Neon Postgres client (`api/_lib/db.ts`, via `@neondatabase/serverless`), reading `DATABASE_URL`/`POSTGRES_URL`. Schema lives in `db/schema.sql`; `db/seed.mjs` creates tables and seeds them from `src/data/mockData.ts`.
 6. **Image uploads** — the admin panel requests a client upload token from `api/upload.ts`, which authenticates the admin then calls `@vercel/blob/client`'s `handleUpload`; the browser uploads the file directly to Vercel Blob and stores the returned URL on the relevant record.
+7. **Contact form** — the public "Get In Touch" form posts to `api/contact.ts`, which sends the message through Resend to the configured inbox (`CONTACT_TO_EMAIL`/`ADMIN_EMAIL`). No client-side email keys are involved — see `BACKEND_SETUP.md`.
 
 ## 📁 Project Structure
 

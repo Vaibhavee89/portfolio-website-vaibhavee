@@ -95,6 +95,25 @@ refresh.
 Push to your connected branch (or `npx vercel --prod`). The environment
 variables you set in step 4 apply automatically; nothing else to configure.
 
+## 8. Contact form (Resend)
+
+The "Get In Touch" form on the homepage posts to `api/contact.ts`, which
+sends the message via [Resend](https://resend.com).
+
+1. Sign up at [resend.com](https://resend.com) (free tier, no card needed)
+   and create an API key under **API Keys**.
+2. Add these environment variables (same place as step 4):
+
+   | Variable | Value |
+   |---|---|
+   | `RESEND_API_KEY` | the key from resend.com |
+   | `CONTACT_TO_EMAIL` | the inbox that should receive contact messages (falls back to `ADMIN_EMAIL` if unset) |
+
+3. The endpoint sends from Resend's shared `onboarding@resend.dev` address,
+   which works immediately with no DNS setup — fine for receiving your own
+   contact-form mail. If you verify a custom domain in the Resend dashboard
+   later, update the `from` address in `api/contact.ts` to use it.
+
 ---
 
 ## What's actually protected, and how
