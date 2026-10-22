@@ -140,7 +140,7 @@ For any inquiries, collaborations, or feedback, you can reach out to me via:
 
 🔗 [LinkedIn](https://www.linkedin.com/in/vaibhavee-singh-1b7996252/)
 
-🐦 [Twitter](https://twitter.com/yourhandle)
+🐦 [Twitter](https://x.com/VaibhaveeSingh3)
 
 ---
 
